@@ -2,8 +2,14 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
+root: intro.md
 chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+- file: introduction/index.md
+- file: background/index.md
+- file: first-steps/index.md
+- file: synths/index.md
+- file: filters/index.md
+- file: voice/index.md
+- file: challenges/index.md
+- file: conclusion/index.md
+
