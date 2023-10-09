@@ -8,6 +8,8 @@ chapters:
 - file: background/index.md
 - file: first-steps/index.md
 - file: synths/index.md
+  sections:
+  - file: synths/01_oscillator.ipynb
 - file: filters/index.md
 - file: voice/index.md
 - file: challenges/index.md
