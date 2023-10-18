@@ -4,12 +4,12 @@
 format: jb-book
 root: intro.md
 chapters:
-- file: introduction/index.md
-- file: background/index.md
-- file: first-steps/index.md
-- file: synths/index.md
-- file: filters/index.md
-- file: voice/index.md
-- file: challenges/index.md
-- file: conclusion/index.md
-
+  - file: introduction/index.md
+  - file: background/index.md
+  - file: first-steps/index.md
+  - file: synths/index.md
+  - file: filters/index.md
+  - file: filters/iir_intro.md
+  - file: voice/index.md
+  - file: challenges/index.md
+  - file: conclusion/index.md
