@@ -36,3 +36,8 @@ parse:
     # don't forget to list any other extensions you want enabled,
     # including those that are enabled by default!
     - amsmath
+    - dollarmath
+
+sphinx:
+  extra_extensions:
+    - sphinxcontrib.mermaid
