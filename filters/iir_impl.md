@@ -184,7 +184,7 @@ These constraints can be added easily with the tanh function on the neural netwo
 
 ### Reflection Coefficients
 
-The two methods we have discussed do not assume any order on applying second-order filters if we want to build a longer ($M > 2$) IIR filter. Any filtering order results in the same transfer function. If all the filter coefficients are predicted by the same neural network, this can be problematic because the neurons in the last layer are ordered but their target is permutation invariant. We introduce a third parmetersiation that use an intermediate representation called reflection coefficients.
+The two methods we have discussed do not assume any order on applying second-order filters if we want to build a longer ($M > 2$) IIR filter. Any filtering order results in the same transfer function. If all the filter coefficients are predicted by the same neural network, this can be problematic because the neurons in the last layer are ordered but their target is permutation invariant. We introduce the third parmetersiation that use an intermediate representation called reflection coefficients which is ordered.
 
 
 
