@@ -176,7 +176,7 @@ Higher order IIR filters can be obtained by concatenating more second-order IIR 
 The other way is to directly predict the second-order IIR filter coefficients $a_1, a_2$. It is well known tha a second-order IIR filter is stable if 
 
 $$
-|a_1| < 1 + |a_2|, \quad |a_2| < 1.
+|a_1| < 1 + a_2, \quad |a_2| < 1.
 $$ (iir_stable)
 
 These constraints can be added easily with the tanh function on the neural network output {cite}`nercessian2021lightweight`. This parameterisation covers a wider range of coefficients  because the roots are not restricted to be conjugate pairs.
