@@ -68,7 +68,7 @@ flowchart LR
 	forward ==> backward
 ```
 
-### Coefficient Gradients $\frac{\partial \mathcal{L}}{\partial a_k}$
+### Coefficient gradients $\frac{\partial \mathcal{L}}{\partial a_k}$
 
 If we directly taking the derivative of {eq}`iir` with respect to $a_k$, we will get
 
@@ -93,7 +93,7 @@ $$
 \frac{\partial \mathcal{L}}{\partial \mathbf{y}}.
 $$ (iir_dLda)
 
-### Input Gradients $\frac{\partial \mathcal{L}}{\partial x[n]}$
+### Input gradients $\frac{\partial \mathcal{L}}{\partial x[n]}$
 
 Let us recall that the derivative of a linear matrix transform $\mathbf{y} = \mathbf{H}\mathbf{x}$ with respect to $\mathbf{x}$ is $\mathbf{H}^T$. We can represent IIR as a matrix transformation with $\mathbf{H}_a$ which has infinite dimensions. Of course, the $\mathbf{x}$ we use here is also infinite dimensional $[\cdots, 0, x[0], x[1], \dots]$.
 
@@ -158,7 +158,7 @@ graph LR
 
 One more thing that needs to be taken care of is the parameterisation of the coefficients. IIR filters can be unstable (i.e. the outputs are unbounded) if the roots of the denominator polynomial are outside the unit circle. Special cares need to be taken especially when the filter coefficients are predicted by a neural network.
 
-### Complex Conjugate Pairs
+### Complex conjugate pairs
 
 One simple way is to predict the complex root $re^{-j\theta}$ inside the unit circle ($|r| \leq 1$) and add its conjugate so the filter coefficients are real. The value bound can be enforced by using the sigmoid function on the neural network output. The transfer function of this second-order IIR filter is then
 
@@ -171,7 +171,7 @@ $$ (iir_complex)
 
 Higher order IIR filters can be obtained by concatenating more second-order IIR filters. 
 
-### Coefficient Parameterisation
+### Coefficient parameterisation
 
 The other way is to directly predict the second-order IIR filter coefficients $a_1, a_2$. It is well known tha a second-order IIR filter is stable if 
 
@@ -179,14 +179,29 @@ $$
 |a_1| < 1 + |a_2|, \quad |a_2| < 1.
 $$ (iir_stable)
 
-These constraints can be added easily with the tanh function on the neural network output. This parameterisation covers a wider range of coefficients  because the roots are not restricted to be conjugate pairs.
+These constraints can be added easily with the tanh function on the neural network output {cite}`nercessian2021lightweight`. This parameterisation covers a wider range of coefficients  because the roots are not restricted to be conjugate pairs.
 
 
-### Reflection Coefficients
+### Reflection coefficients
 
 The two methods we have discussed do not assume any order on applying second-order filters if we want to build a longer ($M > 2$) IIR filter. Any filtering order results in the same transfer function. If all the filter coefficients are predicted by the same neural network, this can be problematic because the neurons in the last layer are ordered but their target is permutation invariant. We introduce the third parmetersiation that use an intermediate representation called reflection coefficients which is ordered.
 
+Reflection coefficients $p_k$ are widely used in speech processing. Sometimes it is also called PARCOR coefficients. It relates to the ratio of the areas of the $k$-th and $(k+1)$-th sections of the vocal tract tube model. The system is gauranteed to be stable if $|p_k| < 1$. The filter coefficient $a_k$ can be computed from the reflection coefficients using Levinson-Durbin recursion
 
+$$
+a_k^i = 
+\begin{cases}
+p_k^i, & k = i \\
+a_{k}^{i-1} - p_k^i a_{i-k}^{i-1}, & k < i \\
+\end{cases} \quad ,
+$$ (iir_levinson)
+
+where $i$ is the iteration number and the final coeffecients are $a_k^M$. They are very compact representation and can be quantised for transmission.
+
+
+## Summary
+
+In this chapter, we have presented two different ways to implement differentiable IIR filters which are fast to compute. We have also discussed three different parameterisations of the filter coefficients, which values are bounded to ensure stability and can be parameterised by neural networks. In the next chapter, we will demonstrate how to implement these methods in PyTorch.
 
 
 ## References
