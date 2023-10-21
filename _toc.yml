@@ -11,6 +11,7 @@ chapters:
   - file: filters/index.md
   - file: filters/iir_intro.md
   - file: filters/iir_impl.md
+  - file: filters/iir_torch.ipynb
   - file: voice/index.md
   - file: challenges/index.md
   - file: conclusion/index.md
