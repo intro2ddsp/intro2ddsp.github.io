@@ -1,6 +1,6 @@
 jupyter-book
 matplotlib
 numpy
-numba
 torch
 torchaudio
+sphinxcontrib-mermaid
