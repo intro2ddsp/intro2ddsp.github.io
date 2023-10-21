@@ -191,8 +191,8 @@ Reflection coefficients $p_k$ are widely used in speech processing. Sometimes it
 $$
 a_k^i = 
 \begin{cases}
-p_k^i, & k = i \\
-a_{k}^{i-1} - p_k^i a_{i-k}^{i-1}, & k < i \\
+p_k, & k = i \\
+a_{k}^{i-1} - p_k a_{i-k}^{i-1}, & k < i \\
 \end{cases} \quad ,
 $$ (iir_levinson)
 
