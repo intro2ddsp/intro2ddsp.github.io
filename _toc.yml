@@ -10,6 +10,7 @@ chapters:
 - file: synths/index.md
   sections:
   - file: synths/01_oscillator.ipynb
+  - file: synths/02_additive.ipynb
 - file: filters/index.md
 - file: voice/index.md
 - file: challenges/index.md
