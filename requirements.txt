@@ -2,3 +2,7 @@ jupyter-book
 matplotlib
 numpy
 torchaudio
+tqdm
+crepe
+auraloss
+tensorflow
