@@ -11,6 +11,8 @@ chapters:
   sections:
   - file: synths/01_oscillator.ipynb
   - file: synths/02_additive.ipynb
+  - file: synths/03_optimize_additive.ipynb
+  - file: synths/04_examples.ipynb
 - file: filters/index.md
 - file: voice/index.md
 - file: challenges/index.md
