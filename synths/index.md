@@ -14,6 +14,8 @@ kernelspec:
 
 # Digital Synthesizer Modelling
 
+[WIP]
+
 In this section we'll cover some of the basics of implementing a synthesizer 
 differentiably using PyTorch.
 
