@@ -9,7 +9,11 @@ chapters:
 - file: first-steps/index.md
 - file: synths/index.md
 - file: filters/index.md
+  sections:
+  - file: filters/fir-intro.md
+  - file: filters/fir-optim.ipynb
 - file: voice/index.md
 - file: challenges/index.md
 - file: conclusion/index.md
+- file: bibliography.md
 
