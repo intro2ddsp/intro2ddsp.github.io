@@ -10,6 +10,12 @@ chapters:
 - file: synths/index.md
 - file: filters/index.md
 - file: voice/index.md
+- file: physical-modeling/index.md
+  sections:
+  - file: physical-modeling/sho.ipynb
+  - file: physical-modeling/many_oscillators.ipynb
+  - file: physical-modeling/wave_equation.md
+  - file: physical-modeling/kp-strong.ipynb
 - file: challenges/index.md
 - file: conclusion/index.md
 
