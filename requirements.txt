@@ -3,3 +3,4 @@ matplotlib
 numpy
 torchaudio
 auraloss
+docutils==0.17.1
