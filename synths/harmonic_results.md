@@ -3,7 +3,7 @@
 Let's see some more sound match examples with our differentiable harmonic synthesizer.
 
 ## Crepe Pitch Extraction
-The Crepe pitch extraction algorithm was used in the original work by Engel et al. and provides a more accurate and richer fundamental frequency envelope. This can help improve the final results of synthesis.
+The Crepe pitch extraction algorithm {cite:p}`kim2018crepe` was used in the original work by {cite:p}`engel_ddsp_2020` and provides a more accurate and richer fundamental frequency envelope. This can help improve the final results of synthesis.
 
 Crepe can be installed from [PyPi](https://pypi.org/project/crepe/). We replaced `functional.detect_pitch_frequency` with `crepe.predict` to produce the examples in these book.
 
@@ -52,7 +52,7 @@ f0 = torch.from_numpy(f0).unsqueeze(0)
 If you listen to the very beginning of the synthesized results, especially in the guitar, you'll hear that it is
 missing the sharp pluck. The onset has been smoothed out by our harmonic synthesizer.
 The onset, or **transient**, portion of a signal is defined by abrupt changes in amplitude, phase, or frequency information.
-Sinusoidal synthesis does not work well for these signal
+Sinusoidal/harmonic synthesis does not work well for these signal
 components. Transient modelling has been a topic of recent in recent DDSP synthesis
 work focused on sound effect modelling {cite:p}`barahona2023noisebandnet`{cite:p}`liu2023ddsp` and drum synthesis {cite:p}`shier2023differentiable`.
 
@@ -86,18 +86,18 @@ work focused on sound effect modelling {cite:p}`barahona2023noisebandnet`{cite:p
 
 ## Challenges: Noise, Room Sounds, Chorusing
 
-In the the violin and voice synthesis results we can hear some choppiness and distortion.
+In the violin and voice synthesis results, we can hear some choppiness and distortion.
 Inspecting the spectrograms of the targets we can see that there is significant signal
 energy in between the prominent harmonics. We can attribute these signal components to a
 number of factors. In the violin there is extra noise produced from the bow string. There
 is also room reverbation present in both these signals that cause a spectral smearing effect.
 
 We can hear distortion in the synthesized signal, which may be created by the optimizer in an
-attempt to minimize the error from these signal components with respect to the multi-resolution
+attempt to minimize the error from these noisy/reverberant signal components with respect to the multi-resolution
 spectral loss. Both noise and room reverberation were addressed by {cite:t}`engel_ddsp_2020`
-through the introduction of specialized DDSP modules to address these components.
+through the introduction of specialized DDSP modules.
 
-We can also hear in the voice sample that there may be more than one voice present creating
+We can also hear in the voice sample that there may be more than one voice present, creating
 a chorus-effect, which are slight pitch deviations between the different voices. This is 
 more challenging phenomenon to reproduce. We could try to add more instances of our
 harmonic synthesizer with slight pitch deviations between the instances. This approach could
@@ -123,7 +123,7 @@ monophonic sources. Differentiable chorus effects were explored by {cite:t}`masu
 ## Challenges: Complex non-harmonic sounds
 
 Our harmonic synthesizer worked surprisingly well on this drum sound given the increase
-in modelling complexity. Although, we can hear clearly that there is significant distortion in
+in complexity! Although, we can hear clearly that there is significant distortion in
 the results. Along with the challenges previously mentioned (i.e., transients, noise, room reverb),
 we also have to contend with non-harmonic partials in drum sounds. So, it is not 
 surprising that our harmonic synthesizer failed to model this sound!
@@ -140,25 +140,29 @@ It looks like
 the first and second harmonic partials line up with partials in the drum sound, but the
 remaining partials are much less clear. 
 
-There is significant energy in partials that are
-have non-harmonic relationships with the fundamental. We hear that our optimizer
-has struggled to deal with this extra energy and has created distorted amplitude envelopes
-in attempt to contend with this.
+There is significant energy in partials that
+have non-harmonic relationships with the fundamental. 
+We hear our optimizer
+has struggled to deal with this extra energy and has created distorted amplitude envelopes, 
+potentially in attempt to contend with this.
 
 **So what's the solution?** Ideally, we would let the optimizer pick the correct frequencies
 for our partials. But, if you recall from [earlier](sinusoidal-optimizing-challenge), this
-is a challenging, non-convex problem. Recent progress in frequency estimation using 
-gradient descent could be provide as a promising direction for future work in this field {cite:p}`hayes2023sinusoidal`.
+is a challenging, non-convex problem. 
+Recent progress in frequency estimation using 
+gradient descent could be a promising direction for this problem {cite:p}`hayes2023sinusoidal`.
 Alternatively, estimation of non-harmonic partials can be offloaded to a pre-processing step,
 as was the case in {cite:p}`shier2023differentiable`.
 
 ## Summary
 This concludes our implementation and exploration of a differentiable harmonic synthesizer.
-We can see that this synthesizer is capable of modelling quite a wide range of harmonic
-instrumental sounds. We saw that as our target became more complicated, we started to see
-and hear errors in the harmonic synthesis results. In practice, the harmonic synthesizer
-is one component in a larger system. The addition of DDSP modules and variations on this
-harmonic synthesizer will enable us to model different types of acoustical atteributes.
+We've seen that this synthesizer is capable of modelling quite a wide range of harmonic
+instrumental sounds. 
+We saw that as our target became more complicated, we started hear errors in the harmonic synthesis results. 
+In practice, the harmonic synthesizer
+is one component in a larger system. 
+The addition of different DDSP modules and variations on this
+harmonic synthesizer will enable us to model different acoustical atteributes.
 
 ## References
 

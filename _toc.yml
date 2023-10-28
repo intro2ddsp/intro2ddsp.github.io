@@ -9,10 +9,10 @@ chapters:
 - file: first-steps/index.md
 - file: synths/introduction.md
   sections:
-  - file: synths/01_oscillator.ipynb
-  - file: synths/02_additive.ipynb
-  - file: synths/03_optimize_additive.ipynb
-  - file: synths/examples.md
+  - file: synths/oscillator.ipynb
+  - file: synths/additive.ipynb
+  - file: synths/harmonic_optimize.ipynb
+  - file: synths/harmonic_results.md
 - file: filters/index.md
 - file: voice/index.md
 - file: challenges/index.md
