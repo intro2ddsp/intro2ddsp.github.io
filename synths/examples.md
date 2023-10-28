@@ -30,7 +30,7 @@ f0 = torch.from_numpy(f0).unsqueeze(0)
 ### Result
 <video width="100%" src="../_static/videos/sax-ddsp-torchaudio.mp4" controls loop></video>
 <audio controls>
-    <source src="../_static/audio/reed_acoustic_target.wav" type="audio/wav">
+    <source src="../_static/audio/reed_acoustic_result.wav" type="audio/wav">
 </audio>
 
 ## Guitar
@@ -163,4 +163,5 @@ harmonic synthesizer will enable us to model different types of acoustical atter
 ## References
 
 ```{bibliography}
+:filter: docname in docnames
 ```

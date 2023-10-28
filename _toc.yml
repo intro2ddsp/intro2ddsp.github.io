@@ -7,7 +7,7 @@ chapters:
 - file: introduction/index.md
 - file: background/index.md
 - file: first-steps/index.md
-- file: synths/index.md
+- file: synths/introduction.md
   sections:
   - file: synths/01_oscillator.ipynb
   - file: synths/02_additive.ipynb
