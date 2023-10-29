@@ -149,10 +149,14 @@ potentially in attempt to contend with this.
 **So what's the solution?** Ideally, we would let the optimizer pick the correct frequencies
 for our partials. But, if you recall from [earlier](sinusoidal-optimizing-challenge), this
 is a challenging, non-convex problem. 
-Recent progress in frequency estimation using 
-gradient descent could be a promising direction for this problem {cite:p}`hayes2023sinusoidal`.
+
+Recent work has begun to tackle this problem.
+{cite:t}`hayes2023sinusoidal` proposed a surrogate approach for frequency estimation using
+gradient descent, which may enable direct optimization of non-harmonic sinusoidal frequencies.
+{cite:t}`diaz_rigid-body_2022` learned to model non-harmonic partials of rigid-body
+percussion sounds differentiably using banks of IIR resonators.
 Alternatively, estimation of non-harmonic partials can be offloaded to a pre-processing step,
-as was the case in {cite:p}`shier2023differentiable`.
+as was the case in the hybrid drum synthesis method proposed by {cite:t}`shier2023differentiable`.
 
 ## Summary
 This concludes our implementation and exploration of a differentiable harmonic synthesizer.

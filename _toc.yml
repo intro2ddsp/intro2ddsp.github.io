@@ -13,6 +13,7 @@ chapters:
   - file: synths/additive.ipynb
   - file: synths/harmonic_optimize.ipynb
   - file: synths/harmonic_results.md
+  - file: synths/libraries.md
 - file: filters/index.md
 - file: voice/index.md
 - file: challenges/index.md
