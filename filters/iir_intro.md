@@ -16,7 +16,7 @@ $$
 H(z) = \frac{1}{1 + \sum_{k=1}^{M} a_k z^{-k}},
 $$ (iir_tf)
 
-where $a_1, \dots, a_M$ are the system coefficients. Each output sample $y[n]$ is a weighted sum of the past output samples $y[n-1], \dots, y[n-M]$ and the current input sample $x[n]$. It is also called recursive system because the output samples are recursively computed from past output samples, or all-pole system because the denominator of the transfer function is a polynomial of all poles.
+where $a_1, \dots, a_M$ are the system coefficients. Each output sample $y[n]$ is a weighted sum of the past output samples $y[n-1], \dots, y[n-M]$ and the current input sample $x[n]$. It is also called recursive system because the output samples are recursively computed from past output samples, or all-pole system because it only has poles and no zeros in the transfer function. (Poles and zeros are the roots of the numerator and denominator of the transfer function, respectively.)
 
 If we convert the equation to only have input samples on the right-hand side, we obtain
 
@@ -78,7 +78,7 @@ $$
 $$ (rnn)
 where $f$ is a non-linear activation function, $\mathbf{A}$ and $\mathbf{B}$ are weight matrices.
 
-You can see that the RNN equation can equals to a first-order IIR when $f(x) = x, \mathbf{A} = 1, \mathbf{B} = -a_1$, with scalr inputs and outputs. This similarity also explains why training IIRs in deep learning frameworks like PyTorch are slow. By flatting out the recurrent computation graph, we obtain a very deep network with number of layers equals to the number of time steps. The slow training problem is worse on IIRs because to have enough time context for audio applications, more than ten thousand of audio samples are needed, while RNNs usually trained on sequences with length of hundreds. We will revisit this problem in the later chapters when we talk about differentiable implementation of IIRs.
+You can see that the RNN equation can equals to a first-order IIR when $f(x) = x, \mathbf{A} = 1, \mathbf{B} = -a_1$, with scalar inputs and outputs. This similarity also explains why training IIRs in deep learning frameworks like PyTorch are slow. By flatting out the recurrent computational graph, we obtain a very deep network with number of layers equals to the number of time steps. The slow training problem is worse on IIRs because to have enough time context for audio applications, more than ten thousand of audio samples are needed, while RNNs usually trained on sequences with length of hundreds. We will revisit this problem in the later chapters when we talk about differentiable implementation of IIRs.
 
 ```{mermaid}
 flowchart LR

@@ -1,4 +1,4 @@
-# Differentiable Implmentation of IIR Filters
+# Differentiable Implementation of IIR Filters
 
 IIR is a linear system so it is differentiable everywhere. However, directly implementating {eq}`iir` is not a good idea because it is really slow in practice. The reason is because in deep learning framework, each arithmetic operation register a node in the computation graph, which will be used to backpropagate the gradients. For IIR, the number of nodes equals to the number of time steps, which is usually in the order of more than ten thousand. Creating these nodes results in significant overhead. In this chapter, we will discuss ways to mitigate this problem.
 
@@ -30,7 +30,7 @@ H(e^{j \omega})
 $$ (iir_fft)
 which can be computed easily using the fast Fourier transform (FFT). The filtering process is then equivalent to multiplying the frequency response with the input signal $X(e^{j \omega})H(e^{j \omega}) $ in the frequency domain and then inverse FFT back to the time domain. 
 
-This method is pretty fast in general because PyTorch natively support FFT and only requires a few computational node to record this. Moreover, in many cases, we define our loss functions in frequency domain, which makes more sense to use the frequency sampling method without converting it back to the time domain. 
+This method is pretty fast in general because PyTorch natively support FFT and only requires a few computational nodes to record this. Moreover, in many cases, we define our loss functions in frequency domain, which makes more sense to use the frequency sampling method without converting it back to the time domain. 
 
 However, there are some drawbacks of this method. It equals to approximating the IIR filter with an FIR filter because of discrete time Fourier transform (DFT), which sampled $N$ frequencies $[e^0, e^{-j \frac{2 \pi}{N}}, \dots, e^{-j \frac{2 \pi (N-1)}{N}}]$. Sampling in the frequency domain is equivalent to truncating the impulse response in the time domain and making it periodic every $N$ samples. 
 The filtering becomes a circular convolution of the truncated impulse response. Moreover, $N$ is usually set to some large numbers to have a good resolution in the frequency domain, which can increase the memory usage.
@@ -70,12 +70,12 @@ flowchart LR
 
 ### Coefficient gradients $\frac{\partial \mathcal{L}}{\partial a_k}$
 
-If we directly taking the derivative of {eq}`iir` with respect to $a_k$, we will get
+If we directly take the derivative of {eq}`iir` with respect to $a_k$, we will get
 
 $$
 \frac{\partial y[n]}{\partial a_k} =  -y[n-k] - \sum_{i=1}^M a_i \frac{\partial y[n-i]}{\partial a_i}.
 $$ (iir_dyda)
-It is filtering the nagative, shifted output with the same set of coefficients! We can get the gradients for different $k$ in one pass because their differences are just time-shifted versions of each other.
+It is filtering the negative, shifted output with the same set of coefficients! We can get the gradients for different $k$ in one pass because their differences are just time-shifted versions of each other.
 
 Then, given a loss function $\mathcal{L}$ and the backpropagated output gradients $\frac{\partial \mathcal{L}}{\partial \mathbf{y}}$, we can get the gradients $\frac{\partial \mathcal{L}}{\partial a_k}$ using chain rule
 
