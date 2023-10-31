@@ -1,6 +1,6 @@
 # Infinite Impulse Response (IIR) Systems
 
-A system with infinite impulse response (IIR) is called an IIR system {cite}`dafx`. It is described by the following difference equation
+A system with [infinite impulse response](https://en.wikipedia.org/wiki/Infinite_impulse_response) (IIR) is called an IIR system. It is described by the following difference equation
 
 $$
 \begin{split}
