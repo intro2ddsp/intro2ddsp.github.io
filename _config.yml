@@ -3,7 +3,7 @@
 
 title: Introduction to Audio Synthesizer Programming
 author: Ben Hayes, Jordie Shier, Chin-Yun Yu, David Südholt, Rodrigo Diaz
-logo: logo.png
+logo: intro2ddsp_logo.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
