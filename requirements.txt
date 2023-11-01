@@ -1,3 +1,7 @@
 jupyter-book
 matplotlib
 numpy
+scikit-fem
+control
+torchaudio
+torch
