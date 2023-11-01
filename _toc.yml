@@ -6,6 +6,8 @@ root: intro.md
 chapters:
 - file: introduction/index.md
 - file: background/index.md
+  sections:
+    - file: background/tasks_applications.md
 - file: first-steps/index.md
 - file: synths/index.md
 - file: filters/index.md
