@@ -16,9 +16,18 @@ $$
 H(z) = \frac{1}{1 + \sum_{k=1}^{M} a_k z^{-k}},
 $$ (iir_tf)
 
-where $a_1, \dots, a_M$ are the system coefficients. Each output sample $y[n]$ is a weighted sum of the past output samples $y[n-1], \dots, y[n-M]$ and the current input sample $x[n]$. It is also called recursive system because the output samples are recursively computed from past output samples, or all-pole system because it only has poles and no zeros in the transfer function. (Poles and zeros are the roots of the numerator and denominator of the transfer function, respectively.)
+where $a_1, \dots, a_M$ are the system coefficients. 
+Each output sample $y[n]$ is a weighted sum of the past output samples $y[n-1], \dots, y[n-M]$ and the current input sample $x[n]$. It is also called recursive system because the output samples are recursively computed from past output samples.
+Conventionally, an IIR filter also depends on the past input samples $x[n-1], \dots, x[n-M]$ with another set of coefficients $b_0, b_1, \dots, b_M$ in the difference equation
 
-If we convert the equation to only have input samples on the right-hand side, we obtain
+$$
+H(z) = \frac{b_0 + b_1 z^{-1} + \cdots + b_M z^{-M}}{1 + a_1 z^{-1} + \cdots + a_N z^{-M}}
+$$
+
+but here we restrict the discussion to systems that only depend on the past output samples for simplicity. 
+This is called an all-pole system because it only has poles and no zeros in the transfer function. (Poles and zeros are the roots of the numerator and denominator of the transfer function, respectively.)
+
+If we convert the equation {eq}`iir` to only have input samples on the right-hand side, we obtain
 
 $$
 \begin{split}
@@ -30,11 +39,7 @@ $$ (iir2)
 
 The last two equations are ugly but thankfully we will not need them later in this notebook. They are only included for completeness. You can see that the output samples $y[n]$ are a weighted sum of the current and past input samples $x[n], x[n-1], \dots$, just like in the FIR case. However, the length of the impulse response is infinite, hence the name IIR.
 
-IIRs are very useful because you can approximate long FIRs with much less number of coefficients in an IIR. This also implies that they are cheaper to compute. In practice, same order of FIR and IIR are usually used together for filter design to acheive maximum performance.
-
-$$
-H(z) = \frac{b_0 + b_1 z^{-1} + \cdots + b_M z^{-M}}{1 + a_1 z^{-1} + \cdots + a_N z^{-N}}
-$$
+IIRs are very useful because you can approximate long FIRs with much less number of coefficients in an IIR. This also implies that they are cheaper to compute. 
 
 ## Connection to Linear Predictive Coding (LPC)
 
