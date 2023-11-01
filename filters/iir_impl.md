@@ -6,7 +6,7 @@ IIR is a linear system so it is differentiable everywhere. However, directly imp
 FIR filters does not require such massive computational graph because its output samples are independent of each other, thus can be parallelised and merge into a single node. 
 ```
 
-
+(content:freq-sampling)=
 ## Frequency Sampling Method
 
 An alternative method that has been widely accepted is to do the computation in the frequency domain. Remember we have the transfer function $H(z)$ {eq}`iir_tf`. We can evaluate the transfer function on the unit circle $z = e^{j \omega}$ to obtain the frequency response $H(e^{j \omega})$ of the IIR filter
