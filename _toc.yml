@@ -7,7 +7,13 @@ chapters:
 - file: introduction/index.md
 - file: background/index.md
 - file: first-steps/index.md
-- file: synths/index.md
+- file: synths/introduction.md
+  sections:
+  - file: synths/oscillator.ipynb
+  - file: synths/additive.ipynb
+  - file: synths/harmonic_optimize.ipynb
+  - file: synths/harmonic_results.md
+  - file: synths/libraries.md
 - file: filters/index.md
 - file: voice/index.md
 - file: physical-modeling/index.md

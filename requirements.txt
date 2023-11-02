@@ -1,7 +1,9 @@
 jupyter-book
 matplotlib
 numpy
-scikit-fem
-control
 torchaudio
 torch
+auraloss
+docutils==0.17.1
+scikit-fem
+control
