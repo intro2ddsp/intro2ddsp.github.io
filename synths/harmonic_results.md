@@ -53,8 +53,8 @@ If you listen to the very beginning of the synthesized results, especially in th
 missing the sharp pluck. The onset has been smoothed out by our harmonic synthesizer.
 The onset, or **transient**, portion of a signal is defined by abrupt changes in amplitude, phase, or frequency information.
 Sinusoidal/harmonic synthesis does not work well for these signal
-components. Transient modelling has been a topic of recent in recent DDSP synthesis
-work focused on sound effect modelling {cite:p}`barahona2023noisebandnet`{cite:p}`liu2023ddsp` and drum synthesis {cite:p}`shier2023differentiable`.
+components. Transient modelling has been a topic of recent research in DDSP synthesis
+focused on sound effect modelling {cite:p}`barahona2023noisebandnet`{cite:p}`liu2023ddsp` and drum synthesis {cite:p}`shier2023differentiable`.
 
 ## Violin
 ### Target
