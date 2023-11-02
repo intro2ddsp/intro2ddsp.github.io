@@ -8,6 +8,9 @@ Requirements:
 - Torchaudio
 - Numpy
 - Matplotlib
+- tqdm
+- scikit-fem
+
 
 ## Contributing
 

@@ -15,5 +15,10 @@ chapters:
     - file: filters/iir_torch.ipynb
     - file: filters/sf.ipynb
   - file: voice/index.md
+  - file: physical-modeling/index.md
+    sections:
+    - file: physical-modeling/sho.ipynb
+    - file: physical-modeling/many_oscillators.ipynb
+    - file: physical-modeling/wave_equation.md
   - file: challenges/index.md
   - file: conclusion/index.md

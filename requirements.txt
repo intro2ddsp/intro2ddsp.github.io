@@ -4,3 +4,5 @@ numpy
 torch
 torchaudio
 sphinxcontrib-mermaid
+scikit-fem
+control
