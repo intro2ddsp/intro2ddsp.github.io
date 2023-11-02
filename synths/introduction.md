@@ -91,7 +91,12 @@ we are going to focus on developing the block component labelled **Harmonic Audi
 at how we can use the **Multi-Scale Spectrogram Loss** to learn parameters to match the
 sounds we introduced above!
 
-<image src="../_static/images/ddsp_model.png" width="75%"></img>
+```{figure} ../_static/images/ddsp_model.png
+---
+name: ddsp_model
+---
+DDSP model diagram, from the original DDSP paper by Engel et al.
+```
 
 Sinusoidal modelling is also just one of many synthesis methods that we can model 
 differentiably. Some of these alternative methods will be overviewed and we will also
