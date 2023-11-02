@@ -9,22 +9,22 @@ chapters:
   - file: first-steps/index.md
   - file: synths/introduction.md
     sections:
-    - file: synths/oscillator.ipynb
-    - file: synths/additive.ipynb
-    - file: synths/harmonic_optimize.ipynb
-    - file: synths/harmonic_results.md
-    - file: synths/libraries.md
+      - file: synths/oscillator.ipynb
+      - file: synths/additive.ipynb
+      - file: synths/harmonic_optimize.ipynb
+      - file: synths/harmonic_results.md
+      - file: synths/libraries.md
   - file: filters/index.md
     sections:
-    - file: filters/iir_intro.md
-    - file: filters/iir_impl.md
-    - file: filters/iir_torch.ipynb
-    - file: filters/sf.ipynb
+      - file: filters/iir_intro.md
+      - file: filters/iir_impl.md
+      - file: filters/iir_torch.ipynb
+      - file: filters/sf.ipynb
   - file: voice/index.md
   - file: physical-modeling/index.md
     sections:
-    - file: physical-modeling/sho.ipynb
-    - file: physical-modeling/many_oscillators.ipynb
-    - file: physical-modeling/wave_equation.md
+      - file: physical-modeling/sho.ipynb
+      - file: physical-modeling/many_oscillators.ipynb
+      - file: physical-modeling/wave_equation.md
   - file: challenges/index.md
   - file: conclusion/index.md
