@@ -18,6 +18,9 @@ chapters:
   - file: synths/harmonic_results.md
   - file: synths/libraries.md
 - file: filters/index.md
+  sections:
+  - file: filters/fir-intro.md
+  - file: filters/fir-optim.ipynb
 - file: voice/index.md
 - file: physical-modeling/index.md
   sections:
@@ -26,4 +29,5 @@ chapters:
   - file: physical-modeling/wave_equation.md
 - file: challenges/index.md
 - file: conclusion/index.md
+- file: bibliography.md
 
