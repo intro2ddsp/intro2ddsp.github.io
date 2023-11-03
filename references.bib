@@ -163,18 +163,6 @@ url = {http://www.aes.org/e-lib/browse.cfm?elib=22261}
   doi={10.1109/ACCESS.2019.2918851}
 }
 
-@inproceedings{engel_ddsp_2020,
-  title = {{{DDSP}}: {{Differentiable Digital Signal Processing}}},
-  shorttitle = {{{DDSP}}},
-  booktitle = {8th {{International Conference}} on {{Learning Representations}}},
-  author = {Engel, Jesse and Hantrakul, Lamtharn (Hanoi) and Gu, Chenjie and Roberts, Adam},
-  year = {2020},
-  month = apr,
-  address = {{Addis Ababa, Ethiopia}},
-  urldate = {2020-01-29},
-  abstract = {Most generative models of audio directly generate samples in one of two domains: time or frequency. While sufficient to express any signal, these representations are inefficient, as they do not...},
-}
-
 @misc{barahona-rios_noisebandnet_2023,
   title = {{{NoiseBandNet}}: {{Controllable Time-Varying Neural Synthesis}} of {{Sound Effects Using Filterbanks}}},
   shorttitle = {{{NoiseBandNet}}},
@@ -187,7 +175,7 @@ url = {http://www.aes.org/e-lib/browse.cfm?elib=22261}
   doi = {10.48550/arXiv.2307.08007},
 }
 
-@misc{hayes_review_2023,
+@article{hayes_review_2023,
   title = {A {{Review}} of {{Differentiable Digital Signal Processing}} for {{Music}} \& {{Speech Synthesis}}},
   author = {Hayes, Ben and Shier, Jordie and Fazekas, Gy{\"o}rgy and McPherson, Andrew and Saitis, Charalampos},
   year = {2023},
@@ -199,3 +187,71 @@ url = {http://www.aes.org/e-lib/browse.cfm?elib=22261}
   doi = {10.48550/arXiv.2308.15422},
   urldate = {2023-09-05},
 }
+
+@inproceedings{oord_wavenet_2016,
+title	= {WaveNet: A Generative Model for Raw Audio},
+author	= {Aäron van den Oord and Sander Dieleman and Heiga Zen and Karen Simonyan and Oriol Vinyals and Alexander Graves and Nal Kalchbrenner and Andrew Senior and Koray Kavukcuoglu},
+year	= {2016},
+URL	= {https://arxiv.org/abs/1609.03499},
+booktitle	= {Arxiv}
+}
+
+@inproceedings{kong_hifi-gan_2020,
+author = {Kong, Jungil and Kim, Jaehyeon and Bae, Jaekyoung},
+title = {HiFi-GAN: Generative Adversarial Networks for Efficient and High Fidelity Speech Synthesis},
+year = {2020},
+isbn = {9781713829546},
+publisher = {Curran Associates Inc.},
+address = {Red Hook, NY, USA},
+abstract = {Several recent work on speech synthesis have employed generative adversarial networks (GANs) to produce raw waveforms. Although such methods improve the sampling efficiency and memory usage, their sample quality has not yet reached that of autoregressive and flow-based generative models. In this work, we propose HiFi-GAN, which achieves both efficient and high-fidelity speech synthesis. As speech audio consists of sinusoidal signals with various periods, we demonstrate that modeling periodic patterns of an audio is crucial for enhancing sample quality. A subjective human evaluation (mean opinion score, MOS) of a single speaker dataset indicates that our proposed method demonstrates similarity to human quality while generating 22.05 kHz high-fidelity audio 167.9 times faster than real-time on a single V100 GPU. We further show the generality of HiFi-GAN to the mel-spectrogram inversion of unseen speakers and end-to-end speech synthesis. Finally, a small footprint version of HiFi-GAN generates samples 13.4 times faster than real-time on CPU with comparable quality to an autoregressive counterpart.},
+booktitle = {Proceedings of the 34th International Conference on Neural Information Processing Systems},
+articleno = {1428},
+numpages = {12},
+location = {Vancouver, BC, Canada},
+series = {NIPS'20}
+}
+
+@inproceedings{juvela_gelp_2019,
+  author={Lauri Juvela and Bajibabu Bollepalli and Junichi Yamagishi and Paavo Alku},
+  title={{GELP: GAN-Excited Linear Prediction for Speech Synthesis from Mel-Spectrogram}},
+  year=2019,
+  booktitle={Proc. Interspeech 2019},
+  pages={694--698},
+  doi={10.21437/Interspeech.2019-2008}
+}
+
+@inproceedings{engel_self-supervised_2020,
+title={Self-supervised Pitch Detection by Inverse Audio Synthesis},
+author={Jesse Engel and Rigel Swavely and Lamtharn Hanoi Hantrakul and Adam Roberts and Curtis Hawthorne},
+booktitle={ICML 2020 Workshop on Self-supervision in Audio and Speech},
+year={2020},
+url={https://openreview.net/forum?id=RlVTYWhsky7}
+}
+
+@ARTICLE{schulze-forster_unsupervised_2023,
+  author={Schulze-Forster, Kilian and Richard, Gaël and Kelley, Liam and Doire, Clement S. J. and Badeau, Roland},
+  journal={IEEE/ACM Transactions on Audio, Speech, and Language Processing}, 
+  title={Unsupervised Music Source Separation Using Differentiable Parametric Source Models}, 
+  year={2023},
+  volume={31},
+  number={},
+  pages={1276-1289},
+  doi={10.1109/TASLP.2023.3252272}}
+
+@inproceedings{sudholt_vocal_2023,
+	title = {Vocal Tract Area Estimation by Gradient Descent},
+	author = {S{\"u}dholt, David and Cámara, Mateo and Xu, Zhiyuan and Reiss, Joshua D.},
+	year = 2023,
+	booktitle = {Proceedings of the 26th {{International Conference}} on {{Digital Audio Effects}}},
+	address = {{Copenhagen, Denmark}},
+}
+
+@ARTICLE{masuda_improving_2023,
+  author={Masuda, Naotake and Saito, Daisuke},
+  journal={IEEE/ACM Transactions on Audio, Speech, and Language Processing}, 
+  title={Improving Semi-Supervised Differentiable Synthesizer Sound Matching for Practical Applications}, 
+  year={2023},
+  volume={31},
+  number={},
+  pages={863-875},
+  doi={10.1109/TASLP.2023.3237161}}

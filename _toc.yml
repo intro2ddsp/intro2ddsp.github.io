@@ -3,31 +3,39 @@
 
 format: jb-book
 root: intro.md
-chapters:
-- file: introduction/index.md
-- file: background/index.md
-- file: first-steps/first_steps.md
-  sections:
-  - file: first-steps/pytorch_tutorial.ipynb
-  - file: first-steps/diff_gain.ipynb
-- file: synths/introduction.md
-  sections:
-  - file: synths/oscillator.ipynb
-  - file: synths/additive.ipynb
-  - file: synths/harmonic_optimize.ipynb
-  - file: synths/harmonic_results.md
-  - file: synths/libraries.md
-- file: filters/index.md
-  sections:
-  - file: filters/fir-intro.md
-  - file: filters/fir-optim.ipynb
-- file: voice/index.md
-- file: physical-modeling/index.md
-  sections:
-  - file: physical-modeling/sho.ipynb
-  - file: physical-modeling/many_oscillators.ipynb
-  - file: physical-modeling/wave_equation.md
-- file: challenges/index.md
-- file: conclusion/index.md
-- file: bibliography.md
-
+parts:
+  - caption: Background
+    chapters:
+      - file: background/neural-audio-synthesis.md
+      - file: background/what-is-ddsp.md
+  - caption: First Steps
+    chapters:
+      - file: first-steps/first_steps.md
+      - file: first-steps/pytorch_tutorial.ipynb
+      - file: first-steps/diff_gain.ipynb
+  - caption: Synthesisers
+    chapters:
+      - file: synths/introduction.md
+      - file: synths/oscillator.ipynb
+      - file: synths/additive.ipynb
+      - file: synths/harmonic_optimize.ipynb
+      - file: synths/harmonic_results.md
+      - file: synths/libraries.md
+  - caption: Filters
+    chapters:
+      - file: filters/index.md
+      - file: filters/fir-intro.md
+      - file: filters/fir-optim.ipynb
+  - caption: Voice Synthesis
+    chapters:
+      - file: voice/index.md
+  - caption: Physical Modeling
+    chapters:
+      - file: physical-modeling/index.md
+      - file: physical-modeling/sho.ipynb
+      - file: physical-modeling/many_oscillators.ipynb
+      - file: physical-modeling/wave_equation.md
+  - caption: Wrapping Up
+    chapters:
+      - file: conclusion/index.md
+      - file: bibliography.md
