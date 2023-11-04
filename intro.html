@@ -173,23 +173,27 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">First Steps</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="first-steps/first_steps.html">Your first differentiable digital signal processor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="first-steps/pytorch_tutorial.html">PyTorch Bootcamp</a></li>
 <li class="toctree-l1"><a class="reference internal" href="first-steps/diff_gain.html">A Differentiable Gain Control</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Synthesisers</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="synths/introduction.html">Digital Synthesizer Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="synths/oscillator.html">Writing an Oscillator in PyTorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="synths/additive.html">Additive Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="synths/harmonic_optimize.html">Optimizing a Harmonic Synthesizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="synths/harmonic_results.html">Harmonic Synthesis Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="synths/libraries.html">Differentiable Synthesis Libraries</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Filters</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="filters/index.html">Digital Filter Modelling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters/fir-intro.html">Finite Impulse Response</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filters/fir-optim.html">Differentiable FIR Filters</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Voice Synthesis</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="voice/index.html">Voice Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters/iir_intro.html">Infinite Impulse Response (IIR) Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters/iir_impl.html">Differentiable Implementation of IIR Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters/iir_torch.html">Implementing Differentiable IIR in PyTorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters/sf.html">Speech Decomposition with Source Filter Model</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Physical Modeling</span></p>
 <ul class="nav bd-sidenav">
@@ -481,8 +485,6 @@ Nonetheless, all of the techniques we present can be (and mostly have been) comp
 <p><a class="reference external" href="https://dsuedholt.github.io/publications/"><em>David Südholt</em></a> is a first year PhD student in the Artificial Intelligence and Music (AIM) programme based at Queen Mary University of London (QMUL). Supervised by Prof. Joshua Reiss, he is researching parameter estimation for physical modelling synthesis, focussing on the synthesis and expressive transformation of the human voice. He received an MSc degree in Sound and Music Computing from Aalborg University Copenhagen in 2022, where he was supervised by Prof. Stefania Serafin and Assoc. Prof. Cumhur Erkut. His work has been published at the SMC conference and in the IEEE/ACM Transactions on Audio, Speech and Language Processing.</p>
 <p><a class="reference external" href="http://www.eecs.qmul.ac.uk/people/profiles/diazfernandezrodrigomauricio.html"><em>Rodrigo Diaz</em></a> is a PhD candidate in Artificial Intelligence and Music at Queen Mary University in London, under the supervision of Prof. Mark Sandler and Dr. Charalampos Saitis. Rodrigo’s work has been published in leading computer vision and audio conferences, including CVPR, ICASSP, IC3D, and the AES Conference on Headphone Technology. Before starting his PhD studies, he worked as a researcher at the Immersive Communications group at the Fraunhofer HHI Institute in Berlin, where he investigated volumetric reconstruction from images using neural networks. His current research focuses on real-time audio synthesis using neural networks for 3D objects and drums. Rodrigo’s interdisciplinary background includes a Master’s degree in Media Arts and Design from Bauhaus University in Weimar and a Bachelor of Music from Texas Christian University.</p>
 </section>
-<div class="toctree-wrapper compound">
-</div>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
