@@ -32,6 +32,14 @@ A GPU-enabled modular synthesizer library written in PyTorch. Provides of a numb
 
 A modular synthesizer based on torchsynth built with JAX. Achieves over 80k times faster than realtime generation speeds. {cite:p}`cherep2023synthax`
 
+
+## dasp
+
+<a href="https://github.com/csteinmetz1/dasp-pytorch"><img src="https://img.shields.io/badge/Github-dasp-7DA416.svg?style=flat-square&amp;logo=GitHub" alt="Full repository"></a>
+
+Differentiable audio signal processors in PyTorch. Includes differentiable signal processors such as distortion, EQs, compressors, reverb, and stereo effects. Not focused
+on audio synthesis, but relevant to many of the concepts presented in this tutorial.
+
 ## References
 
 ```{bibliography}
