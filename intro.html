@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Background" href="background/index.html" />
+    <link rel="next" title="Neural Audio Synthesis" href="background/neural-audio-synthesis.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -166,39 +166,40 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="background/index.html">Background</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="first-steps/first_steps.html">Your first differentiable digital signal processor</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="first-steps/pytorch_tutorial.html">PyTorch Bootcamp</a></li>
-<li class="toctree-l2"><a class="reference internal" href="first-steps/diff_gain.html">A Differentiable Gain Control</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="background/neural-audio-synthesis.html">Neural Audio Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="background/what-is-ddsp.html">What is DDSP?</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="synths/introduction.html">Digital Synthesizer Modelling</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="synths/oscillator.html">Writing an Oscillator in PyTorch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="synths/additive.html">Additive Synthesis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="synths/harmonic_optimize.html">Optimizing a Harmonic Synthesizer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="synths/harmonic_results.html">Harmonic Synthesis Results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="synths/libraries.html">Differentiable Synthesis Libraries</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">First Steps</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="first-steps/first_steps.html">Your first differentiable digital signal processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first-steps/pytorch_tutorial.html">PyTorch Bootcamp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first-steps/diff_gain.html">A Differentiable Gain Control</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="filters/index.html">Digital Filter Modelling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="filters/fir-intro.html">Finite Impulse Response</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filters/fir-optim.html">Differentiable FIR Filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filters/iir_intro.html">Infinite Impulse Response (IIR) Systems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filters/iir_impl.html">Differentiable Implementation of IIR Filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filters/iir_torch.html">Implementing Differentiable IIR in PyTorch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filters/sf.html">Speech Decomposition with Source Filter Model</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Synthesisers</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="synths/introduction.html">Digital Synthesizer Modelling</a></li>
 </ul>
-</li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Filters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="filters/index.html">Digital Filter Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters/fir-intro.html">Finite Impulse Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters/fir-optim.html">Differentiable FIR Filters</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Voice Synthesis</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="voice/index.html">Voice Synthesis</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="physical-modeling/index.html">Physical Modeling and DDSP</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="physical-modeling/sho.html">The Simple Harmonic Oscillator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="physical-modeling/many_oscillators.html">Rigid objects and modal analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="physical-modeling/wave_equation.html">The Wave Equation</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="challenges/index.html">Challenges, Considerations, &amp; Best Practices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="conclusion/index.html">Conclusion</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Physical Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="physical-modeling/index.html">Physical Modeling and DDSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="physical-modeling/sho.html">The Simple Harmonic Oscillator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="physical-modeling/many_oscillators.html">Rigid objects and modal analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="physical-modeling/wave_equation.html">The Wave Equation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Wrapping Up</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -370,7 +371,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -386,6 +389,20 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation-aims">Motivation &amp; Aims</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#who-is-this-for">Who is this for?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-note-on-scope-we-re-not-training-neural-networks">A note on scope: we’re <em>not</em> training neural networks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-the-authors">About the Authors</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -397,23 +414,86 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h1>
-<p>This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out <a class="reference external" href="https://jupyterbook.org">the Jupyter Book documentation</a> for more information.</p>
-<p>Check out the content pages bundled with this sample book to see more.</p>
+<p>Welcome to the online supplement to the tutorial on “<em>Introduction to Differentiable Audio Synthesiser Programming</em>”, presented at the <a class="reference external" href="https://ismir2023.ismir.net/">24th International Society for Music Information Retrieval Conference</a> at <a class="reference external" href="https://www.polimi.it/">Politecnico di Milano</a>, November 5th — 9th 2023.
+This web book contains all content presented at the tutorial, including code examples and references. It also contains further material, going into greater depth on the topics covered.</p>
+<section id="motivation-aims">
+<h2>Motivation &amp; Aims<a class="headerlink" href="#motivation-aims" title="Permalink to this heading">#</a></h2>
+<p>The field of differentiable digital signal processing (DDSP) emerged with the incorporation of components, such as linear synthesis filters <span id="id1">[<a class="reference internal" href="bibliography.html#id33" title="Lauri Juvela, Bajibabu Bollepalli, Junichi Yamagishi, and Paavo Alku. GELP: GAN-Excited Linear Prediction for Speech Synthesis from Mel-Spectrogram. In Proc. Interspeech 2019, 694–698. 2019. doi:10.21437/Interspeech.2019-2008.">JBYA19</a>]</span> and spectral modelling synthesisers <span id="id2">[<a class="reference internal" href="synths/introduction.html#id10" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>, into the end-to-end training of neural networks for speech and musical instrument synthesis.
+It has since grown to encompass applications including pitch estimation <span id="id3">[<a class="reference internal" href="bibliography.html#id34" title="Jesse Engel, Rigel Swavely, Lamtharn Hanoi Hantrakul, Adam Roberts, and Curtis Hawthorne. Self-supervised pitch detection by inverse audio synthesis. In ICML 2020 Workshop on Self-supervision in Audio and Speech. 2020. URL: https://openreview.net/forum?id=RlVTYWhsky7.">ESH+20</a>]</span>, source separation <span id="id4">[<a class="reference internal" href="bibliography.html#id35" title="Kilian Schulze-Forster, Gaël Richard, Liam Kelley, Clement S. J. Doire, and Roland Badeau. Unsupervised music source separation using differentiable parametric source models. IEEE/ACM Transactions on Audio, Speech, and Language Processing, 31():1276–1289, 2023. doi:10.1109/TASLP.2023.3252272.">SFRK+23</a>]</span>, physical parameter estimation <span id="id5">[<a class="reference internal" href="bibliography.html#id36" title="David Südholt, Mateo Cámara, Zhiyuan Xu, and Joshua D. Reiss. Vocal tract area estimation by gradient descent. In Proceedings of the 26th International Conference on Digital Audio Effects. Copenhagen, Denmark, 2023.">SudholtCXR23</a>]</span>, synthesiser sound matching <span id="id6">[<a class="reference internal" href="synths/harmonic_results.html#id30" title="Naotake Masuda and Daisuke Saito. Improving Semi-Supervised Differentiable Synthesizer Sound Matching for Practical Applications. IEEE/ACM Transactions on Audio, Speech, and Language Processing, 31:863–875, 2023. doi:10.1109/TASLP.2023.3237161.">MS23</a>]</span>, and beyond.
+By introducing a strong inductive bias, DDSP methods can often lead to a reduction in model complexity and data requirements, and provide an intermediate representation that is inherently interpretable in terms of familiar parametric signal processors.</p>
+<p>Yet despite the growing popularity of such methods in research, the implementation of differentiable audio synthesizers is not always clearly documented, and the simple formulation of many synthesizers can obscure what often turns out to be complex optimization behaviour.
+This tutorial aims to address this gap through an introduction to the fundamentals of differentiable synthesizer programming.
+In particular, we hope that researchers in adjacent fields may find applications for these techniques in their work.</p>
+<section id="who-is-this-for">
+<h3>Who is this for?<a class="headerlink" href="#who-is-this-for" title="Permalink to this heading">#</a></h3>
+<p>This book and the accompanying tutorial are aimed at music and audio researchers and engineers who wish to gain a practical understanding of how differentiable digital signal processors can be implemented and used in audio synthesis.
+The content is targeted at those with a grounding in the fundamentals of signal processing and machine learning, although references to educational resources are provided where relevant for those who wish to refresh or supplement their existing knowledge.
+We assume prior knowledge of Python 3.
+The tutorial content is written using the <a class="reference external" href="https://pytorch.org/">PyTorch</a> machine learning framework.
+We do not assume prior experience with PyTorch, and attempt to provide sufficient background to allow the tutorial content to be understood.
+Nonetheless, we encourage those who are totally new to PyTorch to explore the <a class="reference external" href="https://pytorch.org/tutorials/beginner/basics/intro.html">official tutorials</a> to provide further context.</p>
+</section>
+<section id="a-note-on-scope-we-re-not-training-neural-networks">
+<h3>A note on scope: we’re <em>not</em> training neural networks<a class="headerlink" href="#a-note-on-scope-we-re-not-training-neural-networks" title="Permalink to this heading">#</a></h3>
+<p>The majority of applications of DDSP involve its use in combination with a neural network, which typically produces the parameters of the signal processing operation (e.g. the cutoff frequency of a filter, or harmonic amplitudes).
+In this tutorial and web book, however, we focus only on the components of this system <em>after</em> the parameters are given — that is, we concern ourselves only with the differentiable signal processing.
+Nonetheless, all of the techniques we present can be (and mostly have been) composed with a neural network, as a direct consequence of their implementation using differentiable operations in a machine learning framework.</p>
+<!-- Computational research in music, speech, and other kinds of audio has undergone something of a revolution in recent years. -->
+<!-- Deep learning has emerged as not only a viable and frequently superior option for many tasks --- from source separation, to music tagging, to music synthesis --- but has also allowed entirely new applications to be explored.  -->
+<!-- Throughout this period of research, audio synthesis proved to be a particularly challenging task for deep neural networks, due to its high dimensionality, multi-scale temporal dependencies, and the frequently non-intuitive relationships between perception and signal characteristics. -->
+<!-- These obstacles prompted numerous innovations, including WaveNet {cite}`oord_wavenet_2016` and multi-resolution adversarial objectives {cite}`kong_hifi-gan_2020`, which enabled rapid progress, particularly in the field of speech synthesis. -->
+<!-- In parallel, the field of differentiable digital signal processing (DDSP) began to emerge, with the incorporation of a differentiable linear synthesis filter {cite}`juvela_gelp_2019` and spectral modelling synthesiser {cite}`engel_ddsp_2020` into end-to-end neural network training.  -->
+<!-- Whilst many of the most exciting developments are predicated on the growing feasibility of scale in certain domains -- *more* data, *more* computation, *more* parameters -- these variables are not always under the researcher's control. -->
+<!-- Frequently, tasks in music research suffer from a paucity of appropriate data, and on-demand access to large amounts of GPU computation is not always economically feasible or justifiable. -->
+<!---->
+<!-- ```{tableofcontents} -->
+<!-- ``` -->
+</section>
+</section>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">#</a></h2>
+<p>This web book consists of a series of Jupyter notebooks, which can be explored statically on this page. To run the notebooks yourself, you will need to clone the Git repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/intro2ddsp/intro2ddsp.github.io.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>intro2ddsp.github.io
+</pre></div>
+</div>
+<p>Then, you should create a Python virtual environment, using <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code>, <code class="docutils literal notranslate"><span class="pre">conda</span></code>, or similar:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>intro2ddsp<span class="w"> </span><span class="nv">python</span><span class="o">==</span><span class="m">3</span>.10<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>intro2ddsp
+</pre></div>
+</div>
+<p>Next, you should install the dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+<p>And finally, you can launch the Jupyter notebook server:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>notebook
+</pre></div>
+</div>
+</section>
+<section id="about-the-authors">
+<h2>About the Authors<a class="headerlink" href="#about-the-authors" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://benhayes.net/"><em>Ben Hayes</em></a> is a final year PhD student at the Centre for Digital Music’s CDT in Artificial Intelligence and Music, Queen Mary University of London. His research focuses on expanding the capabilities of differentiable digital signal processing by resolving optimisation pathologies caused by symmetry. His work has been accepted to leading conferences in the field, including ISMIR, ICLR, ICASSP, ICA, and the AES Convention, and published in the Journal of the Audio Engineering Society. He has worked as a Research intern at Sony Computer Science Laboratories in Paris and ByteDance’s Speech Audio and Music Intelligence team in London. He was also Music Lead at the award-winning generative music startup Jukedeck, and an internationally touring musician signed to R&amp;S Records.</p>
+<p><a class="reference external" href="https://jordieshier.com/"><em>Jordie Shier</em></a> is a first year PhD student in the Artificial Intelligence and Music (AIM) programme based at Queen Mary University of London (QMUL), studying under the supervision of Prof. Andrew McPherson and Dr. Charalampos Saitis. His research is focused on the development of novel methods for synthesizing audio and the creation of new interaction paradigms for music synthesizers. His current PhD project is on real-time timbral mapping for synthesized percussive performance and is being conducted in collaboration with Ableton. He was a co-organizer of the 2021 Holistic Evaluation of Audio Representations (HEAR) NeurIPS challenge and his work has been published in PMLR, DAFx, and the JAES. Previously, he completed an MSc in Computer Science and Music under the supervision of Prof. George Tzanetakis and Assoc. Prof. Kirck McNally.</p>
+<p><a class="reference external" href="https://yoyololicon.github.io/"><em>Chin-Yun Yu</em></a> is a first year PhD student in the Artificial Intelligence and Music (AIM) programme based at Queen Mary University of London (QMUL), under the supervision of Dr György Fazekas. His current research theme is on leveraging signal processing and deep generative models for controllable, expressive vocal synthesis. In addition, he is dedicated to open science and reproducible research by developing open-source packages and contributing to public research projects. He received a BSc in Computer Science from National Chiao Tung University in 2018 and was a research assistant at the Institute of Information Science, Academia Sinica, supervised by Prof. Li Su. His recent work has been published at ICASSP.</p>
+<p><a class="reference external" href="https://dsuedholt.github.io/publications/"><em>David Südholt</em></a> is a first year PhD student in the Artificial Intelligence and Music (AIM) programme based at Queen Mary University of London (QMUL). Supervised by Prof. Joshua Reiss, he is researching parameter estimation for physical modelling synthesis, focussing on the synthesis and expressive transformation of the human voice. He received an MSc degree in Sound and Music Computing from Aalborg University Copenhagen in 2022, where he was supervised by Prof. Stefania Serafin and Assoc. Prof. Cumhur Erkut. His work has been published at the SMC conference and in the IEEE/ACM Transactions on Audio, Speech and Language Processing.</p>
+<p><a class="reference external" href="http://www.eecs.qmul.ac.uk/people/profiles/diazfernandezrodrigomauricio.html"><em>Rodrigo Diaz</em></a> is a PhD candidate in Artificial Intelligence and Music at Queen Mary University in London, under the supervision of Prof. Mark Sandler and Dr. Charalampos Saitis. Rodrigo’s work has been published in leading computer vision and audio conferences, including CVPR, ICASSP, IC3D, and the AES Conference on Headphone Technology. Before starting his PhD studies, he worked as a researcher at the Immersive Communications group at the Fraunhofer HHI Institute in Berlin, where he investigated volumetric reconstruction from images using neural networks. His current research focuses on real-time audio synthesis using neural networks for 3D objects and drums. Rodrigo’s interdisciplinary background includes a Master’s degree in Media Arts and Design from Bauhaus University in Weimar and a Bachelor of Music from Texas Christian University.</p>
+</section>
 <div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="background/index.html">Background</a></li>
-<li class="toctree-l1"><a class="reference internal" href="first-steps/first_steps.html">Your first differentiable digital signal processor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="synths/introduction.html">Digital Synthesizer Modelling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="filters/index.html">Digital Filter Modelling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="voice/index.html">Voice Synthesis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="physical-modeling/index.html">Physical Modeling and DDSP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="challenges/index.html">Challenges, Considerations, &amp; Best Practices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="conclusion/index.html">Conclusion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
-</ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
 </div>
 </section>
 
@@ -448,11 +528,11 @@ It does not go in-depth into any particular topic - check out <a class="referenc
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="right-next"
-       href="background/index.html"
+       href="background/neural-audio-synthesis.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Background</p>
+        <p class="prev-next-title">Neural Audio Synthesis</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -462,6 +542,26 @@ It does not go in-depth into any particular topic - check out <a class="referenc
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation-aims">Motivation &amp; Aims</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#who-is-this-for">Who is this for?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-note-on-scope-we-re-not-training-neural-networks">A note on scope: we’re <em>not</em> training neural networks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-the-authors">About the Authors</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

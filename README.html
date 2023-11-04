@@ -165,39 +165,40 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="background/index.html">Background</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="first-steps/first_steps.html">Your first differentiable digital signal processor</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="first-steps/pytorch_tutorial.html">PyTorch Bootcamp</a></li>
-<li class="toctree-l2"><a class="reference internal" href="first-steps/diff_gain.html">A Differentiable Gain Control</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="background/neural-audio-synthesis.html">Neural Audio Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="background/what-is-ddsp.html">What is DDSP?</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="synths/introduction.html">Digital Synthesizer Modelling</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="synths/oscillator.html">Writing an Oscillator in PyTorch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="synths/additive.html">Additive Synthesis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="synths/harmonic_optimize.html">Optimizing a Harmonic Synthesizer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="synths/harmonic_results.html">Harmonic Synthesis Results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="synths/libraries.html">Differentiable Synthesis Libraries</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">First Steps</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="first-steps/first_steps.html">Your first differentiable digital signal processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first-steps/pytorch_tutorial.html">PyTorch Bootcamp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first-steps/diff_gain.html">A Differentiable Gain Control</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="filters/index.html">Digital Filter Modelling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="filters/fir-intro.html">Finite Impulse Response</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filters/fir-optim.html">Differentiable FIR Filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filters/iir_intro.html">Infinite Impulse Response (IIR) Systems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filters/iir_impl.html">Differentiable Implementation of IIR Filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filters/iir_torch.html">Implementing Differentiable IIR in PyTorch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filters/sf.html">Speech Decomposition with Source Filter Model</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Synthesisers</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="synths/introduction.html">Digital Synthesizer Modelling</a></li>
 </ul>
-</li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Filters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="filters/index.html">Digital Filter Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters/fir-intro.html">Finite Impulse Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters/fir-optim.html">Differentiable FIR Filters</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Voice Synthesis</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="voice/index.html">Voice Synthesis</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="physical-modeling/index.html">Physical Modeling and DDSP</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="physical-modeling/sho.html">The Simple Harmonic Oscillator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="physical-modeling/many_oscillators.html">Rigid objects and modal analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="physical-modeling/wave_equation.html">The Wave Equation</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="challenges/index.html">Challenges, Considerations, &amp; Best Practices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="conclusion/index.html">Conclusion</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Physical Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="physical-modeling/index.html">Physical Modeling and DDSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="physical-modeling/sho.html">The Simple Harmonic Oscillator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="physical-modeling/many_oscillators.html">Rigid objects and modal analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="physical-modeling/wave_equation.html">The Wave Equation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Wrapping Up</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 

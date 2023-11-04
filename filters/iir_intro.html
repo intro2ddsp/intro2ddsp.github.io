@@ -69,8 +69,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'filters/iir_intro';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Differentiable Implementation of IIR Filters" href="iir_impl.html" />
-    <link rel="prev" title="Differentiable FIR Filters" href="fir-optim.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -171,39 +169,40 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../background/index.html">Background</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../first-steps/first_steps.html">Your first differentiable digital signal processor</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../first-steps/pytorch_tutorial.html">PyTorch Bootcamp</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../first-steps/diff_gain.html">A Differentiable Gain Control</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../background/neural-audio-synthesis.html">Neural Audio Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background/what-is-ddsp.html">What is DDSP?</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../synths/introduction.html">Digital Synthesizer Modelling</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../synths/oscillator.html">Writing an Oscillator in PyTorch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../synths/additive.html">Additive Synthesis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../synths/harmonic_optimize.html">Optimizing a Harmonic Synthesizer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../synths/harmonic_results.html">Harmonic Synthesis Results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../synths/libraries.html">Differentiable Synthesis Libraries</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">First Steps</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../first-steps/first_steps.html">Your first differentiable digital signal processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../first-steps/pytorch_tutorial.html">PyTorch Bootcamp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../first-steps/diff_gain.html">A Differentiable Gain Control</a></li>
 </ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Digital Filter Modelling</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="fir-intro.html">Finite Impulse Response</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fir-optim.html">Differentiable FIR Filters</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Infinite Impulse Response (IIR) Systems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iir_impl.html">Differentiable Implementation of IIR Filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iir_torch.html">Implementing Differentiable IIR in PyTorch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sf.html">Speech Decomposition with Source Filter Model</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Synthesisers</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../synths/introduction.html">Digital Synthesizer Modelling</a></li>
 </ul>
-</li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Filters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Digital Filter Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fir-intro.html">Finite Impulse Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fir-optim.html">Differentiable FIR Filters</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Voice Synthesis</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../voice/index.html">Voice Synthesis</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../physical-modeling/index.html">Physical Modeling and DDSP</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../physical-modeling/sho.html">The Simple Harmonic Oscillator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../physical-modeling/many_oscillators.html">Rigid objects and modal analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../physical-modeling/wave_equation.html">The Wave Equation</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../challenges/index.html">Challenges, Considerations, &amp; Best Practices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../conclusion/index.html">Conclusion</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Physical Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/index.html">Physical Modeling and DDSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/sho.html">The Simple Harmonic Oscillator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/many_oscillators.html">Rigid objects and modal analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/wave_equation.html">The Wave Equation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Wrapping Up</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -417,7 +416,7 @@ document.write(`
 <h1>Infinite Impulse Response (IIR) Systems<a class="headerlink" href="#infinite-impulse-response-iir-systems" title="Permalink to this heading">#</a></h1>
 <p>A system with <a class="reference external" href="https://en.wikipedia.org/wiki/Infinite_impulse_response">infinite impulse response</a> (IIR) is called an IIR system. It is described by the following difference equation</p>
 <div class="math notranslate nohighlight" id="equation-iir">
-<span class="eqno">(1)<a class="headerlink" href="#equation-iir" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">()<a class="headerlink" href="#equation-iir" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{split}
 y[n] 
 &amp;= x[n] - a_1 y[n-1] - a_2 y[n-2] - \cdots - a_M y[n-M] \\
@@ -426,7 +425,7 @@ y[n]
 \end{split}\]</div>
 <p>and its transfer function</p>
 <div class="math notranslate nohighlight" id="equation-iir-tf">
-<span class="eqno">(2)<a class="headerlink" href="#equation-iir-tf" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">()<a class="headerlink" href="#equation-iir-tf" title="Permalink to this equation">#</a></span>\[
 H(z) = \frac{1}{1 + \sum_{k=1}^{M} a_k z^{-k}},
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(a_1, \dots, a_M\)</span> are the system coefficients.
@@ -438,9 +437,9 @@ H(z) = \frac{b_0 + b_1 z^{-1} + \cdots + b_M z^{-M}}{1 + a_1 z^{-1} + \cdots + a
 \]</div>
 <p>but here we restrict the discussion to systems that only depend on the past output samples for simplicity.
 This is called an all-pole system because it only has poles and no zeros in the transfer function. (Poles and zeros are the roots of the numerator and denominator of the transfer function, respectively.)</p>
-<p>If we convert the equation <a class="reference internal" href="#equation-iir">(1)</a> to only have input samples on the right-hand side, we obtain</p>
+<p>If we convert the equation <a class="reference internal" href="#equation-iir">()</a> to only have input samples on the right-hand side, we obtain</p>
 <div class="math notranslate nohighlight" id="equation-iir2">
-<span class="eqno">(3)<a class="headerlink" href="#equation-iir2" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">()<a class="headerlink" href="#equation-iir2" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{split}
 y[n] &amp;= x[n] + \sum_{k=1}^{\infty} h_k x[n-k],\\
 h_k &amp;= \sum_{i=1}^k \sum_{q \in Q_k^i} \prod_{j=1}^i -a_{q_j}, \\
@@ -453,20 +452,20 @@ Q_k^i &amp;= \{q \in \mathbb{Z}_{&gt;0}^i \mid \sum_{j=1}^i q_j = k\}.
 <h2>Connection to Linear Predictive Coding (LPC)<a class="headerlink" href="#connection-to-linear-predictive-coding-lpc" title="Permalink to this heading">#</a></h2>
 <p>In the speech literature, there is a similar system to IIR that has been used for speech coding and synthesis. It assumes that, the current speech sample <span class="math notranslate nohighlight">\(s[n]\)</span> can be predicted from the past <span class="math notranslate nohighlight">\(M\)</span> samples <span class="math notranslate nohighlight">\(s[n-1], \dots, s[n-M]\)</span> with a linear combination of them.</p>
 <div class="math notranslate nohighlight" id="equation-lpc">
-<span class="eqno">(4)<a class="headerlink" href="#equation-lpc" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">()<a class="headerlink" href="#equation-lpc" title="Permalink to this equation">#</a></span>\[
 \hat{s}[n] = \sum_{k=1}^{M} a_k s[n-k]
 \]</div>
 <p>This is called linear predictive coding (LPC). The prediction error is thus equals</p>
 <div class="math notranslate nohighlight" id="equation-lpc-error">
-<span class="eqno">(5)<a class="headerlink" href="#equation-lpc-error" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">()<a class="headerlink" href="#equation-lpc-error" title="Permalink to this equation">#</a></span>\[
 e[n] = s[n] - \hat{s}[n] = s[n] - \sum_{k=1}^{M} a_k s[n-k].
 \]</div>
 <p>If we switch the sides of the equation, we obtain the equation of an IIR system</p>
 <div class="math notranslate nohighlight" id="equation-lpc-iir">
-<span class="eqno">(6)<a class="headerlink" href="#equation-lpc-iir" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">()<a class="headerlink" href="#equation-lpc-iir" title="Permalink to this equation">#</a></span>\[
 s[n] = e[n] + \sum_{k=1}^{M} a_k s[n-k].
 \]</div>
-<p>Besides the minus/plus sign difference, it is exactly the same as the IIR equation in Equation <a class="reference internal" href="#equation-iir">(1)</a> with <span class="math notranslate nohighlight">\(x[n] = e[n]\)</span> and <span class="math notranslate nohighlight">\(y[n] = s[n]\)</span>! The transfer function of this system also has physical meaning to the speech signal. It approximates the vocal tract transfer function if the vocal tract is modelled by a tube with <span class="math notranslate nohighlight">\(M\)</span> sections. The coefficients <span class="math notranslate nohighlight">\(a_1, \dots, a_M\)</span> are called the LPC coefficients and are compact representation for compression. We can call <span class="math notranslate nohighlight">\(e[n]\)</span> as the <em>source</em> and the transfer function as the <em>filter</em>, and together they form a source-filter model for speech. The <em>source</em> usually means the signal that is generated by the vocal folds.</p>
+<p>Besides the minus/plus sign difference, it is exactly the same as the IIR equation in Equation <a class="reference internal" href="#equation-iir">()</a> with <span class="math notranslate nohighlight">\(x[n] = e[n]\)</span> and <span class="math notranslate nohighlight">\(y[n] = s[n]\)</span>! The transfer function of this system also has physical meaning to the speech signal. It approximates the vocal tract transfer function if the vocal tract is modelled by a tube with <span class="math notranslate nohighlight">\(M\)</span> sections. The coefficients <span class="math notranslate nohighlight">\(a_1, \dots, a_M\)</span> are called the LPC coefficients and are compact representation for compression. We can call <span class="math notranslate nohighlight">\(e[n]\)</span> as the <em>source</em> and the transfer function as the <em>filter</em>, and together they form a source-filter model for speech. The <em>source</em> usually means the signal that is generated by the vocal folds.</p>
 <div class="mermaid">
             flowchart LR
 	start(( ))
@@ -479,7 +478,7 @@ s[n] = e[n] + \sum_{k=1}^{M} a_k s[n-k].
 <h2>Connection to Recurrent Neural Networks (RNN)<a class="headerlink" href="#connection-to-recurrent-neural-networks-rnn" title="Permalink to this heading">#</a></h2>
 <p>The recurrent structure of IIR systems is also very similar to recurrent neural networks (RNN). In RNNs, there is a hidden state <span class="math notranslate nohighlight">\(\mathbf{h}[n]\)</span> that is updated at each time step <span class="math notranslate nohighlight">\(n\)</span> with the current input <span class="math notranslate nohighlight">\(\mathbf{x}[n]\)</span> and the previous hidden state <span class="math notranslate nohighlight">\(\mathbf{h}[n-1]\)</span>.</p>
 <div class="math notranslate nohighlight" id="equation-rnn">
-<span class="eqno">(7)<a class="headerlink" href="#equation-rnn" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">()<a class="headerlink" href="#equation-rnn" title="Permalink to this equation">#</a></span>\[
 \begin{split}
 \mathbf{h}[n] = f(\mathbf{A} \mathbf{x}[n] + \mathbf{B} \mathbf{h}[n-1]),
 \end{split}
@@ -548,24 +547,6 @@ s[n] = e[n] + \sum_{k=1}^{M} a_k s[n-k].
                 <footer class="prev-next-footer">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="fir-optim.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Differentiable FIR Filters</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="iir_impl.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Differentiable Implementation of IIR Filters</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               

@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Finite Impulse Response" href="fir-intro.html" />
-    <link rel="prev" title="Differentiable Synthesis Libraries" href="../synths/libraries.html" />
+    <link rel="prev" title="Digital Synthesizer Modelling" href="../synths/introduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -167,39 +167,40 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../background/index.html">Background</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../first-steps/first_steps.html">Your first differentiable digital signal processor</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../first-steps/pytorch_tutorial.html">PyTorch Bootcamp</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../first-steps/diff_gain.html">A Differentiable Gain Control</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../background/neural-audio-synthesis.html">Neural Audio Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background/what-is-ddsp.html">What is DDSP?</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../synths/introduction.html">Digital Synthesizer Modelling</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../synths/oscillator.html">Writing an Oscillator in PyTorch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../synths/additive.html">Additive Synthesis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../synths/harmonic_optimize.html">Optimizing a Harmonic Synthesizer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../synths/harmonic_results.html">Harmonic Synthesis Results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../synths/libraries.html">Differentiable Synthesis Libraries</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">First Steps</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../first-steps/first_steps.html">Your first differentiable digital signal processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../first-steps/pytorch_tutorial.html">PyTorch Bootcamp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../first-steps/diff_gain.html">A Differentiable Gain Control</a></li>
 </ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Digital Filter Modelling</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="fir-intro.html">Finite Impulse Response</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fir-optim.html">Differentiable FIR Filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iir_intro.html">Infinite Impulse Response (IIR) Systems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iir_impl.html">Differentiable Implementation of IIR Filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iir_torch.html">Implementing Differentiable IIR in PyTorch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sf.html">Speech Decomposition with Source Filter Model</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Synthesisers</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../synths/introduction.html">Digital Synthesizer Modelling</a></li>
 </ul>
-</li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Filters</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Digital Filter Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fir-intro.html">Finite Impulse Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fir-optim.html">Differentiable FIR Filters</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Voice Synthesis</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../voice/index.html">Voice Synthesis</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../physical-modeling/index.html">Physical Modeling and DDSP</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../physical-modeling/sho.html">The Simple Harmonic Oscillator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../physical-modeling/many_oscillators.html">Rigid objects and modal analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../physical-modeling/wave_equation.html">The Wave Equation</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../challenges/index.html">Challenges, Considerations, &amp; Best Practices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../conclusion/index.html">Conclusion</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Physical Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/index.html">Physical Modeling and DDSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/sho.html">The Simple Harmonic Oscillator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/many_oscillators.html">Rigid objects and modal analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/wave_equation.html">The Wave Equation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Wrapping Up</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -405,8 +406,6 @@ For example, terms like <em>impulse response</em>, <em>z-transform</em>, and <em
 We refer readers who would like to improve their knowledge on the subject to Julius O. Smith III’s excellent online textbook <span id="id1">[<a class="reference internal" href="../bibliography.html#id23" title="Julius O. Smith. Introduction to Digital Filters with Audio Applications. W3K Publishing, http://www.w3k.org/books/, 2007. ISBN 978-0-9745607-1-7.">Smi07</a>]</span>.</p>
 <p>The section starts by introducing differentiable formulations of <em>finite impulse response</em> (FIR) filters, and uses these to create a time-varying filtered noise synthesiser.
 Then, we turn our attention to <em>infinite impulse response</em> filters, discussing their advantages and drawbacks, and presenting two approaches to differentiable implementation.</p>
-<div class="toctree-wrapper compound">
-</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -440,12 +439,12 @@ Then, we turn our attention to <em>infinite impulse response</em> filters, discu
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../synths/libraries.html"
+       href="../synths/introduction.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Differentiable Synthesis Libraries</p>
+        <p class="prev-next-title">Digital Synthesizer Modelling</p>
       </div>
     </a>
     <a class="right-next"

@@ -69,8 +69,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'filters/iir_impl';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Implementing Differentiable IIR in PyTorch" href="iir_torch.html" />
-    <link rel="prev" title="Infinite Impulse Response (IIR) Systems" href="iir_intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -171,39 +169,40 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../background/index.html">Background</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../first-steps/first_steps.html">Your first differentiable digital signal processor</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../first-steps/pytorch_tutorial.html">PyTorch Bootcamp</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../first-steps/diff_gain.html">A Differentiable Gain Control</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../background/neural-audio-synthesis.html">Neural Audio Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background/what-is-ddsp.html">What is DDSP?</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../synths/introduction.html">Digital Synthesizer Modelling</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../synths/oscillator.html">Writing an Oscillator in PyTorch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../synths/additive.html">Additive Synthesis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../synths/harmonic_optimize.html">Optimizing a Harmonic Synthesizer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../synths/harmonic_results.html">Harmonic Synthesis Results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../synths/libraries.html">Differentiable Synthesis Libraries</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">First Steps</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../first-steps/first_steps.html">Your first differentiable digital signal processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../first-steps/pytorch_tutorial.html">PyTorch Bootcamp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../first-steps/diff_gain.html">A Differentiable Gain Control</a></li>
 </ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Digital Filter Modelling</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="fir-intro.html">Finite Impulse Response</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fir-optim.html">Differentiable FIR Filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iir_intro.html">Infinite Impulse Response (IIR) Systems</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Differentiable Implementation of IIR Filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iir_torch.html">Implementing Differentiable IIR in PyTorch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sf.html">Speech Decomposition with Source Filter Model</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Synthesisers</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../synths/introduction.html">Digital Synthesizer Modelling</a></li>
 </ul>
-</li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Filters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Digital Filter Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fir-intro.html">Finite Impulse Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fir-optim.html">Differentiable FIR Filters</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Voice Synthesis</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../voice/index.html">Voice Synthesis</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../physical-modeling/index.html">Physical Modeling and DDSP</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../physical-modeling/sho.html">The Simple Harmonic Oscillator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../physical-modeling/many_oscillators.html">Rigid objects and modal analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../physical-modeling/wave_equation.html">The Wave Equation</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../challenges/index.html">Challenges, Considerations, &amp; Best Practices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../conclusion/index.html">Conclusion</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Physical Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/index.html">Physical Modeling and DDSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/sho.html">The Simple Harmonic Oscillator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/many_oscillators.html">Rigid objects and modal analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/wave_equation.html">The Wave Equation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Wrapping Up</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -426,16 +425,16 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="differentiable-implementation-of-iir-filters">
 <h1>Differentiable Implementation of IIR Filters<a class="headerlink" href="#differentiable-implementation-of-iir-filters" title="Permalink to this heading">#</a></h1>
-<p>IIR is a linear system so it is differentiable everywhere. However, directly implementating <a class="reference internal" href="iir_intro.html#equation-iir">(1)</a> is not a good idea because it is really slow in practice. The reason is because in deep learning framework, each arithmetic operation register a node in the computation graph, which will be used to backpropagate the gradients. For IIR, the number of nodes equals to the number of time steps, which is usually in the order of more than ten thousand. Creating these nodes results in significant overhead. In this chapter, we will discuss ways to mitigate this problem.</p>
+<p>IIR is a linear system so it is differentiable everywhere. However, directly implementating <a class="reference internal" href="iir_intro.html#equation-iir">()</a> is not a good idea because it is really slow in practice. The reason is because in deep learning framework, each arithmetic operation register a node in the computation graph, which will be used to backpropagate the gradients. For IIR, the number of nodes equals to the number of time steps, which is usually in the order of more than ten thousand. Creating these nodes results in significant overhead. In this chapter, we will discuss ways to mitigate this problem.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>FIR filters does not require such massive computational graph because its output samples are independent of each other, thus can be parallelised and merge into a single node.</p>
 </div>
 <section id="frequency-sampling-method">
 <span id="content-freq-sampling"></span><h2>Frequency Sampling Method<a class="headerlink" href="#frequency-sampling-method" title="Permalink to this heading">#</a></h2>
-<p>An alternative method that has been widely accepted is to do the computation in the frequency domain. Remember we have the transfer function <span class="math notranslate nohighlight">\(H(z)\)</span> <a class="reference internal" href="iir_intro.html#equation-iir-tf">(2)</a>. We can evaluate the transfer function on the unit circle <span class="math notranslate nohighlight">\(z = e^{j \omega}\)</span> to obtain the frequency response <span class="math notranslate nohighlight">\(H(e^{j \omega})\)</span> of the IIR filter</p>
+<p>An alternative method that has been widely accepted is to do the computation in the frequency domain. Remember we have the transfer function <span class="math notranslate nohighlight">\(H(z)\)</span> <a class="reference internal" href="iir_intro.html#equation-iir-tf">()</a>. We can evaluate the transfer function on the unit circle <span class="math notranslate nohighlight">\(z = e^{j \omega}\)</span> to obtain the frequency response <span class="math notranslate nohighlight">\(H(e^{j \omega})\)</span> of the IIR filter</p>
 <div class="math notranslate nohighlight" id="equation-iir-fft">
-<span class="eqno">(8)<a class="headerlink" href="#equation-iir-fft" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">()<a class="headerlink" href="#equation-iir-fft" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{split}
 H(e^{j \omega}) 
 &amp;= \frac{1}{1 + \sum_{k=1}^M a_k e^{-j k \omega}} \\
@@ -489,15 +488,15 @@ The filtering becomes a circular convolution of the truncated impulse response. 
 	forward ==&gt; backward
         </div><section id="coefficient-gradients-frac-partial-mathcal-l-partial-a-k">
 <h3>Coefficient gradients <span class="math notranslate nohighlight">\(\frac{\partial \mathcal{L}}{\partial a_k}\)</span><a class="headerlink" href="#coefficient-gradients-frac-partial-mathcal-l-partial-a-k" title="Permalink to this heading">#</a></h3>
-<p>If we directly take the derivative of <a class="reference internal" href="iir_intro.html#equation-iir">(1)</a> with respect to <span class="math notranslate nohighlight">\(a_k\)</span>, we will get</p>
+<p>If we directly take the derivative of <a class="reference internal" href="iir_intro.html#equation-iir">()</a> with respect to <span class="math notranslate nohighlight">\(a_k\)</span>, we will get</p>
 <div class="math notranslate nohighlight" id="equation-iir-dyda">
-<span class="eqno">(9)<a class="headerlink" href="#equation-iir-dyda" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">()<a class="headerlink" href="#equation-iir-dyda" title="Permalink to this equation">#</a></span>\[
 \frac{\partial y[n]}{\partial a_k} =  -y[n-k] - \sum_{i=1}^M a_i \frac{\partial y[n-i]}{\partial a_i}.
 \]</div>
 <p>It is filtering the negative, shifted output with the same set of coefficients! We can get the gradients for different <span class="math notranslate nohighlight">\(k\)</span> in one pass because their differences are just time-shifted versions of each other.</p>
 <p>Then, given a loss function <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> and the backpropagated output gradients <span class="math notranslate nohighlight">\(\frac{\partial \mathcal{L}}{\partial \mathbf{y}}\)</span>, we can get the gradients <span class="math notranslate nohighlight">\(\frac{\partial \mathcal{L}}{\partial a_k}\)</span> using chain rule</p>
 <div class="math notranslate nohighlight" id="equation-iir-dlda">
-<span class="eqno">(10)<a class="headerlink" href="#equation-iir-dlda" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">()<a class="headerlink" href="#equation-iir-dlda" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{bmatrix}
 \frac{\partial \mathcal{L}}{\partial a_1} \\
 \vdots \\
@@ -515,7 +514,7 @@ The filtering becomes a circular convolution of the truncated impulse response. 
 <h3>Input gradients <span class="math notranslate nohighlight">\(\frac{\partial \mathcal{L}}{\partial x[n]}\)</span><a class="headerlink" href="#input-gradients-frac-partial-mathcal-l-partial-x-n" title="Permalink to this heading">#</a></h3>
 <p>Let us recall that the derivative of a linear matrix transform <span class="math notranslate nohighlight">\(\mathbf{y} = \mathbf{H}\mathbf{x}\)</span> with respect to <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is <span class="math notranslate nohighlight">\(\mathbf{H}^T\)</span>. We can represent IIR as a matrix transformation with <span class="math notranslate nohighlight">\(\mathbf{H}_a\)</span> which has infinite dimensions. Of course, the <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> we use here is also infinite dimensional <span class="math notranslate nohighlight">\([\cdots, 0, x[0], x[1], \dots]\)</span>.</p>
 <div class="math notranslate nohighlight" id="equation-iir-ha">
-<span class="eqno">(11)<a class="headerlink" href="#equation-iir-ha" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">()<a class="headerlink" href="#equation-iir-ha" title="Permalink to this equation">#</a></span>\[\begin{split}
 \mathbf{H}_a = 
 \begin{bmatrix}
 \cdots &amp; 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0\\
@@ -528,24 +527,24 @@ The filtering becomes a circular convolution of the truncated impulse response. 
 \end{split}\]</div>
 <p>The gradients <span class="math notranslate nohighlight">\(\frac{\partial \mathcal{L}}{\partial \mathbf{x}}\)</span> can be computed using chain rule</p>
 <div class="math notranslate nohighlight" id="equation-iir-dldx">
-<span class="eqno">(12)<a class="headerlink" href="#equation-iir-dldx" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">()<a class="headerlink" href="#equation-iir-dldx" title="Permalink to this equation">#</a></span>\[
 \frac{\partial \mathcal{L}}{\partial \mathbf{x}} = 
 \frac{\partial \mathbf{y}}{\partial \mathbf{x}} 
 \frac{\partial \mathcal{L}}{\partial \mathbf{y}} 
 =  
 \mathbf{H}_a^T \frac{\partial \mathcal{L}}{\partial \mathbf{y}}.
 \]</div>
-<p>The transposition <span class="math notranslate nohighlight">\(\mathbf{H}_a^T\)</span> means the same filter but its impulse response is reversed. Thus, <a class="reference internal" href="#equation-iir-dldx">(12)</a> can be re-written as</p>
+<p>The transposition <span class="math notranslate nohighlight">\(\mathbf{H}_a^T\)</span> means the same filter but its impulse response is reversed. Thus, <a class="reference internal" href="#equation-iir-dldx">()</a> can be re-written as</p>
 <div class="math notranslate nohighlight" id="equation-iir-dldxn">
-<span class="eqno">(13)<a class="headerlink" href="#equation-iir-dldxn" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">()<a class="headerlink" href="#equation-iir-dldxn" title="Permalink to this equation">#</a></span>\[
 \frac{\partial \mathcal{L}}{\partial x[n]} = 
 \frac{\partial \mathcal{L}}{\partial y[n]} - \sum_{k=1}^M a_k \frac{\partial \mathcal{L}}{\partial x[n+k]}.
 \]</div>
-<p>Notice the sign difference of the indexing inside the summation of <a class="reference internal" href="#equation-iir-dldxn">(13)</a>.</p>
+<p>Notice the sign difference of the indexing inside the summation of <a class="reference internal" href="#equation-iir-dldxn">()</a>.</p>
 </section>
 <section id="the-full-backward-function">
 <h3>The full backward function<a class="headerlink" href="#the-full-backward-function" title="Permalink to this heading">#</a></h3>
-<p>Combining <a class="reference internal" href="#equation-iir-dyda">(9)</a>, <a class="reference internal" href="#equation-iir-dlda">(10)</a> and <a class="reference internal" href="#equation-iir-dldxn">(13)</a>, we get the full backward function for IIR, which consists of two IIR filtering and one matrix multiplication. Now, you can use any IIR filter implementation that is fast enough to fill you needs, as long as you register the backward functions, which also consists of IIR filters! This is the approach that is implemented in <a class="reference external" href="https://pytorch.org/audio/stable/generated/torchaudio.functional.lfilter.html#torchaudio.functional.lfilter">TorchAudio’s lfilter</a> and is documented in the GOLF paper <span id="id1">[<a class="reference internal" href="sf.html#id22" title="Chin-Yun Yu and György Fazekas. Singing voice synthesis using differentiable lpc and glottal-flow-inspired wavetables. arXiv preprint arXiv:2306.17252, 2023.">YF23</a>]</span>.</p>
+<p>Combining <a class="reference internal" href="#equation-iir-dyda">()</a>, <a class="reference internal" href="#equation-iir-dlda">()</a> and <a class="reference internal" href="#equation-iir-dldxn">()</a>, we get the full backward function for IIR, which consists of two IIR filtering and one matrix multiplication. Now, you can use any IIR filter implementation that is fast enough to fill you needs, as long as you register the backward functions, which also consists of IIR filters! This is the approach that is implemented in <a class="reference external" href="https://pytorch.org/audio/stable/generated/torchaudio.functional.lfilter.html#torchaudio.functional.lfilter">TorchAudio’s lfilter</a> and is documented in the GOLF paper <span id="id1">[<a class="reference internal" href="sf.html#id22" title="Chin-Yun Yu and György Fazekas. Singing voice synthesis using differentiable lpc and glottal-flow-inspired wavetables. arXiv preprint arXiv:2306.17252, 2023.">YF23</a>]</span>.</p>
 <div class="mermaid">
             graph LR
 	da(dL/da)
@@ -574,7 +573,7 @@ The filtering becomes a circular convolution of the truncated impulse response. 
 <h3>Complex conjugate pairs<a class="headerlink" href="#complex-conjugate-pairs" title="Permalink to this heading">#</a></h3>
 <p>One simple way is to predict the complex root <span class="math notranslate nohighlight">\(re^{-j\theta}\)</span> inside the unit circle (<span class="math notranslate nohighlight">\(|r| \leq 1\)</span>) and add its conjugate so the filter coefficients are real. The value bound can be enforced by using the sigmoid function on the neural network output. The transfer function of this second-order IIR filter is then</p>
 <div class="math notranslate nohighlight" id="equation-iir-complex">
-<span class="eqno">(14)<a class="headerlink" href="#equation-iir-complex" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">()<a class="headerlink" href="#equation-iir-complex" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{split}
 H(z) &amp;= \frac{1}{(1 - re^{-j\theta} z^{-1})(1 - re^{j\theta} z^{-1})} \\
 &amp;= \frac{1}{1 - 2r \cos(\theta) z^{-1} + r^2 z^{-2}}.
@@ -586,7 +585,7 @@ H(z) &amp;= \frac{1}{(1 - re^{-j\theta} z^{-1})(1 - re^{j\theta} z^{-1})} \\
 <h3>Coefficient parameterisation<a class="headerlink" href="#coefficient-parameterisation" title="Permalink to this heading">#</a></h3>
 <p>The other way is to directly predict the second-order IIR filter coefficients <span class="math notranslate nohighlight">\(a_1, a_2\)</span>. It is well known tha a second-order IIR filter is stable if</p>
 <div class="math notranslate nohighlight" id="equation-iir-stable">
-<span class="eqno">(15)<a class="headerlink" href="#equation-iir-stable" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">()<a class="headerlink" href="#equation-iir-stable" title="Permalink to this equation">#</a></span>\[
 |a_1| &lt; 1 + a_2, \quad |a_2| &lt; 1.
 \]</div>
 <p>These constraints can be added easily with the tanh function on the neural network output <span id="id2">[<a class="reference internal" href="#id22" title="Shahan Nercessian, Andy Sarroff, and Kurt James Werner. Lightweight and interpretable neural modeling of an audio distortion effect using hyperconditioned differentiable biquads. In ICASSP 2021-2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 890–894. IEEE, 2021.">NSW21</a>]</span>. This parameterisation covers a wider range of coefficients  because the roots are not restricted to be conjugate pairs.</p>
@@ -596,7 +595,7 @@ H(z) &amp;= \frac{1}{(1 - re^{-j\theta} z^{-1})(1 - re^{j\theta} z^{-1})} \\
 <p>The two methods we have discussed do not assume any order on applying second-order filters if we want to build a longer (<span class="math notranslate nohighlight">\(M &gt; 2\)</span>) IIR filter. Any filtering order results in the same transfer function. If all the filter coefficients are predicted by the same neural network, this can be problematic because the neurons in the last layer are ordered but their target is permutation invariant. We introduce the third parmetersiation that use an intermediate representation called reflection coefficients which is ordered.</p>
 <p>Reflection coefficients <span class="math notranslate nohighlight">\(p_k\)</span> are widely used in speech processing. Sometimes it is also called PARCOR coefficients. It relates to the ratio of the areas of the <span class="math notranslate nohighlight">\(k\)</span>-th and <span class="math notranslate nohighlight">\((k+1)\)</span>-th sections of the vocal tract tube model. The system is gauranteed to be stable if <span class="math notranslate nohighlight">\(|p_k| &lt; 1\)</span>. The filter coefficient <span class="math notranslate nohighlight">\(a_k\)</span> can be computed from the reflection coefficients using Levinson-Durbin recursion</p>
 <div class="math notranslate nohighlight" id="equation-iir-levinson">
-<span class="eqno">(16)<a class="headerlink" href="#equation-iir-levinson" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">()<a class="headerlink" href="#equation-iir-levinson" title="Permalink to this equation">#</a></span>\[\begin{split}
 a_k^i = 
 \begin{cases}
 p_k, &amp; k = i \\
@@ -655,24 +654,6 @@ a_{k}^{i-1} - p_k a_{i-k}^{i-1}, &amp; k &lt; i \\
                 <footer class="prev-next-footer">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="iir_intro.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Infinite Impulse Response (IIR) Systems</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="iir_torch.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Implementing Differentiable IIR in PyTorch</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               

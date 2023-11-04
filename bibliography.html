@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'bibliography';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Conclusion" href="conclusion/index.html" />
+    <link rel="prev" title="The Wave Equation" href="physical-modeling/wave_equation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -166,39 +166,40 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="background/index.html">Background</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="first-steps/first_steps.html">Your first differentiable digital signal processor</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="first-steps/pytorch_tutorial.html">PyTorch Bootcamp</a></li>
-<li class="toctree-l2"><a class="reference internal" href="first-steps/diff_gain.html">A Differentiable Gain Control</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="background/neural-audio-synthesis.html">Neural Audio Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="background/what-is-ddsp.html">What is DDSP?</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="synths/introduction.html">Digital Synthesizer Modelling</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="synths/oscillator.html">Writing an Oscillator in PyTorch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="synths/additive.html">Additive Synthesis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="synths/harmonic_optimize.html">Optimizing a Harmonic Synthesizer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="synths/harmonic_results.html">Harmonic Synthesis Results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="synths/libraries.html">Differentiable Synthesis Libraries</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">First Steps</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="first-steps/first_steps.html">Your first differentiable digital signal processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first-steps/pytorch_tutorial.html">PyTorch Bootcamp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first-steps/diff_gain.html">A Differentiable Gain Control</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="filters/index.html">Digital Filter Modelling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="filters/fir-intro.html">Finite Impulse Response</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filters/fir-optim.html">Differentiable FIR Filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filters/iir_intro.html">Infinite Impulse Response (IIR) Systems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filters/iir_impl.html">Differentiable Implementation of IIR Filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filters/iir_torch.html">Implementing Differentiable IIR in PyTorch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filters/sf.html">Speech Decomposition with Source Filter Model</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Synthesisers</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="synths/introduction.html">Digital Synthesizer Modelling</a></li>
 </ul>
-</li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Filters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="filters/index.html">Digital Filter Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters/fir-intro.html">Finite Impulse Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filters/fir-optim.html">Differentiable FIR Filters</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Voice Synthesis</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="voice/index.html">Voice Synthesis</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="physical-modeling/index.html">Physical Modeling and DDSP</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="physical-modeling/sho.html">The Simple Harmonic Oscillator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="physical-modeling/many_oscillators.html">Rigid objects and modal analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="physical-modeling/wave_equation.html">The Wave Equation</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="challenges/index.html">Challenges, Considerations, &amp; Best Practices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="conclusion/index.html">Conclusion</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Physical Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="physical-modeling/index.html">Physical Modeling and DDSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="physical-modeling/sho.html">The Simple Harmonic Oscillator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="physical-modeling/many_oscillators.html">Rigid objects and modal analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="physical-modeling/wave_equation.html">The Wave Equation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Wrapping Up</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Bibliography</a></li>
 </ul>
 
@@ -405,17 +406,26 @@ document.write(`
 <dt class="label" id="id3"><span class="brackets">BRiosC23</span></dt>
 <dd><p>Adrián Barahona-Ríos and Tom Collins. Noisebandnet: controllable time-varying neural synthesis of sound effects using filterbanks. <em>arXiv preprint arXiv:2307.08007</em>, 2023.</p>
 </dd>
+<dt class="label" id="id39"><span class="brackets">CE21</span></dt>
+<dd><p>Antoine Caillon and Philippe Esling. Rave: a variational autoencoder for fast and high-quality neural audio synthesis. <em>arXiv preprint arXiv:2111.05011</em>, 2021.</p>
+</dd>
 <dt class="label" id="id4"><span class="brackets">CS23</span></dt>
 <dd><p>Manuel Cherep and Nikhil Singh. Synthax: a fast modular synthesizer in jax. In <em>Audio Engineering Society Convention 155</em>. May 2023. URL: <a class="reference external" href="http://www.aes.org/e-lib/browse.cfm?elib=22261">http://www.aes.org/e-lib/browse.cfm?elib=22261</a>.</p>
 </dd>
 <dt class="label" id="id5"><span class="brackets">DHS+23</span></dt>
 <dd><p>Rodrigo Diaz, Ben Hayes, Charalampos Saitis, György Fazekas, and Mark Sandler. Rigid-body sound synthesis with differentiable modal resonators. In <em>IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>. IEEE, 2023.</p>
 </dd>
+<dt class="label" id="id31"><span class="brackets">EAC+19</span></dt>
+<dd><p>Jesse Engel, Kumar Krishna Agrawal, Shuo Chen, Ishaan Gulrajani, Chris Donahue, and Adam Roberts. GANSynth: adversarial neural audio synthesis. In <em>International Conference on Learning Representations</em>. 2019. URL: <a class="reference external" href="https://openreview.net/forum?id=H1xQVn09FX">https://openreview.net/forum?id=H1xQVn09FX</a>.</p>
+</dd>
 <dt class="label" id="id6"><span class="brackets">EHGR20</span></dt>
 <dd><p>Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In <em>8th International Conference on Learning Representations</em>. April 2020.</p>
 </dd>
 <dt class="label" id="id7"><span class="brackets">ERR+17</span></dt>
 <dd><p>Jesse Engel, Cinjon Resnick, Adam Roberts, Sander Dieleman, Mohammad Norouzi, Douglas Eck, and Karen Simonyan. Neural audio synthesis of musical notes with wavenet autoencoders. In <em>International Conference on Machine Learning</em>, 1068–1077. PMLR, 2017.</p>
+</dd>
+<dt class="label" id="id34"><span class="brackets">ESH+20</span></dt>
+<dd><p>Jesse Engel, Rigel Swavely, Lamtharn Hanoi Hantrakul, Adam Roberts, and Curtis Hawthorne. Self-supervised pitch detection by inverse audio synthesis. In <em>ICML 2020 Workshop on Self-supervision in Audio and Speech</em>. 2020. URL: <a class="reference external" href="https://openreview.net/forum?id=RlVTYWhsky7">https://openreview.net/forum?id=RlVTYWhsky7</a>.</p>
 </dd>
 <dt class="label" id="id22"><span class="brackets">Fan95</span></dt>
 <dd><p>Gunnar Fant. The lf-model revisited. transformations and frequency domain analysis. <em>Speech Trans. Lab. Q. Rep., Royal Inst. of Tech. Stockholm</em>, 2(3):40, 1995.</p>
@@ -424,10 +434,16 @@ document.write(`
 <dd><p>Ben Hayes, Charalampos Saitis, and György Fazekas. Sinusoidal frequency estimation by gradient descent. In <em>ICASSP 2023-2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, 1–5. IEEE, 2023.</p>
 </dd>
 <dt class="label" id="id27"><span class="brackets">HSF+23</span></dt>
-<dd><p>Ben Hayes, Jordie Shier, György Fazekas, Andrew McPherson, and Charalampos Saitis. A Review of Differentiable Digital Signal Processing for Music &amp; Speech Synthesis. August 2023. <a class="reference external" href="https://arxiv.org/abs/2308.15422">arXiv:2308.15422</a>, <a class="reference external" href="https://doi.org/10.48550/arXiv.2308.15422">doi:10.48550/arXiv.2308.15422</a>.</p>
+<dd><p><strong>missing journal in hayes_review_2023</strong></p>
 </dd>
 <dt class="label" id="id25"><span class="brackets">JVLP19</span></dt>
 <dd><p>Marc Jordà, Pedro Valero-Lara, and Antonio J. Peña. Performance evaluation of cudnn convolution algorithms on nvidia volta gpus. <em>IEEE Access</em>, 7():70461–70473, 2019. <a class="reference external" href="https://doi.org/10.1109/ACCESS.2019.2918851">doi:10.1109/ACCESS.2019.2918851</a>.</p>
+</dd>
+<dt class="label" id="id33"><span class="brackets">JBYA19</span></dt>
+<dd><p>Lauri Juvela, Bajibabu Bollepalli, Junichi Yamagishi, and Paavo Alku. GELP: GAN-Excited Linear Prediction for Speech Synthesis from Mel-Spectrogram. In <em>Proc. Interspeech 2019</em>, 694–698. 2019. <a class="reference external" href="https://doi.org/10.21437/Interspeech.2019-2008">doi:10.21437/Interspeech.2019-2008</a>.</p>
+</dd>
+<dt class="label" id="id37"><span class="brackets">KL62</span></dt>
+<dd><p>J. L. Kelly and C. C. Lochbaum. Speech synthesis. In <em>Proceedings of the Fourth International Congress on Acoustics</em>, 1–4. Copenhagen, September 1962.</p>
 </dd>
 <dt class="label" id="id9"><span class="brackets">KSLB18</span></dt>
 <dd><p>Jong Wook Kim, Justin Salamon, Peter Li, and Juan Pablo Bello. Crepe: a convolutional representation for pitch estimation. In <em>2018 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, 161–165. IEEE, 2018.</p>
@@ -444,8 +460,14 @@ document.write(`
 <dt class="label" id="id20"><span class="brackets">NSW21</span></dt>
 <dd><p>Shahan Nercessian, Andy Sarroff, and Kurt James Werner. Lightweight and interpretable neural modeling of an audio distortion effect using hyperconditioned differentiable biquads. In <em>ICASSP 2021-2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, 890–894. IEEE, 2021.</p>
 </dd>
+<dt class="label" id="id30"><span class="brackets">PPCS21</span></dt>
+<dd><p>Jordi Pons, Santiago Pascual, Giulio Cengarle, and Joan Serrà. Upsampling artifacts in neural audio synthesis. In <em>ICASSP 2021 - 2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, volume, 3005–3009. 2021. <a class="reference external" href="https://doi.org/10.1109/ICASSP39728.2021.9414913">doi:10.1109/ICASSP39728.2021.9414913</a>.</p>
+</dd>
 <dt class="label" id="id12"><span class="brackets">RMR22</span></dt>
 <dd><p>Lenny Renault, Rémi Mignot, and Axel Roebel. Differentiable Piano Model for Midi-to-Audio Performance Synthesis. In <em>Proceedings of the 25th International Conference on Digital Audio Effects</em>, 8. Vienna, Austria, 2022.</p>
+</dd>
+<dt class="label" id="id35"><span class="brackets">SFRK+23</span></dt>
+<dd><p>Kilian Schulze-Forster, Gaël Richard, Liam Kelley, Clement S. J. Doire, and Roland Badeau. Unsupervised music source separation using differentiable parametric source models. <em>IEEE/ACM Transactions on Audio, Speech, and Language Processing</em>, 31():1276–1289, 2023. <a class="reference external" href="https://doi.org/10.1109/TASLP.2023.3252272">doi:10.1109/TASLP.2023.3252272</a>.</p>
 </dd>
 <dt class="label" id="id13"><span class="brackets">SS90</span></dt>
 <dd><p>Xavier Serra and Julius Smith. Spectral Modeling Synthesis: A Sound Analysis/Synthesis System Based on a Deterministic Plus Stochastic Decomposition. <em>Computer Music Journal</em>, 14(4):12–24, 1990. URL: <a class="reference external" href="www.jstor.org/stable/3680788">www.jstor.org/stable/3680788</a> (visited on 2019-12-21), <a class="reference external" href="https://doi.org/10.2307/3680788">doi:10.2307/3680788</a>.</p>
@@ -456,8 +478,17 @@ document.write(`
 <dt class="label" id="id23"><span class="brackets">Smi07</span></dt>
 <dd><p>Julius O. Smith. <em>Introduction to Digital Filters with Audio Applications</em>. W3K Publishing, http://www.w3k.org/books/, 2007. ISBN 978-0-9745607-1-7.</p>
 </dd>
+<dt class="label" id="id36"><span class="brackets">SudholtCXR23</span></dt>
+<dd><p>David Südholt, Mateo Cámara, Zhiyuan Xu, and Joshua D. Reiss. Vocal tract area estimation by gradient descent. In <em>Proceedings of the 26th International Conference on Digital Audio Effects</em>. Copenhagen, Denmark, 2023.</p>
+</dd>
 <dt class="label" id="id15"><span class="brackets">TST+21</span></dt>
 <dd><p>Joseph Turian, Jordie Shier, George Tzanetakis, Kirk McNally, and Max Henry. One Billion Audio Sounds from GPU-enabled Modular Synthesis. In <em>Proceedings of the 23rd International Conference on Digital Audio Effects</em>. 2021.</p>
+</dd>
+<dt class="label" id="id29"><span class="brackets">vdOLB+18</span></dt>
+<dd><p>Aaron van den Oord, Yazhe Li, Igor Babuschkin, Karen Simonyan, Oriol Vinyals, Koray Kavukcuoglu, George van den Driessche, Edward Lockhart, Luis Cobo, Florian Stimberg, Norman Casagrande, Dominik Grewe, Seb Noury, Sander Dieleman, Erich Elsen, Nal Kalchbrenner, Heiga Zen, Alex Graves, Helen King, Tom Walters, Dan Belov, and Demis Hassabis. Parallel WaveNet: fast high-fidelity speech synthesis. In Jennifer Dy and Andreas Krause, editors, <em>Proceedings of the 35th International Conference on Machine Learning</em>, volume 80 of Proceedings of Machine Learning Research, 3918–3926. PMLR, 10–15 Jul 2018. URL: <a class="reference external" href="https://proceedings.mlr.press/v80/oord18a.html">https://proceedings.mlr.press/v80/oord18a.html</a>.</p>
+</dd>
+<dt class="label" id="id28"><span class="brackets">vdODZ+16</span></dt>
+<dd><p>Aäron van den Oord, Sander Dieleman, Heiga Zen, Karen Simonyan, Oriol Vinyals, Alexander Graves, Nal Kalchbrenner, Andrew Senior, and Koray Kavukcuoglu. Wavenet: a generative model for raw audio. In <em>Arxiv</em>. 2016. URL: <a class="reference external" href="https://arxiv.org/abs/1609.03499">https://arxiv.org/abs/1609.03499</a>.</p>
 </dd>
 <dt class="label" id="id16"><span class="brackets">WTY19</span></dt>
 <dd><p>Xin Wang, Shinji Takaki, and Junichi Yamagishi. Neural source-filter waveform models for statistical parametric speech synthesis. <em>IEEE/ACM Transactions on Audio, Speech, and Language Processing</em>, 28:402–415, 2019.</p>
@@ -467,6 +498,9 @@ document.write(`
 </dd>
 <dt class="label" id="id17"><span class="brackets">WHY+22</span></dt>
 <dd><p>Da-Yi Wu, Wen-Yi Hsiao, Fu-Rong Yang, Oscar Friedman, Warren Jackson, Scott Bruzenak, Yi-Wen Liu, and Yi-Hsuan Yang. DDSP-based Singing Vocoders: A New Subtractive-based Synthesizer and A Comprehensive Evaluation. In <em>Proceedings of the 23rd International Society for Music Information Retrieval Conference</em>, 76–83. 2022.</p>
+</dd>
+<dt class="label" id="id38"><span class="brackets">WMD+22</span></dt>
+<dd><p>Yusong Wu, Ethan Manilow, Yi Deng, Rigel Swavely, Kyle Kastner, Tim Cooijmans, Aaron Courville, Cheng-Zhi Anna Huang, and Jesse Engel. MIDI-DDSP: Detailed control of musical performance via hierarchical modeling. In <em>International conference on learning representations</em>. 2022. URL: <a class="reference external" href="https://openreview.net/forum?id=UseMOjWENv">https://openreview.net/forum?id=UseMOjWENv</a>.</p>
 </dd>
 <dt class="label" id="id19"><span class="brackets">YF23</span></dt>
 <dd><p>Chin-Yun Yu and György Fazekas. Singing voice synthesis using differentiable lpc and glottal-flow-inspired wavetables. <em>arXiv preprint arXiv:2306.17252</em>, 2023.</p>
@@ -506,12 +540,12 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="conclusion/index.html"
+       href="physical-modeling/wave_equation.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Conclusion</p>
+        <p class="prev-next-title">The Wave Equation</p>
       </div>
     </a>
 </div>

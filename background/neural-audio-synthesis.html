@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Challenges, Considerations, &amp; Best Practices &#8212; Introduction to Audio Synthesizer Programming</title>
+    <title>Neural Audio Synthesis &#8212; Introduction to Audio Synthesizer Programming</title>
   
   
   
@@ -62,11 +62,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'background/neural-audio-synthesis';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Conclusion" href="../conclusion/index.html" />
-    <link rel="prev" title="The Wave Equation" href="../physical-modeling/wave_equation.html" />
+    <link rel="next" title="What is DDSP?" href="what-is-ddsp.html" />
+    <link rel="prev" title="Introduction" href="../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -167,39 +167,40 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../background/index.html">Background</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../first-steps/first_steps.html">Your first differentiable digital signal processor</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../first-steps/pytorch_tutorial.html">PyTorch Bootcamp</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../first-steps/diff_gain.html">A Differentiable Gain Control</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Neural Audio Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what-is-ddsp.html">What is DDSP?</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../synths/introduction.html">Digital Synthesizer Modelling</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../synths/oscillator.html">Writing an Oscillator in PyTorch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../synths/additive.html">Additive Synthesis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../synths/harmonic_optimize.html">Optimizing a Harmonic Synthesizer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../synths/harmonic_results.html">Harmonic Synthesis Results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../synths/libraries.html">Differentiable Synthesis Libraries</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">First Steps</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../first-steps/first_steps.html">Your first differentiable digital signal processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../first-steps/pytorch_tutorial.html">PyTorch Bootcamp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../first-steps/diff_gain.html">A Differentiable Gain Control</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../filters/index.html">Digital Filter Modelling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../filters/fir-intro.html">Finite Impulse Response</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../filters/fir-optim.html">Differentiable FIR Filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../filters/iir_intro.html">Infinite Impulse Response (IIR) Systems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../filters/iir_impl.html">Differentiable Implementation of IIR Filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../filters/iir_torch.html">Implementing Differentiable IIR in PyTorch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../filters/sf.html">Speech Decomposition with Source Filter Model</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Synthesisers</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../synths/introduction.html">Digital Synthesizer Modelling</a></li>
 </ul>
-</li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Filters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../filters/index.html">Digital Filter Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../filters/fir-intro.html">Finite Impulse Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../filters/fir-optim.html">Differentiable FIR Filters</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Voice Synthesis</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../voice/index.html">Voice Synthesis</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../physical-modeling/index.html">Physical Modeling and DDSP</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../physical-modeling/sho.html">The Simple Harmonic Oscillator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../physical-modeling/many_oscillators.html">Rigid objects and modal analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../physical-modeling/wave_equation.html">The Wave Equation</a></li>
 </ul>
-</li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Challenges, Considerations, &amp; Best Practices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../conclusion/index.html">Conclusion</a></li>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Physical Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/index.html">Physical Modeling and DDSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/sho.html">The Simple Harmonic Oscillator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/many_oscillators.html">Rigid objects and modal analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/wave_equation.html">The Wave Equation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Wrapping Up</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">Bibliography</a></li>
 </ul>
 
@@ -272,7 +273,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/benhayes/intro2ddsp/issues/new?title=Issue%20on%20page%20%2Fchallenges/index.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/benhayes/intro2ddsp/issues/new?title=Issue%20on%20page%20%2Fbackground/neural-audio-synthesis.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -302,7 +303,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/challenges/index.md" target="_blank"
+      <li><a href="../_sources/background/neural-audio-synthesis.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -371,7 +372,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -382,11 +385,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Challenges, Considerations, & Best Practices</h1>
+    <h1>Neural Audio Synthesis</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-brief-history-of-audio-synthesis">A Brief History of Audio Synthesis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deep-learning-arrives">Deep Learning Arrives</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -396,8 +408,46 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="challenges-considerations-best-practices">
-<h1>Challenges, Considerations, &amp; Best Practices<a class="headerlink" href="#challenges-considerations-best-practices" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="neural-audio-synthesis">
+<h1>Neural Audio Synthesis<a class="headerlink" href="#neural-audio-synthesis" title="Permalink to this heading">#</a></h1>
+<section id="a-brief-history-of-audio-synthesis">
+<h2>A Brief History of Audio Synthesis<a class="headerlink" href="#a-brief-history-of-audio-synthesis" title="Permalink to this heading">#</a></h2>
+<p>Audio synthesis, the artificial production of sound, has been an active field of research for over a century.
+Early inventions included entirely new categories of musical instrument, such as Cahill’s <a class="reference external" href="https://en.wikipedia.org/wiki/Telharmonium">Telharmonium</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/Theremin">Theremin</a>, and the first systems for artificial speech production, such as Dudley’s <a class="reference external" href="https://ccrma.stanford.edu/~jos/pasp/Dudley_s_Vocoder.html">Vocoder</a>.</p>
+<figure class="align-default" id="telharmonium">
+<a class="reference internal image-reference" href="../_images/telharmonium.jpg"><img alt="../_images/telharmonium.jpg" src="../_images/telharmonium.jpg" style="height: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Thaddeus Cahill’s Telharmonium was one of the first musical instruments to produce sound electronically — an early synthesiser.</span><a class="headerlink" href="#telharmonium" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>As electronic components became smaller and more reliable, synthesisers followed suit.
+During the 1960s, Moog &amp; Buchla’s designs laid the framework for new categories of electronic musical instrument, which went on to define entirely new genres and aesthetics.
+At the same time, the first digital vocal tract models <span id="id1">[<a class="reference internal" href="../bibliography.html#id37" title="J. L. Kelly and C. C. Lochbaum. Speech synthesis. In Proceedings of the Fourth International Congress on Acoustics, 1–4. Copenhagen, September 1962.">KL62</a>]</span> were produced.
+The latter part of the 20th century saw a proliferation of research into digital methods for sound synthesis, built on advances in both digital signal processing and numerical methods.
+Whilst once the purview of specialist research laboratories and pioneering music composers, commercially available hardware and software synthesisers placed the technology in the hands of a much wider array of users, from touring bands to at-home hobbyists.
+Today, it is possible to simulate entire analog synthesisers on even modestly powerful personal computers.</p>
+<p>applications of audio synthesis have since come to permeate daily life, from music, through voice assistants, to the sound design in films, TV shows, video games, and even the cockpits of cars.</p>
+<figure class="align-default" id="arturia">
+<a class="reference internal image-reference" href="../_images/arturia.jpeg"><img alt="../_images/arturia.jpeg" src="../_images/arturia.jpeg" style="height: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text"><a class="reference external" href="https://www.arturia.com/products/software-instruments/prophet-5-v/overview">Arturia’s software model</a> of the Sequential Circuits Prophet 5 simulates the behaviour of individual electronic components to produce a replication of the sound of the original.</span><a class="headerlink" href="#arturia" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="deep-learning-arrives">
+<h2>Deep Learning Arrives<a class="headerlink" href="#deep-learning-arrives" title="Permalink to this heading">#</a></h2>
+<p>In recent years, the field has undergone something of a technological revolution, with the emergence of deep learning as a viable tool for audio synthesis.
+The publication of WaveNet <span id="id2">[<a class="reference internal" href="../bibliography.html#id28" title="Aäron van den Oord, Sander Dieleman, Heiga Zen, Karen Simonyan, Oriol Vinyals, Alexander Graves, Nal Kalchbrenner, Andrew Senior, and Koray Kavukcuoglu. Wavenet: a generative model for raw audio. In Arxiv. 2016. URL: https://arxiv.org/abs/1609.03499.">vdODZ+16</a>]</span>, an autoregressive neural network which produced a quantised audio signal sample-by-sample, first illustrated this possiblity.</p>
+<p>Over the following years, new methods for neural audio synthesis abounded, from refinements to WaveNet <span id="id3">[<a class="reference internal" href="../bibliography.html#id29" title="Aaron van den Oord, Yazhe Li, Igor Babuschkin, Karen Simonyan, Oriol Vinyals, Koray Kavukcuoglu, George van den Driessche, Edward Lockhart, Luis Cobo, Florian Stimberg, Norman Casagrande, Dominik Grewe, Seb Noury, Sander Dieleman, Erich Elsen, Nal Kalchbrenner, Heiga Zen, Alex Graves, Helen King, Tom Walters, Dan Belov, and Demis Hassabis. Parallel WaveNet: fast high-fidelity speech synthesis. In Jennifer Dy and Andreas Krause, editors, Proceedings of the 35th International Conference on Machine Learning, volume 80 of Proceedings of Machine Learning Research, 3918–3926. PMLR, 10–15 Jul 2018. URL: https://proceedings.mlr.press/v80/oord18a.html.">vdOLB+18</a>]</span> to the application of entirely different classes of generative model <span id="id4">[<a class="reference internal" href="../bibliography.html#id31" title="Jesse Engel, Kumar Krishna Agrawal, Shuo Chen, Ishaan Gulrajani, Chris Donahue, and Adam Roberts. GANSynth: adversarial neural audio synthesis. In International Conference on Learning Representations. 2019. URL: https://openreview.net/forum?id=H1xQVn09FX.">EAC+19</a>]</span>, including generative adversarial networks (GANs), variational autoencoders, flow-based models, and more recently denoising diffusion probabilistic models.</p>
+<p>Nonetheless, audio signals are inherently high-dimensional, exhibit multi-scale temporal inter-dependency, and have a strikingly non-intuitive relationship with perception — characteristics which are decidedly non-trivial to learn directly from data.
+These properties underlie a number of challenging-to-resolve phenomena when modelling audio with neural networks.
+Upsampling layers, for example, crucial components of workhorse architectures such as GANs and autoencoders, were found to cause undesirable signal artifacts <span id="id5">[<a class="reference internal" href="../bibliography.html#id30" title="Jordi Pons, Santiago Pascual, Giulio Cengarle, and Joan Serrà. Upsampling artifacts in neural audio synthesis. In ICASSP 2021 - 2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), volume, 3005–3009. 2021. doi:10.1109/ICASSP39728.2021.9414913.">PPCS21</a>]</span>.
+Similarly, frame-based estimation of audio signals was also found to be more challenging than might naïvely be assumed, due to the difficulty of ensuring phase coherence between successive frames, where frame lengths are independent of the frequencies contained in a signal <span id="id6">[<a class="reference internal" href="../bibliography.html#id31" title="Jesse Engel, Kumar Krishna Agrawal, Shuo Chen, Ishaan Gulrajani, Chris Donahue, and Adam Roberts. GANSynth: adversarial neural audio synthesis. In International Conference on Learning Representations. 2019. URL: https://openreview.net/forum?id=H1xQVn09FX.">EAC+19</a>]</span>.</p>
+<p>Today, well-trained GAN and diffusion vocoders are capable of overcoming these issues in certain domains, given sufficient model capacity and quantities of data.
+However, parallel line of research also emerged, which sought to address them by instilling models with inductive biases rooted in our prior knowledge of the properties of audio signals</p>
+<p>A parallel lineage of research emerged, however, which seeks to reduce the burden on models to <em>learn</em> these signal characteristics by constraining the model’s outputs so that they were already biased towards them.
+This is achieved by directly incorporating signal processing operations with known behaviour into the model, which we shall discuss in the next section.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -413,7 +463,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./challenges"
+            path: "./background"
         },
         predefinedOutput: true
     }
@@ -431,20 +481,20 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../physical-modeling/wave_equation.html"
+       href="../intro.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">The Wave Equation</p>
+        <p class="prev-next-title">Introduction</p>
       </div>
     </a>
     <a class="right-next"
-       href="../conclusion/index.html"
+       href="what-is-ddsp.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Conclusion</p>
+        <p class="prev-next-title">What is DDSP?</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -454,6 +504,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-brief-history-of-audio-synthesis">A Brief History of Audio Synthesis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deep-learning-arrives">Deep Learning Arrives</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
