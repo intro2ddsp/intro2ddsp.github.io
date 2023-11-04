@@ -585,8 +585,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>scipy.signal.lfilter: 0.00019 [s]
-naive_iir: 0.2783 [s]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>scipy.signal.lfilter: 0.00022 [s]
+naive_iir: 0.1594 [s]
 </pre></div>
 </div>
 </div>
@@ -602,29 +602,29 @@ naive_iir: 0.2783 [s]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>STAGE:2023-11-04 19:00:08 3831:3831 ActivityProfilerController.cpp:312] Completed Stage: Warm Up
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>STAGE:2023-11-04 19:27:10 3770:3770 ActivityProfilerController.cpp:312] Completed Stage: Warm Up
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>STAGE:2023-11-04 19:00:09 3831:3831 ActivityProfilerController.cpp:318] Completed Stage: Collection
-STAGE:2023-11-04 19:00:09 3831:3831 ActivityProfilerController.cpp:322] Completed Stage: Post Processing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>STAGE:2023-11-04 19:27:10 3770:3770 ActivityProfilerController.cpp:318] Completed Stage: Collection
+STAGE:2023-11-04 19:27:10 3770:3770 ActivityProfilerController.cpp:322] Completed Stage: Post Processing
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------  ------------  ------------  ------------  ------------  ------------  ------------  
                 Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg    # of Calls  
 --------------------  ------------  ------------  ------------  ------------  ------------  ------------  
-           naive_iir        39.76%     174.953ms        99.99%     439.972ms     439.972ms             1  
-           aten::dot        15.63%      68.778ms        17.09%      75.200ms       2.350us         32000  
-           aten::sub        15.35%      67.547ms        15.35%      67.547ms       2.111us         32000  
-         aten::slice        15.02%      66.087ms        15.13%      66.564ms       2.080us         32001  
-           aten::cat        12.66%      55.706ms        12.66%      55.706ms       1.741us         32001  
-         aten::empty         1.46%       6.418ms         1.46%       6.418ms       0.201us         32001  
-    aten::as_strided         0.11%     477.000us         0.11%     477.000us       0.015us         32001  
-     aten::new_zeros         0.00%      14.000us         0.01%      33.000us      33.000us             1  
-     aten::new_empty         0.00%       8.000us         0.00%      18.000us      18.000us             1  
-         aten::fill_         0.00%      14.000us         0.00%      14.000us       0.000us         32000  
+           naive_iir        49.37%     127.515ms        99.99%     258.274ms     258.274ms             1  
+           aten::dot        13.65%      35.260ms        15.49%      39.999ms       1.250us         32000  
+           aten::sub        13.16%      34.000ms        13.16%      34.000ms       1.062us         32000  
+         aten::slice        12.95%      33.462ms        13.09%      33.806ms       1.056us         32001  
+           aten::cat         8.88%      22.947ms         8.88%      22.947ms       0.717us         32001  
+         aten::empty         1.84%       4.744ms         1.84%       4.744ms       0.148us         32001  
+    aten::as_strided         0.13%     344.000us         0.13%     344.000us       0.011us         32001  
+     aten::new_zeros         0.01%      15.000us         0.01%      33.000us      33.000us             1  
+     aten::new_empty         0.00%       8.000us         0.01%      17.000us      17.000us             1  
+         aten::fill_         0.00%       4.000us         0.00%       4.000us       0.000us         32000  
          aten::zero_         0.00%       1.000us         0.00%       1.000us       1.000us             1  
 --------------------  ------------  ------------  ------------  ------------  ------------  ------------  
-Self CPU time total: 440.003ms
+Self CPU time total: 258.300ms
 </pre></div>
 </div>
 </div>
@@ -674,7 +674,7 @@ Self CPU time total: 440.003ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inplace_iir: 0.2053 [s]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inplace_iir: 0.1245 [s]
 </pre></div>
 </div>
 </div>
@@ -803,7 +803,7 @@ Below is the truncated <span class="math notranslate nohighlight">\(h_k\)</span>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>freq_iir: 0.0024 [s]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>freq_iir: 0.0036 [s]
 </pre></div>
 </div>
 </div>
@@ -860,6 +860,113 @@ Higher order gradient is useful in some applications, and as implementers, it is
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">gradcheck</span><span class="p">(</span><span class="n">IIR</span><span class="o">.</span><span class="n">apply</span><span class="p">,</span> <span class="p">(</span><span class="n">test_signal_torch_params</span><span class="p">[:</span><span class="mi">1000</span><span class="p">],</span> <span class="n">a_torch_params</span><span class="p">))</span>
 <span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">gradgradcheck</span><span class="p">(</span><span class="n">IIR</span><span class="o">.</span><span class="n">apply</span><span class="p">,</span> <span class="p">(</span><span class="n">test_signal_torch_params</span><span class="p">[:</span><span class="mi">1000</span><span class="p">],</span> <span class="n">a_torch_params</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">GradcheckError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">17</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">gradcheck</span><span class="p">(</span><span class="n">IIR</span><span class="o">.</span><span class="n">apply</span><span class="p">,</span> <span class="p">(</span><span class="n">test_signal_torch_params</span><span class="p">[:</span><span class="mi">1000</span><span class="p">],</span> <span class="n">a_torch_params</span><span class="p">))</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">gradgradcheck</span><span class="p">(</span><span class="n">IIR</span><span class="o">.</span><span class="n">apply</span><span class="p">,</span> <span class="p">(</span><span class="n">test_signal_torch_params</span><span class="p">[:</span><span class="mi">1000</span><span class="p">],</span> <span class="n">a_torch_params</span><span class="p">))</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/torch/autograd/gradcheck.py:2253,</span> in <span class="ni">gradgradcheck</span><span class="nt">(func, inputs, grad_outputs, eps, atol, rtol, gen_non_contig_grad_outputs, raise_exception, nondet_tol, check_undefined_grad, check_grad_dtypes, check_batched_grad, check_fwd_over_rev, check_rev_over_rev, fast_mode, masked)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2250</span>     <span class="n">grad_inputs</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">g</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">grad_inputs</span> <span class="k">if</span> <span class="n">g</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2251</span>     <span class="k">return</span> <span class="n">grad_inputs</span>
+<span class="ne">-&gt; </span><span class="mi">2253</span> <span class="k">return</span> <span class="n">gradcheck</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2254</span>     <span class="n">new_func</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2255</span>     <span class="n">tupled_inputs</span> <span class="o">+</span> <span class="n">tupled_grad_outputs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2256</span>     <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2257</span>     <span class="n">atol</span><span class="o">=</span><span class="n">atol</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2258</span>     <span class="n">rtol</span><span class="o">=</span><span class="n">rtol</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2259</span>     <span class="n">raise_exception</span><span class="o">=</span><span class="n">raise_exception</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2260</span>     <span class="n">nondet_tol</span><span class="o">=</span><span class="n">nondet_tol</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2261</span>     <span class="n">check_undefined_grad</span><span class="o">=</span><span class="n">check_undefined_grad</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2262</span>     <span class="n">check_grad_dtypes</span><span class="o">=</span><span class="n">check_grad_dtypes</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2263</span>     <span class="n">check_batched_grad</span><span class="o">=</span><span class="n">check_batched_grad</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2264</span>     <span class="n">fast_mode</span><span class="o">=</span><span class="n">fast_mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2265</span>     <span class="n">check_forward_ad</span><span class="o">=</span><span class="n">check_fwd_over_rev</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2266</span>     <span class="n">check_backward_ad</span><span class="o">=</span><span class="n">check_rev_over_rev</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2267</span>     <span class="n">masked</span><span class="o">=</span><span class="n">masked</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2268</span> <span class="p">)</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/torch/autograd/gradcheck.py:2051,</span> in <span class="ni">gradcheck</span><span class="nt">(func, inputs, eps, atol, rtol, raise_exception, check_sparse_nnz, nondet_tol, check_undefined_grad, check_grad_dtypes, check_batched_grad, check_batched_forward_grad, check_forward_ad, check_backward_ad, fast_mode, masked)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2049</span>         <span class="k">return</span> <span class="kc">False</span>
+<span class="g g-Whitespace">   </span><span class="mi">2050</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2051</span>     <span class="k">return</span> <span class="n">_gradcheck_helper</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">)</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/torch/autograd/gradcheck.py:2080,</span> in <span class="ni">_gradcheck_helper</span><span class="nt">(func, inputs, eps, atol, rtol, nondet_tol, check_undefined_grad, check_grad_dtypes, check_batched_grad, check_batched_forward_grad, check_forward_ad, check_backward_ad, fast_mode, masked)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2075</span> <span class="n">_check_outputs</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2077</span> <span class="n">gradcheck_fn</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2078</span>     <span class="n">_fast_gradcheck</span> <span class="k">if</span> <span class="n">fast_mode</span> <span class="k">else</span> <span class="n">_slow_gradcheck</span><span class="p">,</span> <span class="n">masked</span><span class="o">=</span><span class="n">masked</span>
+<span class="g g-Whitespace">   </span><span class="mi">2079</span> <span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2080</span> <span class="n">_gradcheck_real_imag</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2081</span>     <span class="n">gradcheck_fn</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2082</span>     <span class="n">func</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2083</span>     <span class="n">func_out</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2084</span>     <span class="n">tupled_inputs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2085</span>     <span class="n">outputs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2086</span>     <span class="n">eps</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2087</span>     <span class="n">rtol</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2088</span>     <span class="n">atol</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2089</span>     <span class="n">check_grad_dtypes</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2090</span>     <span class="n">check_forward_ad</span><span class="o">=</span><span class="n">check_forward_ad</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2091</span>     <span class="n">check_backward_ad</span><span class="o">=</span><span class="n">check_backward_ad</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2092</span>     <span class="n">nondet_tol</span><span class="o">=</span><span class="n">nondet_tol</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2093</span>     <span class="n">check_undefined_grad</span><span class="o">=</span><span class="n">check_undefined_grad</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2094</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2096</span> <span class="k">if</span> <span class="n">check_batched_forward_grad</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2097</span>     <span class="n">_test_batched_grad_forward_ad</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">tupled_inputs</span><span class="p">)</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/torch/autograd/gradcheck.py:1482,</span> in <span class="ni">_gradcheck_real_imag</span><span class="nt">(gradcheck_fn, func, func_out, tupled_inputs, outputs, eps, rtol, atol, check_grad_dtypes, check_forward_ad, check_backward_ad, nondet_tol, check_undefined_grad)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1469</span>         <span class="n">gradcheck_fn</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1470</span>             <span class="n">real_fn</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1471</span>             <span class="n">real_func_out</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1479</span>             <span class="n">complex_indices</span><span class="o">=</span><span class="n">complex_out_indices</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1480</span>         <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1481</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1482</span>         <span class="n">gradcheck_fn</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1483</span>             <span class="n">func</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1484</span>             <span class="n">func_out</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1485</span>             <span class="n">tupled_inputs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1486</span>             <span class="n">outputs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1487</span>             <span class="n">eps</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1488</span>             <span class="n">rtol</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1489</span>             <span class="n">atol</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1490</span>             <span class="n">check_grad_dtypes</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1491</span>             <span class="n">nondet_tol</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1492</span>         <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1494</span> <span class="k">if</span> <span class="n">check_forward_ad</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1495</span>     <span class="n">complex_inp_indices</span> <span class="o">=</span> <span class="p">[</span>
+<span class="g g-Whitespace">   </span><span class="mi">1496</span>         <span class="n">i</span>
+<span class="nn">   1497         for i, inp</span> in <span class="ni">enumerate</span><span class="nt">(tupled_inputs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1498</span>         <span class="k">if</span> <span class="n">is_tensor_like</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span> <span class="ow">and</span> <span class="n">inp</span><span class="o">.</span><span class="n">is_complex</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1499</span>     <span class="p">]</span>
+
+<span class="nn">File ~/.local/lib/python3.10/site-packages/torch/autograd/gradcheck.py:1623,</span> in <span class="ni">_slow_gradcheck</span><span class="nt">(func, func_out, tupled_inputs, outputs, eps, rtol, atol, check_grad_dtypes, nondet_tol, use_forward_ad, complex_indices, test_imag, masked)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1621</span>         <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">analytical</span><span class="p">,</span> <span class="n">numerical</span><span class="p">[</span><span class="n">i</span><span class="p">])):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1622</span>             <span class="k">if</span> <span class="ow">not</span> <span class="n">_allclose_with_type_promotion</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">n</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">device</span><span class="p">),</span> <span class="n">rtol</span><span class="p">,</span> <span class="n">atol</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1623</span>                 <span class="k">raise</span> <span class="n">GradcheckError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1624</span>                     <span class="n">_get_notallclose_msg</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">complex_indices</span><span class="p">,</span> <span class="n">test_imag</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1625</span>                 <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1627</span> <span class="k">return</span> <span class="kc">True</span>
+
+<span class="ne">GradcheckError</span>: Jacobian mismatch for output 1 with respect to input 2,
+<span class="ne">numerical</span>:tensor([[ 0.0000e+00,  0.0000e+00],
+        <span class="p">[</span><span class="o">-</span><span class="mf">3.7835e-04</span><span class="p">,</span>  <span class="mf">0.0000e+00</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">-</span><span class="mf">2.2119e-03</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.0745e-04</span><span class="p">],</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="p">[</span> <span class="mf">2.3772e+03</span><span class="p">,</span>  <span class="mf">2.4922e+03</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">2.2619e+03</span><span class="p">,</span>  <span class="mf">2.3772e+03</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">2.1460e+03</span><span class="p">,</span>  <span class="mf">2.2619e+03</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="ne">analytical</span>:tensor([[ 0.0000e+00,  0.0000e+00],
+        <span class="p">[</span><span class="o">-</span><span class="mf">3.9270e-04</span><span class="p">,</span>  <span class="mf">0.0000e+00</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">-</span><span class="mf">2.2114e-03</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.9270e-04</span><span class="p">],</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="p">[</span> <span class="mf">2.3772e+03</span><span class="p">,</span>  <span class="mf">2.4922e+03</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">2.2619e+03</span><span class="p">,</span>  <span class="mf">2.3772e+03</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">2.1460e+03</span><span class="p">,</span>  <span class="mf">2.2619e+03</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
