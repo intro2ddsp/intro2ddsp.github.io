@@ -10,20 +10,25 @@ parts:
       - file: background/what-is-ddsp.md
   - caption: First Steps
     chapters:
-      - file: first-steps/first_steps.md
       - file: first-steps/pytorch_tutorial.ipynb
       - file: first-steps/diff_gain.ipynb
   - caption: Synthesisers
     chapters:
       - file: synths/introduction.md
+      - file: synths/oscillator.ipynb
+      - file: synths/additive.ipynb
+      - file: synths/harmonic_optimize.ipynb
+      - file: synths/harmonic_results.md
+      - file: synths/libraries.md
   - caption: Filters
     chapters:
       - file: filters/index.md
       - file: filters/fir-intro.md
       - file: filters/fir-optim.ipynb
-  - caption: Voice Synthesis
-    chapters:
-      - file: voice/index.md
+      - file: filters/iir_intro.md
+      - file: filters/iir_impl.md
+      - file: filters/iir_torch.ipynb
+      - file: filters/sf.ipynb
   - caption: Physical Modeling
     chapters:
       - file: physical-modeling/index.md
@@ -33,3 +38,4 @@ parts:
   - caption: Wrapping Up
     chapters:
       - file: bibliography.md
+
