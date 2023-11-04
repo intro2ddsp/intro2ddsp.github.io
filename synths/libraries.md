@@ -1,4 +1,4 @@
-# Differentiable Audio Libraries
+# Differentiable Synthesis Libraries
 
 ## Synthesis
 There exist several open-source code implementations of differentiable DSP
@@ -34,6 +34,8 @@ A GPU-enabled modular synthesizer library written in PyTorch. Provides of a numb
 A modular synthesizer based on torchsynth built with JAX. Achieves over 80k times faster than realtime generation speeds. {cite:p}`cherep2023synthax`
 
 ## Audio Processing
+
+While not primarily focused on audio synthesis, the following differentiable audio processing library is relevant to the concepts presented in this tutorial.
 
 ### dasp
 
