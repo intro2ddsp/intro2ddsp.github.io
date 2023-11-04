@@ -592,7 +592,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>scipy.signal.lfilter: 0.00023 [s]
-naive_iir: 0.3371 [s]
+naive_iir: 0.2798 [s]
 </pre></div>
 </div>
 </div>
@@ -608,29 +608,29 @@ naive_iir: 0.3371 [s]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>STAGE:2023-11-04 20:39:57 3943:3943 ActivityProfilerController.cpp:312] Completed Stage: Warm Up
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>STAGE:2023-11-04 20:50:32 3824:3824 ActivityProfilerController.cpp:312] Completed Stage: Warm Up
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>STAGE:2023-11-04 20:39:58 3943:3943 ActivityProfilerController.cpp:318] Completed Stage: Collection
-STAGE:2023-11-04 20:39:58 3943:3943 ActivityProfilerController.cpp:322] Completed Stage: Post Processing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>STAGE:2023-11-04 20:50:33 3824:3824 ActivityProfilerController.cpp:318] Completed Stage: Collection
+STAGE:2023-11-04 20:50:33 3824:3824 ActivityProfilerController.cpp:322] Completed Stage: Post Processing
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------  ------------  ------------  ------------  ------------  ------------  ------------  
                 Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg    # of Calls  
 --------------------  ------------  ------------  ------------  ------------  ------------  ------------  
-           naive_iir        41.55%     217.359ms        99.99%     523.038ms     523.038ms             1  
-           aten::dot        18.90%      98.883ms        20.37%     106.526ms       3.329us         32000  
-           aten::sub        12.92%      67.584ms        12.92%      67.584ms       2.112us         32000  
-         aten::slice        12.76%      66.756ms        12.88%      67.377ms       2.105us         32001  
-           aten::cat        12.27%      64.191ms        12.27%      64.191ms       2.006us         32001  
-         aten::empty         1.46%       7.618ms         1.46%       7.618ms       0.238us         32001  
-    aten::as_strided         0.12%     621.000us         0.12%     621.000us       0.019us         32001  
-     aten::new_zeros         0.00%      16.000us         0.01%      36.000us      36.000us             1  
-         aten::fill_         0.01%      36.000us         0.01%      36.000us       0.001us         32000  
-     aten::new_empty         0.00%       8.000us         0.00%      19.000us      19.000us             1  
-         aten::zero_         0.00%       1.000us         0.00%       1.000us       1.000us             1  
+           naive_iir        41.37%     181.851ms        99.99%     439.587ms     439.587ms             1  
+           aten::dot        15.75%      69.234ms        17.37%      76.354ms       2.386us         32000  
+         aten::slice        14.92%      65.611ms        15.04%      66.135ms       2.067us         32001  
+           aten::sub        14.96%      65.787ms        14.96%      65.787ms       2.056us         32000  
+           aten::cat        11.25%      49.460ms        11.25%      49.460ms       1.546us         32001  
+         aten::empty         1.61%       7.091ms         1.61%       7.091ms       0.222us         32001  
+    aten::as_strided         0.12%     524.000us         0.12%     524.000us       0.016us         32001  
+         aten::fill_         0.01%      37.000us         0.01%      37.000us       0.001us         32000  
+     aten::new_zeros         0.00%      13.000us         0.01%      28.000us      28.000us             1  
+     aten::new_empty         0.00%       7.000us         0.00%      15.000us      15.000us             1  
+         aten::zero_         0.00%       0.000us         0.00%       0.000us       0.000us             1  
 --------------------  ------------  ------------  ------------  ------------  ------------  ------------  
-Self CPU time total: 523.073ms
+Self CPU time total: 439.615ms
 </pre></div>
 </div>
 </div>
@@ -680,7 +680,7 @@ Self CPU time total: 523.073ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inplace_iir: 0.2456 [s]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inplace_iir: 0.2153 [s]
 </pre></div>
 </div>
 </div>
@@ -809,7 +809,7 @@ Below is the truncated <span class="math notranslate nohighlight">\(h_k\)</span>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>freq_iir: 0.0033 [s]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>freq_iir: 0.0022 [s]
 </pre></div>
 </div>
 </div>
