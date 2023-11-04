@@ -19,12 +19,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    # Install dependencies
-    - name: Install Linux Deps
-      run: |
-        sudo apt-get update
-        sudo apt install ffmpeg
-
     - name: Set up Python 3.10
       uses: actions/setup-python@v2
       with:
@@ -32,6 +26,8 @@ jobs:
 
     - name: Install dependencies
       run: |
+        sudo apt-get update
+        sudo apt install ffmpeg
         pip install -r requirements.txt
 
     # Build the book
