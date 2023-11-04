@@ -521,7 +521,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/002a708361ec344bc064c0bfd2094165410900d1dc01f3dc409025a689dcc00c.png" src="../_images/002a708361ec344bc064c0bfd2094165410900d1dc01f3dc409025a689dcc00c.png" />
+<img alt="../_images/374745a66511307e67d3ab340124465b1fccf26b43728de447d74178ca2ae04d.png" src="../_images/374745a66511307e67d3ab340124465b1fccf26b43728de447d74178ca2ae04d.png" />
 </div>
 </div>
 <p>The filter we use is a second-order low pass filter (<span class="math notranslate nohighlight">\(M\)</span> = 2) with coefficients <span class="math notranslate nohighlight">\(a_1 = -1.8\)</span> and <span class="math notranslate nohighlight">\(a_2 = 0.81\)</span>. Let us see how the filter performs on the chirp signal.</p>
@@ -536,7 +536,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b2143e8f1ec27ba9db5c3c02d1f892550ebe2c70dc2fd1a45929a3a502c77ed6.png" src="../_images/b2143e8f1ec27ba9db5c3c02d1f892550ebe2c70dc2fd1a45929a3a502c77ed6.png" />
+<img alt="../_images/3c5b946258c78f0193467484020d10ac985fbbca72cbf8bb17f9a301e77b18ff.png" src="../_images/3c5b946258c78f0193467484020d10ac985fbbca72cbf8bb17f9a301e77b18ff.png" />
 </div>
 </div>
 <p>Is our PyTorch implementation correct? Let us compare it with the <code class="docutils literal notranslate"><span class="pre">scipy.signal.lfilter</span></code> function.</p>
@@ -585,8 +585,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>scipy.signal.lfilter: 0.00023 [s]
-naive_iir: 0.1547 [s]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>scipy.signal.lfilter: 0.00019 [s]
+naive_iir: 0.2783 [s]
 </pre></div>
 </div>
 </div>
@@ -602,29 +602,29 @@ naive_iir: 0.1547 [s]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>STAGE:2023-11-04 12:21:36 1982:1982 ActivityProfilerController.cpp:312] Completed Stage: Warm Up
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>STAGE:2023-11-04 19:00:08 3831:3831 ActivityProfilerController.cpp:312] Completed Stage: Warm Up
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>STAGE:2023-11-04 12:21:36 1982:1982 ActivityProfilerController.cpp:318] Completed Stage: Collection
-STAGE:2023-11-04 12:21:36 1982:1982 ActivityProfilerController.cpp:322] Completed Stage: Post Processing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>STAGE:2023-11-04 19:00:09 3831:3831 ActivityProfilerController.cpp:318] Completed Stage: Collection
+STAGE:2023-11-04 19:00:09 3831:3831 ActivityProfilerController.cpp:322] Completed Stage: Post Processing
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------  ------------  ------------  ------------  ------------  ------------  ------------  
                 Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg    # of Calls  
 --------------------  ------------  ------------  ------------  ------------  ------------  ------------  
-           naive_iir        50.94%     119.860ms        99.98%     235.266ms     235.266ms             1  
-           aten::dot        14.28%      33.611ms        14.37%      33.810ms       1.057us         32000  
-         aten::slice        13.99%      32.919ms        14.01%      32.965ms       1.030us         32001  
-           aten::sub        13.79%      32.448ms        13.79%      32.448ms       1.014us         32000  
-           aten::cat         6.88%      16.191ms         6.88%      16.191ms       0.506us         32001  
-         aten::empty         0.09%     206.000us         0.09%     206.000us       0.006us         32001  
-    aten::as_strided         0.02%      46.000us         0.02%      46.000us       0.001us         32001  
-     aten::new_zeros         0.01%      12.000us         0.01%      28.000us      28.000us             1  
-     aten::new_empty         0.00%       7.000us         0.01%      15.000us      15.000us             1  
+           naive_iir        39.76%     174.953ms        99.99%     439.972ms     439.972ms             1  
+           aten::dot        15.63%      68.778ms        17.09%      75.200ms       2.350us         32000  
+           aten::sub        15.35%      67.547ms        15.35%      67.547ms       2.111us         32000  
+         aten::slice        15.02%      66.087ms        15.13%      66.564ms       2.080us         32001  
+           aten::cat        12.66%      55.706ms        12.66%      55.706ms       1.741us         32001  
+         aten::empty         1.46%       6.418ms         1.46%       6.418ms       0.201us         32001  
+    aten::as_strided         0.11%     477.000us         0.11%     477.000us       0.015us         32001  
+     aten::new_zeros         0.00%      14.000us         0.01%      33.000us      33.000us             1  
+     aten::new_empty         0.00%       8.000us         0.00%      18.000us      18.000us             1  
+         aten::fill_         0.00%      14.000us         0.00%      14.000us       0.000us         32000  
          aten::zero_         0.00%       1.000us         0.00%       1.000us       1.000us             1  
-         aten::fill_         0.00%       1.000us         0.00%       1.000us       0.000us         32000  
 --------------------  ------------  ------------  ------------  ------------  ------------  ------------  
-Self CPU time total: 235.302ms
+Self CPU time total: 440.003ms
 </pre></div>
 </div>
 </div>
@@ -674,7 +674,7 @@ Self CPU time total: 235.302ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inplace_iir: 0.1259 [s]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inplace_iir: 0.2053 [s]
 </pre></div>
 </div>
 </div>
@@ -767,7 +767,7 @@ Self CPU time total: 235.302ms
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Is the filtered signal the same? False
 </pre></div>
 </div>
-<img alt="../_images/3b0916a74d61b9f4f2406b760dd38ab6b56f2537d803ca9bc211f13bf1bff8bc.png" src="../_images/3b0916a74d61b9f4f2406b760dd38ab6b56f2537d803ca9bc211f13bf1bff8bc.png" />
+<img alt="../_images/08b39e5fa44f5c16d7e08da1efbb278caf8c15de51c8ef9d94d94846bef1b067.png" src="../_images/08b39e5fa44f5c16d7e08da1efbb278caf8c15de51c8ef9d94d94846bef1b067.png" />
 </div>
 </div>
 <p>The above code shows that this approximation does not generate the same output. Although the frequency response looks very close to the original, it does not pass the test. This is because performing the discrete time Fourier transform (DFT) of IIR system equals sampling the system response on discrete frequencies, thus truncate the infinity impulse response to the same length FFT.
@@ -782,7 +782,7 @@ Below is the truncated <span class="math notranslate nohighlight">\(h_k\)</span>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/319a652ec959deb6e38b2e633a993875b163519289c8da57563a7aaf4049a42a.png" src="../_images/319a652ec959deb6e38b2e633a993875b163519289c8da57563a7aaf4049a42a.png" />
+<img alt="../_images/c2c95e9dfb5aff9303a5d905f587c57aa0f56b5a146731f2d15be894a270db13.png" src="../_images/c2c95e9dfb5aff9303a5d905f587c57aa0f56b5a146731f2d15be894a270db13.png" />
 </div>
 </div>
 <p>Let us benchmark the performance of this approximation.</p>
@@ -803,7 +803,7 @@ Below is the truncated <span class="math notranslate nohighlight">\(h_k\)</span>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>freq_iir: 0.0036 [s]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>freq_iir: 0.0024 [s]
 </pre></div>
 </div>
 </div>
