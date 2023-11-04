@@ -680,9 +680,6 @@ frequencies in relation to a fundamental frequency.</p>
 </div>
 </div>
 </div>
-<p>We’ve made one minor change to <code class="docutils literal notranslate"><span class="pre">additive_synth</span></code>. We now expect to receive frequency and
-amplitude tensors that are time-varying at a frame rate. In this function we now upsample
-from the frame rate to the audio sample rate using linear interpolation (<code class="docutils literal notranslate"><span class="pre">torch.nn.functional.interpolate</span></code>) prior to synthesis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">additive_synth</span><span class="p">(</span>
