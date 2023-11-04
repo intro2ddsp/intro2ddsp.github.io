@@ -48,7 +48,7 @@ Nonetheless, all of the techniques we present can be (and mostly have been) comp
 This web book consists of a series of Jupyter notebooks, which can be explored statically on this page. To run the notebooks yourself, you will need to clone the Git repository:
 
 ```bash
-git clone https://github.com/ben-hayes/intro2ddsp.git && cd intro2ddsp
+git clone https://github.com/intro2ddsp/intro2ddsp.github.io.git && cd intro2ddsp.github.io
 ```
 
 Then, you should create a Python virtual environment, using `virtualenv`, `conda`, or similar:
