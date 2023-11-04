@@ -429,7 +429,12 @@ document.write(`
 <section id="naive-iir-implementation">
 <h2>Naive IIR Implementation<a class="headerlink" href="#naive-iir-implementation" title="Permalink to this heading">#</a></h2>
 <p>Before we start, let us import the necessary libraries and define some helper functions for plotting.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">signal</span>
@@ -441,8 +446,14 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_tf</span><span class="p">(</span>
     <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -477,6 +488,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <p>Let us first implement an IIR filter in PyTorch using the difference equation <a class="reference internal" href="iir_intro.html#equation-iir">(1)</a> directly and see how it performs.</p>
 <div class="cell docutils container">
@@ -563,7 +575,12 @@ document.write(`
 </div>
 </div>
 <p>Horay! It pass the test. Let us now see how fast it is.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scipy_time</span> <span class="o">=</span> <span class="n">timeit</span><span class="p">(</span>
     <span class="n">stmt</span><span class="o">=</span><span class="s2">&quot;signal.lfilter(b, a, test_signal)&quot;</span><span class="p">,</span> <span class="n">setup</span><span class="o">=</span><span class="s2">&quot;from scipy import signal&quot;</span><span class="p">,</span> 
@@ -590,15 +607,21 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>scipy.signal.lfilter: 0.00023 [s]
-naive_iir: 0.2817 [s]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>scipy.signal.lfilter: 0.00025 [s]
+naive_iir: 0.3228 [s]
 </pre></div>
 </div>
 </div>
 </div>
 <p>The direct implementation is roughly 1000 times slower than the <code class="docutils literal notranslate"><span class="pre">scipy.signal.lfilter</span></code> function! What is the reason? One reason is that the core part of <code class="docutils literal notranslate"><span class="pre">scipy.signal.lfilter</span></code> is implemented in C and is highly optimised. Let us use <code class="docutils literal notranslate"><span class="pre">torch.profiler</span></code> to profile the code and see if we can make our implementation faster.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">profile</span><span class="p">(</span><span class="n">activities</span><span class="o">=</span><span class="p">[</span><span class="n">ProfilerActivity</span><span class="o">.</span><span class="n">CPU</span><span class="p">])</span> <span class="k">as</span> <span class="n">prof</span><span class="p">:</span>
     <span class="n">naive_iir</span><span class="p">(</span><span class="n">test_signal_torch</span><span class="p">[:],</span> <span class="n">a_torch</span><span class="p">)</span>
@@ -607,30 +630,31 @@ naive_iir: 0.2817 [s]
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>STAGE:2023-11-04 21:45:10 3898:3898 ActivityProfilerController.cpp:312] Completed Stage: Warm Up
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>STAGE:2023-11-04 22:24:12 3881:3881 ActivityProfilerController.cpp:312] Completed Stage: Warm Up
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>STAGE:2023-11-04 21:45:10 3898:3898 ActivityProfilerController.cpp:318] Completed Stage: Collection
-STAGE:2023-11-04 21:45:10 3898:3898 ActivityProfilerController.cpp:322] Completed Stage: Post Processing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>STAGE:2023-11-04 22:24:13 3881:3881 ActivityProfilerController.cpp:318] Completed Stage: Collection
+STAGE:2023-11-04 22:24:13 3881:3881 ActivityProfilerController.cpp:322] Completed Stage: Post Processing
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------------------  ------------  ------------  ------------  ------------  ------------  ------------  
                 Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg    # of Calls  
 --------------------  ------------  ------------  ------------  ------------  ------------  ------------  
-           naive_iir        41.21%     179.444ms        99.99%     435.419ms     435.419ms             1  
-           aten::dot        15.99%      69.609ms        17.11%      74.484ms       2.328us         32000  
-         aten::slice        15.04%      65.485ms        15.15%      65.962ms       2.061us         32001  
-           aten::sub        15.10%      65.769ms        15.10%      65.769ms       2.055us         32000  
-           aten::cat        11.43%      49.757ms        11.43%      49.757ms       1.555us         32001  
-         aten::empty         1.12%       4.876ms         1.12%       4.876ms       0.152us         32001  
-    aten::as_strided         0.11%     477.000us         0.11%     477.000us       0.015us         32001  
-     aten::new_zeros         0.00%      13.000us         0.01%      29.000us      29.000us             1  
-     aten::new_empty         0.00%       7.000us         0.00%      15.000us      15.000us             1  
-         aten::fill_         0.00%       7.000us         0.00%       7.000us       0.000us         32000  
+           naive_iir        41.56%     209.760ms        99.99%     504.711ms     504.711ms             1  
+           aten::dot        16.39%      82.740ms        18.58%      93.763ms       2.930us         32000  
+           aten::sub        13.39%      67.573ms        13.39%      67.573ms       2.112us         32000  
+         aten::slice        13.21%      66.702ms        13.36%      67.429ms       2.107us         32001  
+           aten::cat        13.11%      66.182ms        13.11%      66.182ms       2.068us         32001  
+         aten::empty         2.18%      11.014ms         2.18%      11.014ms       0.344us         32001  
+    aten::as_strided         0.14%     727.000us         0.14%     727.000us       0.023us         32001  
+     aten::new_zeros         0.00%      17.000us         0.01%      38.000us      38.000us             1  
+     aten::new_empty         0.00%       9.000us         0.00%      20.000us      20.000us             1  
+         aten::fill_         0.00%      20.000us         0.00%      20.000us       0.001us         32000  
          aten::zero_         0.00%       1.000us         0.00%       1.000us       1.000us             1  
 --------------------  ------------  ------------  ------------  ------------  ------------  ------------  
-Self CPU time total: 435.445ms
+Self CPU time total: 504.745ms
 </pre></div>
 </div>
 </div>
@@ -661,7 +685,12 @@ Self CPU time total: 435.445ms
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">inplace_iir</span><span class="p">(</span><span class="n">test_signal_torch</span><span class="p">,</span> <span class="n">a_torch</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">filtered_signal</span><span class="p">))</span>
 
@@ -679,8 +708,9 @@ Self CPU time total: 435.445ms
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inplace_iir: 0.2209 [s]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inplace_iir: 0.2376 [s]
 </pre></div>
 </div>
 </div>
@@ -719,7 +749,7 @@ Self CPU time total: 435.445ms
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">script</span>
 <span class="k">def</span> <span class="nf">freq_iir</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Naive implementation of IIR filter.</span>
+<span class="sd">    Frequency sampling of IIR filter.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">assert</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span>
     <span class="k">assert</span> <span class="n">a</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span>
@@ -750,7 +780,12 @@ Self CPU time total: 435.445ms
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filtered_signal_freq</span> <span class="o">=</span> <span class="n">freq_iir</span><span class="p">(</span><span class="n">test_signal_torch</span><span class="p">,</span> <span class="n">a_torch</span><span class="p">)</span>
 
@@ -769,6 +804,7 @@ Self CPU time total: 435.445ms
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Is the filtered signal the same? False
 </pre></div>
@@ -779,7 +815,12 @@ Self CPU time total: 435.445ms
 <p>The above code shows that this approximation does not generate the same output. Although the frequency response looks very close to the original, it does not pass the test. This is because performing the discrete time Fourier transform (DFT) of IIR system equals sampling the system response on discrete frequencies, thus truncate the infinity impulse response to the same length FFT.
 If you need some refreshment on this topic, you can revisit the section <a class="reference internal" href="iir_impl.html#content-freq-sampling"><span class="std std-ref">Frequency Sampling Method</span></a>.
 Below is the truncated <span class="math notranslate nohighlight">\(h_k\)</span> we used in the above example. The sampling process also makes <span class="math notranslate nohighlight">\(h_k\)</span> become periodic, so the outputs is actually a circular convolution of the input and <span class="math notranslate nohighlight">\(h_k\)</span>. This difference is most obvious in our filtered signal at <span class="math notranslate nohighlight">\(t \to 0\)</span>.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="n">get_fir_from_iir</span><span class="p">(</span><span class="n">a_torch</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
 
@@ -787,12 +828,18 @@ Below is the truncated <span class="math notranslate nohighlight">\(h_k\)</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/c2c95e9dfb5aff9303a5d905f587c57aa0f56b5a146731f2d15be894a270db13.png" src="../_images/c2c95e9dfb5aff9303a5d905f587c57aa0f56b5a146731f2d15be894a270db13.png" />
 </div>
 </div>
 <p>Let us benchmark the performance of this approximation.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">torch_time</span> <span class="o">=</span> <span class="n">timeit</span><span class="p">(</span>
     <span class="n">stmt</span><span class="o">=</span><span class="s2">&quot;iir(test_signal_torch, a_torch)&quot;</span><span class="p">,</span>
@@ -808,8 +855,9 @@ Below is the truncated <span class="math notranslate nohighlight">\(h_k\)</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>freq_iir: 0.0022 [s]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>freq_iir: 0.0034 [s]
 </pre></div>
 </div>
 </div>

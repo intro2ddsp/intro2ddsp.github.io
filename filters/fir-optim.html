@@ -466,7 +466,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;torch._C.Generator at 0x7f049002a310&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;torch._C.Generator at 0x7fcc74bde310&gt;
 </pre></div>
 </div>
 </div>
@@ -925,46 +925,46 @@ kernel shape: torch.Size([1, 1, 3])
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 4: FFT time 0.378, Conv1D time 0.044
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 4: FFT time 0.465, Conv1D time 0.047
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 8: FFT time 1.627, Conv1D time 0.042
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 8: FFT time 0.486, Conv1D time 0.052
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 16: FFT time 0.373, Conv1D time 0.059
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 16: FFT time 0.460, Conv1D time 0.071
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 32: FFT time 0.404, Conv1D time 0.067
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 32: FFT time 0.509, Conv1D time 0.076
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 64: FFT time 0.367, Conv1D time 0.126
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 64: FFT time 0.454, Conv1D time 0.101
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 128: FFT time 0.385, Conv1D time 0.102
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 128: FFT time 0.488, Conv1D time 0.149
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 256: FFT time 0.349, Conv1D time 0.377
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 256: FFT time 0.487, Conv1D time 0.584
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 512: FFT time 0.562, Conv1D time 0.750
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 512: FFT time 0.711, Conv1D time 1.008
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 1024: FFT time 0.668, Conv1D time 0.852
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 1024: FFT time 0.769, Conv1D time 0.400
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 2048: FFT time 1.024, Conv1D time 0.536
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 2048: FFT time 1.270, Conv1D time 0.772
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 4096: FFT time 1.545, Conv1D time 1.892
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 4096: FFT time 1.930, Conv1D time 3.385
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 8192: FFT time 3.496, Conv1D time 6.153
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 8192: FFT time 4.954, Conv1D time 6.756
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f03b3917be0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fcbb040ed10&gt;
 </pre></div>
 </div>
-<img alt="../_images/7483ec0f387df5f8dabdf6742440337584e3009e3d727f2e6896e265f796a412.png" src="../_images/7483ec0f387df5f8dabdf6742440337584e3009e3d727f2e6896e265f796a412.png" />
+<img alt="../_images/2c58f92517f7797e8136f2ce99980003870e90fb0ab4f89dafdc6fd0887c6342.png" src="../_images/2c58f92517f7797e8136f2ce99980003870e90fb0ab4f89dafdc6fd0887c6342.png" />
 </div>
 </div>
 <p>As expected, for larger impulse responses FFT convolution is clearly faster. But interestingly, for responses below roughly 1000 samples, the direct convolution approach wins out.</p>
