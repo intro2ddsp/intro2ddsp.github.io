@@ -171,6 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../background/neural-audio-synthesis.html">Neural Audio Synthesis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../background/what-is-ddsp.html">What is DDSP?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background/tasks_applications.html">Tasks and Applications</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">First Steps</span></p>
 <ul class="nav bd-sidenav">
@@ -418,7 +419,7 @@ document.write(`
 can be implemented using the PyTorch library and how we can use gradient descent optimization
 to learn parameters for this synthesizer to match a target sound.
 We’ll build on what we learned in the introduction PyTorch chapter and work up
-to the development of a harmonic synthesizer similar to the one used by <span id="id1">Engel <em>et al.</em> [<a class="reference internal" href="#id10" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>
+to the development of a harmonic synthesizer similar to the one used by <span id="id1">Engel <em>et al.</em> [<a class="reference internal" href="#id14" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>
 to model instrument tones.
 Over the next few sections we’ll build up the core components of this harmonic synthesizer,
 starting from a simple sinusoidal oscillator.
@@ -468,12 +469,12 @@ to reproduce instrumental sounds from real recordings.</p>
 <h2>Sinusoidal Modelling Synthesis<a class="headerlink" href="#sinusoidal-modelling-synthesis" title="Permalink to this heading">#</a></h2>
 <p>There are many different types of audio synthesis. One method that has been particularly
 fruitful in differentiable synthesis of musical instruments is sinusoidal modeling synthesis (SMS),
-initially developed by <span id="id2">Serra and Smith [<a class="reference internal" href="#id17" title="Xavier Serra and Julius Smith. Spectral Modeling Synthesis: A Sound Analysis/Synthesis System Based on a Deterministic Plus Stochastic Decomposition. Computer Music Journal, 14(4):12–24, 1990. URL: www.jstor.org/stable/3680788 (visited on 2019-12-21), doi:10.2307/3680788.">SS90</a>]</span> in the late 1980s.
+initially developed by <span id="id2">Serra and Smith [<a class="reference internal" href="#id40" title="Xavier Serra and Julius Smith. Spectral Modeling Synthesis: A Sound Analysis/Synthesis System Based on a Deterministic Plus Stochastic Decomposition. Computer Music Journal, 14(4):12–24, 1990. URL: www.jstor.org/stable/3680788 (visited on 2019-12-21), doi:10.2307/3680788.">SS90</a>]</span> in the late 1980s.
 The core idea of SMS is based on Fourier’s theorem, which states that any sound can
 be decomposed into a set of sinusoidal basis components.
 SMS leverages this concept within an analysis-synthesis pipeline to model instrumental
 sounds by summing together sets of time-varying sinusoidal components.</p>
-<p><span id="id3">Engel <em>et al.</em> [<a class="reference internal" href="#id10" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span> used a variant of a sinusoidal modelling synthesizer called a <strong>harmonic synthesizer</strong>,
+<p><span id="id3">Engel <em>et al.</em> [<a class="reference internal" href="#id14" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span> used a variant of a sinusoidal modelling synthesizer called a <strong>harmonic synthesizer</strong>,
 which essentially restricts the sinusoidal components to be integer multiples of a
 fundamental frequency, and made it differentiable. Engel et al. motivated this decision
 based on the knowledge that most musical sounds are periodic in nature and that embedding
@@ -481,14 +482,14 @@ sinusoidal oscillators within a neural audio synthesizer provides a useful induc
 towards the generation of those sounds.</p>
 <p>In this chapter we will look at developing this differentiable harmonic synthesizer proposed
 by Engel et al.</p>
-<p>If we look at the full model diagram from the original DDSP paper by <span id="id4">Engel <em>et al.</em> [<a class="reference internal" href="#id10" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>,
+<p>If we look at the full model diagram from the original DDSP paper by <span id="id4">Engel <em>et al.</em> [<a class="reference internal" href="#id14" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>,
 we are going to focus on developing the block component labelled <strong>Harmonic Audio</strong> and look
 at how we can use the <strong>Multi-Scale Spectrogram Loss</strong> to learn parameters to match the
 sounds we introduced above!</p>
 <figure class="align-default" id="ddsp-model">
 <img alt="../_images/ddsp_model.png" src="../_images/ddsp_model.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">DDSP model diagram, from the original DDSP paper by Engel et al.</span><a class="headerlink" href="#ddsp-model" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">DDSP model diagram, from the original DDSP paper by Engel et al.</span><a class="headerlink" href="#ddsp-model" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Sinusoidal modelling is also just one of many synthesis methods that we can model
@@ -500,10 +501,10 @@ objects into composable differentiable modular synthesizers.</p>
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <div class="docutils container" id="id5">
 <dl class="citation">
-<dt class="label" id="id10"><span class="brackets">EHGR20</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id3">2</a>,<a href="#id4">3</a>)</span></dt>
+<dt class="label" id="id14"><span class="brackets">EHGR20</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id3">2</a>,<a href="#id4">3</a>)</span></dt>
 <dd><p>Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In <em>8th International Conference on Learning Representations</em>. April 2020.</p>
 </dd>
-<dt class="label" id="id17"><span class="brackets"><a class="fn-backref" href="#id2">SS90</a></span></dt>
+<dt class="label" id="id40"><span class="brackets"><a class="fn-backref" href="#id2">SS90</a></span></dt>
 <dd><p>Xavier Serra and Julius Smith. Spectral Modeling Synthesis: A Sound Analysis/Synthesis System Based on a Deterministic Plus Stochastic Decomposition. <em>Computer Music Journal</em>, 14(4):12–24, 1990. URL: <a class="reference external" href="www.jstor.org/stable/3680788">www.jstor.org/stable/3680788</a> (visited on 2019-12-21), <a class="reference external" href="https://doi.org/10.2307/3680788">doi:10.2307/3680788</a>.</p>
 </dd>
 </dl>

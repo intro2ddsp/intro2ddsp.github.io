@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'background/what-is-ddsp';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="PyTorch Bootcamp" href="../first-steps/pytorch_tutorial.html" />
+    <link rel="next" title="Tasks and Applications" href="tasks_applications.html" />
     <link rel="prev" title="Neural Audio Synthesis" href="neural-audio-synthesis.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -171,6 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="neural-audio-synthesis.html">Neural Audio Synthesis</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">What is DDSP?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tasks_applications.html">Tasks and Applications</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">First Steps</span></p>
 <ul class="nav bd-sidenav">
@@ -426,24 +427,24 @@ That is to say, the filter forms a part of the computation graph, and its gradie
 <figure class="align-default" id="ddsp-overview">
 <a class="reference internal image-reference" href="../_images/ddsp-overview.png"><img alt="../_images/ddsp-overview.png" src="../_images/ddsp-overview.png" style="height: 600px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">A high level diagram illustrating the general structure of many DDSP synthesis systems. Taken from <span id="id1">[<a class="reference internal" href="../bibliography.html#id27">HSF+23</a>]</span>.</span><a class="headerlink" href="#ddsp-overview" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">A high level diagram illustrating the general structure of many DDSP synthesis systems. Taken from <span id="id1">[<a class="reference internal" href="../bibliography.html#id18" title="Ben Hayes, Jordie Shier, György Fazekas, Andrew McPherson, and Charalampos Saitis. A Review of Differentiable Digital Signal Processing for Music &amp; Speech Synthesis. August 2023. arXiv:2308.15422, doi:10.48550/arXiv.2308.15422.">HSF+23</a>]</span>.</span><a class="headerlink" href="#ddsp-overview" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="why-is-ddsp-used">
 <h2>Why is DDSP used?<a class="headerlink" href="#why-is-ddsp-used" title="Permalink to this heading">#</a></h2>
 <p>The applications of DDSP are varied, and we will go into further details on these in the next section.
-Nonetheless, there a number of recurring themes that appear in the literature as motivations for its use, as identified in our recent review paper <span id="id2">[<a class="reference internal" href="../bibliography.html#id27">HSF+23</a>]</span>.
+Nonetheless, there a number of recurring themes that appear in the literature as motivations for its use, as identified in our recent review paper <span id="id2">[<a class="reference internal" href="../bibliography.html#id18" title="Ben Hayes, Jordie Shier, György Fazekas, Andrew McPherson, and Charalampos Saitis. A Review of Differentiable Digital Signal Processing for Music &amp; Speech Synthesis. August 2023. arXiv:2308.15422, doi:10.48550/arXiv.2308.15422.">HSF+23</a>]</span>.
 DDSP appears to be most commonly applied when:</p>
 <ol class="arabic simple">
 <li><p><strong>We have prior knowledge about the class of signal we are interested in.</strong> If we can express this prior knowledge in the form of a differentiable signal model, DDSP allows us to incorporate this knowledge into our network.</p>
 <ul class="simple">
-<li><p>This can help in situations where neural networks struggle to reproduce a particular signal characteristic. For example, a differentiable harmonic oscillator bank allows phase alignment between successive windows <span id="id3">[<a class="reference internal" href="../synths/introduction.html#id10" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>, and a filtered white noise synthesiser enables a multi-band variational autoencoder to reconstruct aperiodic signal components <span id="id4">[<a class="reference internal" href="../bibliography.html#id39" title="Antoine Caillon and Philippe Esling. Rave: a variational autoencoder for fast and high-quality neural audio synthesis. arXiv preprint arXiv:2111.05011, 2021.">CE21</a>]</span></p></li>
-<li><p>This is also useful when we wish to perform self-supervised decomposition or analysis of an audio signal. This approach has been successfully used for source separation <span id="id5">[<a class="reference internal" href="../bibliography.html#id35" title="Kilian Schulze-Forster, Gaël Richard, Liam Kelley, Clement S. J. Doire, and Roland Badeau. Unsupervised music source separation using differentiable parametric source models. IEEE/ACM Transactions on Audio, Speech, and Language Processing, 31():1276–1289, 2023. doi:10.1109/TASLP.2023.3252272.">SFRK+23</a>]</span> and pitch estimation <span id="id6">[<a class="reference internal" href="../bibliography.html#id34" title="Jesse Engel, Rigel Swavely, Lamtharn Hanoi Hantrakul, Adam Roberts, and Curtis Hawthorne. Self-supervised pitch detection by inverse audio synthesis. In ICML 2020 Workshop on Self-supervision in Audio and Speech. 2020. URL: https://openreview.net/forum?id=RlVTYWhsky7.">ESH+20</a>]</span>.</p></li>
+<li><p>This can help in situations where neural networks struggle to reproduce a particular signal characteristic. For example, a differentiable harmonic oscillator bank allows phase alignment between successive windows <span id="id3">[<a class="reference internal" href="../synths/introduction.html#id14" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>, and a filtered white noise synthesiser enables a multi-band variational autoencoder to reconstruct aperiodic signal components <span id="id4">[<a class="reference internal" href="../bibliography.html#id4" title="Antoine Caillon and Philippe Esling. RAVE: A variational autoencoder for fast and high-quality neural audio synthesis. December 2021. arXiv [Preprint]. Available at https://doi.org/10.48550/arXiv.2111.05011 (Accessed 2022-03-08). URL: http://arxiv.org/abs/2111.05011 (visited on 2022-03-08), arXiv:2111.05011.">CE21</a>]</span></p></li>
+<li><p>This is also useful when we wish to perform self-supervised decomposition or analysis of an audio signal. This approach has been successfully used for source separation <span id="id5">[<a class="reference internal" href="../bibliography.html#id35" title="Kilian Schulze-Forster, Gaël Richard, Liam Kelley, Clement S. J. Doire, and Roland Badeau. Unsupervised music source separation using differentiable parametric source models. IEEE/ACM Transactions on Audio, Speech, and Language Processing, 31():1276–1289, 2023. doi:10.1109/TASLP.2023.3252272.">SFRK+23</a>]</span> and pitch estimation <span id="id6">[<a class="reference internal" href="../bibliography.html#id12" title="Jesse Engel, Rigel Swavely, Lamtharn Hanoi Hantrakul, Adam Roberts, and Curtis Hawthorne. Self-supervised pitch detection by inverse audio synthesis. In ICML 2020 Workshop on Self-supervision in Audio and Speech. 2020. URL: https://openreview.net/forum?id=RlVTYWhsky7.">ESH+20</a>]</span>.</p></li>
 </ul>
 </li>
-<li><p><strong>We wish to infer the parameters of a particular signal processor or signal model.</strong> This is analogous to solving an inverse problem. In this case, our differentiable implementation allows us to perform parameter inference by gradient descent. This has been successfully applied for vocal tract area estimation <span id="id7">[<a class="reference internal" href="../bibliography.html#id36" title="David Südholt, Mateo Cámara, Zhiyuan Xu, and Joshua D. Reiss. Vocal tract area estimation by gradient descent. In Proceedings of the 26th International Conference on Digital Audio Effects. Copenhagen, Denmark, 2023.">SudholtCXR23</a>]</span> and synthesiser sound matching <span id="id8">[<a class="reference internal" href="../synths/harmonic_results.html#id30" title="Naotake Masuda and Daisuke Saito. Improving Semi-Supervised Differentiable Synthesizer Sound Matching for Practical Applications. IEEE/ACM Transactions on Audio, Speech, and Language Processing, 31:863–875, 2023. doi:10.1109/TASLP.2023.3237161.">MS23</a>]</span>.</p></li>
+<li><p><strong>We wish to infer the parameters of a particular signal processor or signal model.</strong> This is analogous to solving an inverse problem. In this case, our differentiable implementation allows us to perform parameter inference by gradient descent. This has been successfully applied for vocal tract area estimation <span id="id7">[<a class="reference internal" href="../bibliography.html#id41" title="David Südholt, Mateo Cámara, Zhiyuan Xu, and Joshua D. Reiss. Vocal tract area estimation by gradient descent. In Proceedings of the 26th International Conference on Digital Audio Effects. Copenhagen, Denmark, 2023.">SudholtCXR23</a>]</span> and synthesiser sound matching <span id="id8">[<a class="reference internal" href="../synths/harmonic_results.html#id47" title="Naotake Masuda and Daisuke Saito. Improving Semi-Supervised Differentiable Synthesizer Sound Matching for Practical Applications. IEEE/ACM Transactions on Audio, Speech, and Language Processing, 31:863–875, 2023. doi:10.1109/TASLP.2023.3237161.">MS23</a>]</span>.</p></li>
 <li><p><strong>We are concerned about inference-time latency.</strong> Producing every individual audio sample with a neural network is computationally costly. Whilst WaveNet’s sample-by-sample autoregression has been largely superseded by parallel methods, these are typically still too large to run in real-time in low-resource environments. Allowing a network to run at a slower frame rate while sample-by-sample audio synthesis is taken care of by efficient signal processors is a promising alternative.</p></li>
-<li><p><strong>We wish to allow human control over model outputs.</strong> In some cases, we may wish to allow a user to modify or otherwise interact with the outputs of a model. DDSP allows controls to be exposed in the form of interpretable intermediate parameters, as in MIDI-DDSP <span id="id9">[<a class="reference internal" href="../bibliography.html#id38" title="Yusong Wu, Ethan Manilow, Yi Deng, Rigel Swavely, Kyle Kastner, Tim Cooijmans, Aaron Courville, Cheng-Zhi Anna Huang, and Jesse Engel. MIDI-DDSP: Detailed control of musical performance via hierarchical modeling. In International conference on learning representations. 2022. URL: https://openreview.net/forum?id=UseMOjWENv.">WMD+22</a>]</span></p></li>
+<li><p><strong>We wish to allow human control over model outputs.</strong> In some cases, we may wish to allow a user to modify or otherwise interact with the outputs of a model. DDSP allows controls to be exposed in the form of interpretable intermediate parameters, as in MIDI-DDSP <span id="id9">[]</span></p></li>
 </ol>
 </section>
 </section>
@@ -488,11 +489,11 @@ DDSP appears to be most commonly applied when:</p>
       </div>
     </a>
     <a class="right-next"
-       href="../first-steps/pytorch_tutorial.html"
+       href="tasks_applications.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">PyTorch Bootcamp</p>
+        <p class="prev-next-title">Tasks and Applications</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

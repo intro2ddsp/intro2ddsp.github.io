@@ -173,6 +173,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../background/neural-audio-synthesis.html">Neural Audio Synthesis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../background/what-is-ddsp.html">What is DDSP?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background/tasks_applications.html">Tasks and Applications</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">First Steps</span></p>
 <ul class="nav bd-sidenav">
@@ -465,7 +466,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;torch._C.Generator at 0x7f41b35d6590&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;torch._C.Generator at 0x7ff2601e6590&gt;
 </pre></div>
 </div>
 </div>
@@ -924,46 +925,46 @@ kernel shape: torch.Size([1, 1, 3])
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 4: FFT time 0.311, Conv1D time 0.029
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 4: FFT time 0.284, Conv1D time 0.032
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 8: FFT time 0.301, Conv1D time 0.030
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 8: FFT time 0.286, Conv1D time 0.030
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 16: FFT time 0.298, Conv1D time 0.031
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 16: FFT time 0.289, Conv1D time 0.035
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 32: FFT time 0.285, Conv1D time 0.034
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 32: FFT time 0.290, Conv1D time 0.036
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 64: FFT time 0.305, Conv1D time 0.040
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 64: FFT time 0.306, Conv1D time 0.041
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 128: FFT time 0.297, Conv1D time 0.053
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 128: FFT time 0.294, Conv1D time 0.066
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 256: FFT time 0.346, Conv1D time 0.075
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 256: FFT time 0.351, Conv1D time 0.075
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 512: FFT time 0.408, Conv1D time 0.110
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 512: FFT time 0.402, Conv1D time 0.115
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 1024: FFT time 0.519, Conv1D time 0.192
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 1024: FFT time 0.515, Conv1D time 0.203
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 2048: FFT time 0.800, Conv1D time 0.454
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 2048: FFT time 0.795, Conv1D time 0.321
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 4096: FFT time 1.596, Conv1D time 1.028
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 4096: FFT time 1.595, Conv1D time 0.782
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 8192: FFT time 2.978, Conv1D time 3.836
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IR length L = 8192: FFT time 2.914, Conv1D time 3.678
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f40f663d0c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff18259d930&gt;
 </pre></div>
 </div>
-<img alt="../_images/1b19d5e440e18ad75cbb6c3140e14238d88dfcb91c0647e9e802a8e8e2c01967.png" src="../_images/1b19d5e440e18ad75cbb6c3140e14238d88dfcb91c0647e9e802a8e8e2c01967.png" />
+<img alt="../_images/59b6d9f77d8faf0d6571f136266860e9cc240c53fb2bf4e3ee7c9138b834d95a.png" src="../_images/59b6d9f77d8faf0d6571f136266860e9cc240c53fb2bf4e3ee7c9138b834d95a.png" />
 </div>
 </div>
 <p>As expected, for larger impulse responses FFT convolution is clearly faster. But interestingly, for responses below roughly 1000 samples, the direct convolution approach wins out.</p>
@@ -973,12 +974,12 @@ kernel shape: torch.Size([1, 1, 3])
 <li><p>Convolutions are conditionally dispatched to different MKLDNN (CPU) and cuDNN (GPU) kernels depending on various factors including kernel size. These include other fast-convolution algorithms such as Winograd.</p></li>
 <li><p>We can expect a bigger relative speed up for FFT convolutions on a GPU thanks to hardware-level parallelisation of matrix multiplications. Chin-Yun Yu provides a <a class="reference external" href="https://github.com/yoyololicon/fft-conv-pytorch/blob/master/benchmark.ipynb">very illustrative notebook</a> performing these comparisons on a GPU, which suggests that the advantage of FFT convolution becomes apparent around 100 samples.</p></li>
 </ol>
-<p>For more background, and a performance comparison of cuDNN convolution algorithms, see the work of Jordà et al. <span id="id1">[<a class="reference internal" href="../bibliography.html#id25" title="Marc Jordà, Pedro Valero-Lara, and Antonio J. Peña. Performance evaluation of cudnn convolution algorithms on nvidia volta gpus. IEEE Access, 7():70461–70473, 2019. doi:10.1109/ACCESS.2019.2918851.">JVLP19</a>]</span>.</p>
+<p>For more background, and a performance comparison of cuDNN convolution algorithms, see the work of Jordà et al. <span id="id1">[<a class="reference internal" href="../bibliography.html#id21" title="Marc Jordà, Pedro Valero-Lara, and Antonio J. Peña. Performance evaluation of cudnn convolution algorithms on nvidia volta gpus. IEEE Access, 7():70461–70473, 2019. doi:10.1109/ACCESS.2019.2918851.">JVLP19</a>]</span>.</p>
 </section>
 <section id="linear-phase-filter-design-by-frequency-sampling">
 <h2>Linear Phase Filter Design by Frequency Sampling<a class="headerlink" href="#linear-phase-filter-design-by-frequency-sampling" title="Permalink to this heading">#</a></h2>
 <p>While we can directly optimise the impulse response, we may wish instead to provide a frequency response from which we derive a filter. For example, we may not be concerned with directly specifying the phase response, or we may wish to enforce linear phase. Further, we may simply wish to have a more interpetible intermediate filter representation, allowing for regularisation or weighting of specific frequency bands.</p>
-<p>To address these needs, we turn to the classical signal processing toolbox and adopt the <em>frequency sampling method</em> for linear phase FIR filter design. The first differentiable implementation of this method was provided by <span id="id2">Engel <em>et al.</em> [<a class="reference internal" href="../synths/introduction.html#id10" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>, who used it in combination with a harmonic sinusoidal model to create a differentiable harmonic-plus-noise synthesiser.</p>
+<p>To address these needs, we turn to the classical signal processing toolbox and adopt the <em>frequency sampling method</em> for linear phase FIR filter design. The first differentiable implementation of this method was provided by <span id="id2">Engel <em>et al.</em> [<a class="reference internal" href="../synths/introduction.html#id14" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>, who used it in combination with a harmonic sinusoidal model to create a differentiable harmonic-plus-noise synthesiser.</p>
 <p>The design process works as follows. The target magnitude response is given as a vector <span class="math notranslate nohighlight">\(\mathbf{H}^\ast\)</span> of <em>samples</em> from the desired frequency response, taken at the frequencies of a discrete Fourier transform.</p>
 <p>We take the inverse discrete Fourier transform of the impulse response (denoted below as the Hermitian transpose,  <span class="math notranslate nohighlight">\(\cdot^H\)</span>, of the period <span class="math notranslate nohighlight">\(N\)</span> discrete Fourier matrix, <span class="math notranslate nohighlight">\(W_N\)</span>). The resulting signal is a zero phase FIR filter, and is hence non-causal.</p>
 <p>Due to the periodicity of the DFT, we can shift it to causal form with a circular shift, which we denote below by the matrix <span class="math notranslate nohighlight">\(C\)</span>. This shift changes the zero phase response to a linear phase response.</p>
@@ -1202,7 +1203,7 @@ h^\ast[n] = \int_{-\pi}^\pi H^\ast(\omega) e^{j\omega n} d\omega = \int_{-\omega
 </section>
 <section id="time-varying-fir-filters">
 <h2>Time-Varying FIR Filters<a class="headerlink" href="#time-varying-fir-filters" title="Permalink to this heading">#</a></h2>
-<p>In the context of synthesis we often wish to produce sounds that change over time, and so we would ideally like to be able to vary the filter response. For example, in Engel et al.’s differentiable harmonic-plus-noise synthesiser <span id="id3">[<a class="reference internal" href="../synths/introduction.html#id10" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>, the frequency sampling technique we implemented in the previous section is applied to a time series of frequency responses, which are applied to overlapping segments of incoming white noise signal. These filtered segments are windowed and recombined using overlap-add (OLA) to produce the final signal.</p>
+<p>In the context of synthesis we often wish to produce sounds that change over time, and so we would ideally like to be able to vary the filter response. For example, in Engel et al.’s differentiable harmonic-plus-noise synthesiser <span id="id3">[<a class="reference internal" href="../synths/introduction.html#id14" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>, the frequency sampling technique we implemented in the previous section is applied to a time series of frequency responses, which are applied to overlapping segments of incoming white noise signal. These filtered segments are windowed and recombined using overlap-add (OLA) to produce the final signal.</p>
 <p>We will re-implement this time-varying filtered noise synthesiser here. We first produce the local filter impulse responses using the function we defined above. We then apply these to the input signal using circular convolution in the frequency domain multiplication.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1425,7 +1426,7 @@ h^\ast[n] = \int_{-\pi}^\pi H^\ast(\omega) e^{j\omega n} d\omega = \int_{-\omega
 </section>
 <section id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
-<p>This was a whirlwind tour of differentiable implementations of finite impulse response filters. Differentiable FIR filters have been used for applications from monophonic instrument modelling <span id="id4">[<a class="reference internal" href="../synths/introduction.html#id10" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>, through maximum voice frequency estimation <span id="id5">[<a class="reference internal" href="../bibliography.html#id24" title="Xin Wang and Junichi Yamagishi. Neural Harmonic-plus-Noise Waveform Model with Trainable Maximum Voice Frequency for Text-to-Speech Synthesis. In 10th ISCA Workshop on Speech Synthesis (SSW 10), 1–6. ISCA, September 2019. doi:10.21437/SSW.2019-1.">WY19</a>]</span>. For further information and a more thorough review, we refer readers to a recent review article on differentiable digital signal processing <span id="id6">[<a class="reference internal" href="../bibliography.html#id27">HSF+23</a>]</span>.</p>
+<p>This was a whirlwind tour of differentiable implementations of finite impulse response filters. Differentiable FIR filters have been used for applications from monophonic instrument modelling <span id="id4">[<a class="reference internal" href="../synths/introduction.html#id14" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>, through maximum voice frequency estimation <span id="id5">[<a class="reference internal" href="../bibliography.html#id43" title="Xin Wang and Junichi Yamagishi. Neural Harmonic-plus-Noise Waveform Model with Trainable Maximum Voice Frequency for Text-to-Speech Synthesis. In 10th ISCA Workshop on Speech Synthesis (SSW 10), 1–6. ISCA, September 2019. doi:10.21437/SSW.2019-1.">WY19</a>]</span>. For further information and a more thorough review, we refer readers to a recent review article on differentiable digital signal processing <span id="id6">[<a class="reference internal" href="../bibliography.html#id18" title="Ben Hayes, Jordie Shier, György Fazekas, Andrew McPherson, and Charalampos Saitis. A Review of Differentiable Digital Signal Processing for Music &amp; Speech Synthesis. August 2023. arXiv:2308.15422, doi:10.48550/arXiv.2308.15422.">HSF+23</a>]</span>.</p>
 </section>
 </section>
 

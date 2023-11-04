@@ -173,6 +173,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../background/neural-audio-synthesis.html">Neural Audio Synthesis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../background/what-is-ddsp.html">What is DDSP?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background/tasks_applications.html">Tasks and Applications</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">First Steps</span></p>
 <ul class="nav bd-sidenav">
@@ -604,7 +605,7 @@ our problem more efficiently, with smaller models and less data.</p>
 <p>For instance, many musical instruments are harmonic, meaning
 that the sinusoidal components are at frequencies that are integer multiples of the fundamental
 frequency. We can embed this knowledege into our synthesizer.</p>
-<p>Harmonically constrained synthesis was used in <span id="id1">Engel <em>et al.</em> [<a class="reference internal" href="introduction.html#id10" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>’s DDSP work and has been the
+<p>Harmonically constrained synthesis was used in <span id="id1">Engel <em>et al.</em> [<a class="reference internal" href="introduction.html#id14" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>’s DDSP work and has been the
 focus of many subsequent DDSP synthesis works.</p>
 </section>
 <section id="harmonic-synthesizer">
@@ -853,10 +854,10 @@ more oscillators with a number of preset waveforms. <strong>Sawtooth</strong> an
 examples because they are harmonically rich and provide a good starting point for sound
 shaping using filters. This type of synthesis is referred to as <strong>subtractive synthesis</strong> and
 was the method used by popular Moog synthesizers. Learning parameters for these types of
-musical synthesizers has been explored in a differentiable context by <span id="id2">Masuda and Saito [<a class="reference internal" href="harmonic_results.html#id30" title="Naotake Masuda and Daisuke Saito. Improving Semi-Supervised Differentiable Synthesizer Sound Matching for Practical Applications. IEEE/ACM Transactions on Audio, Speech, and Language Processing, 31:863–875, 2023. doi:10.1109/TASLP.2023.3237161.">MS23</a>]</span>.</p>
+musical synthesizers has been explored in a differentiable context by <span id="id2">Masuda and Saito [<a class="reference internal" href="harmonic_results.html#id47" title="Naotake Masuda and Daisuke Saito. Improving Semi-Supervised Differentiable Synthesizer Sound Matching for Practical Applications. IEEE/ACM Transactions on Audio, Speech, and Language Processing, 31:863–875, 2023. doi:10.1109/TASLP.2023.3237161.">MS23</a>]</span>.</p>
 <p>Sawtooth waveforms are also useful in speech and singing voice synthesis as an excitation
 signal in a <strong>source-filter</strong> synthesis approach. For instance, Wu et al. used a differentiable sawtooth synthesizer
-in SawSing <span id="id3">[<a class="reference internal" href="#id20" title="Da-Yi Wu, Wen-Yi Hsiao, Fu-Rong Yang, Oscar Friedman, Warren Jackson, Scott Bruzenak, Yi-Wen Liu, and Yi-Hsuan Yang. DDSP-based Singing Vocoders: A New Subtractive-based Synthesizer and A Comprehensive Evaluation. In Proceedings of the 23rd International Society for Music Information Retrieval Conference, 76–83. 2022.">WHY+22</a>]</span>.</p>
+in SawSing <span id="id3">[<a class="reference internal" href="#id48" title="Da-Yi Wu, Wen-Yi Hsiao, Fu-Rong Yang, Oscar Friedman, Warren Jackson, Scott Bruzenak, Yi-Wen Liu, and Yi-Hsuan Yang. DDSP-based Singing Vocoders: A New Subtractive-based Synthesizer and A Comprehensive Evaluation. In Proceedings of the 23rd International Society for Music Information Retrieval Conference, 76–83. 2022.">WHY+22</a>]</span>.</p>
 <p>Here we show how our harmonic synthesizer can be extended to approximate these two popular
 waveforms. The animations show how adding more harmonics results in a closer approximation
 to the true waveform shape.</p>
@@ -3852,13 +3853,13 @@ generate popular <strong>sawtooth</strong> and <strong>square</strong> waveforms
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <div class="docutils container" id="id4">
 <dl class="citation">
-<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id1">EHGR20</a></span></dt>
+<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id1">EHGR20</a></span></dt>
 <dd><p>Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In <em>8th International Conference on Learning Representations</em>. April 2020.</p>
 </dd>
-<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id2">MS23</a></span></dt>
+<dt class="label" id="id31"><span class="brackets"><a class="fn-backref" href="#id2">MS23</a></span></dt>
 <dd><p>Naotake Masuda and Daisuke Saito. Improving Semi-Supervised Differentiable Synthesizer Sound Matching for Practical Applications. <em>IEEE/ACM Transactions on Audio, Speech, and Language Processing</em>, 31:863–875, 2023. <a class="reference external" href="https://doi.org/10.1109/TASLP.2023.3237161">doi:10.1109/TASLP.2023.3237161</a>.</p>
 </dd>
-<dt class="label" id="id20"><span class="brackets"><a class="fn-backref" href="#id3">WHY+22</a></span></dt>
+<dt class="label" id="id48"><span class="brackets"><a class="fn-backref" href="#id3">WHY+22</a></span></dt>
 <dd><p>Da-Yi Wu, Wen-Yi Hsiao, Fu-Rong Yang, Oscar Friedman, Warren Jackson, Scott Bruzenak, Yi-Wen Liu, and Yi-Hsuan Yang. DDSP-based Singing Vocoders: A New Subtractive-based Synthesizer and A Comprehensive Evaluation. In <em>Proceedings of the 23rd International Society for Music Information Retrieval Conference</em>, 76–83. 2022.</p>
 </dd>
 </dl>

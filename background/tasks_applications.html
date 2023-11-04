@@ -1,0 +1,760 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Tasks and Applications &#8212; Introduction to Audio Synthesizer Programming</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'background/tasks_applications';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="PyTorch Bootcamp" href="../first-steps/pytorch_tutorial.html" />
+    <link rel="prev" title="What is DDSP?" href="what-is-ddsp.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/intro2ddsp_logo_horiz.png" class="logo__image only-light" alt="Introduction to Audio Synthesizer Programming - Home"/>
+    <script>document.write(`<img src="../_static/intro2ddsp_logo_horiz.png" class="logo__image only-dark" alt="Introduction to Audio Synthesizer Programming - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="neural-audio-synthesis.html">Neural Audio Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="what-is-ddsp.html">What is DDSP?</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tasks and Applications</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">First Steps</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../first-steps/pytorch_tutorial.html">PyTorch Bootcamp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../first-steps/diff_gain.html">A Differentiable Gain Control</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Synthesisers</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../synths/introduction.html">Digital Synthesizer Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../synths/oscillator.html">Writing an Oscillator in PyTorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../synths/additive.html">Additive Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../synths/harmonic_optimize.html">Optimizing a Harmonic Synthesizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../synths/harmonic_results.html">Harmonic Synthesis Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../synths/libraries.html">Differentiable Synthesis Libraries</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Filters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../filters/index.html">Digital Filter Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../filters/fir-intro.html">Finite Impulse Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../filters/fir-optim.html">Differentiable FIR Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../filters/iir_intro.html">Infinite Impulse Response (IIR) Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../filters/iir_impl.html">Differentiable Implementation of IIR Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../filters/iir_torch.html">Implementing Differentiable IIR in PyTorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../filters/sf.html">Speech Decomposition with Source Filter Model</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Physical Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/index.html">Physical Modeling and DDSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/sho.html">The Simple Harmonic Oscillator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/many_oscillators.html">Rigid objects and modal analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physical-modeling/wave_equation.html">The Wave Equation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Wrapping Up</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/benhayes/intro2ddsp" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/benhayes/intro2ddsp/issues/new?title=Issue%20on%20page%20%2Fbackground/tasks_applications.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/background/tasks_applications.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tasks and Applications</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tasks-overview">Tasks Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#musical-instrument-synthesis">Musical Instrument Synthesis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timbre-transfer">Timbre Transfer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-rendering">Performance Rendering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sound-matching">Sound Matching</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#singing-voice-synthesis">Singing Voice Synthesis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#singing-voice-conversion">Singing Voice Conversion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tasks-and-applications">
+<h1>Tasks and Applications<a class="headerlink" href="#tasks-and-applications" title="Permalink to this heading">#</a></h1>
+<p>DDSP audio synthesis has found application in a diversity of domains and downstream
+tasks. Most of the literature falls under the domain music, speech, or singing voice synthesis.
+However, recent work has also explored sound effect synthesis <span id="id1">[]</span>.
+We note that while singing voice could be considered a subtask of music, there are significant
+enough differences in implementation and connection to speech synthesis such that
+we decided to include it as a separate domain.</p>
+<p>In this section we’ll go over the more common synthesis tasks related to DDSP audio synthesis, focusing
+on providing an introduction to music and singing voice synthesis. For a more comprehensive account of tasks and applications, see
+our recent review on the topic <span id="id2">[<a class="reference internal" href="../bibliography.html#id18" title="Ben Hayes, Jordie Shier, György Fazekas, Andrew McPherson, and Charalampos Saitis. A Review of Differentiable Digital Signal Processing for Music &amp; Speech Synthesis. August 2023. arXiv:2308.15422, doi:10.48550/arXiv.2308.15422.">HSF+23</a>]</span>.</p>
+<section id="tasks-overview">
+<h2>Tasks Overview<a class="headerlink" href="#tasks-overview" title="Permalink to this heading">#</a></h2>
+<p>Here is an overview of the most common synthesis tasks that DDSP has been used for. Related
+tasks across domains are listed along the horizontal with a brief decsription of the task.</p>
+<figure class="align-default" id="id3">
+<img alt="../_images/tasks_applications.png" src="../_images/tasks_applications.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Overview of tasks that DDSP audio synthesis has found application. Boxes with a dashed outline indicate that this tasks have yet to be explored within the DDSP literature, as far as we are aware.</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In this tutorial we’ll focus on music and singing domains, although we encourage interested
+readers to explore the related speech synthesis literature. Many of the techniques used
+in speech synthesis are applicable to musical audio (and certainly singing voice) synthesis,
+and vice-versa.</p>
+</section>
+<section id="musical-instrument-synthesis">
+<h2>Musical Instrument Synthesis<a class="headerlink" href="#musical-instrument-synthesis" title="Permalink to this heading">#</a></h2>
+<p>The primary task in DDSP audio synthesis for musical audio synthesis has revolved around
+the modeling of instruments. The goal is to use a differentiable digital synthesizer to
+accurately model the tones of a target instrument using a data-driven approach. For example,
+the original DDSP work by <span id="id4">Engel <em>et al.</em> [<a class="reference internal" href="../synths/introduction.html#id14" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span> implemented a sinusoidal modelling
+synthesizer <span id="id5">[<a class="reference internal" href="../synths/introduction.html#id40" title="Xavier Serra and Julius Smith. Spectral Modeling Synthesis: A Sound Analysis/Synthesis System Based on a Deterministic Plus Stochastic Decomposition. Computer Music Journal, 14(4):12–24, 1990. URL: www.jstor.org/stable/3680788 (visited on 2019-12-21), doi:10.2307/3680788.">SS90</a>]</span> differentiably and trained a neural network
+to predict synthesizer parameters from audio features The input audio features included fundamental frequency,
+loudness, and mel-frequency cepstral coefficents (MFCCs).
+They trained this neural network using recordings of instrumental performances, including violin performances.</p>
+<p>Subsequent to the differentiable sinusoidal modelling synthesizer by Engel et al., a number
+of other digital synthesis methods have been explored within a differentiable paradigm including
+waveshaping synthesis <span id="id6">[<a class="reference internal" href="../bibliography.html#id17" title="Ben Hayes, Charalampos Saitis, and György Fazekas. Neural Waveshaping Synthesis. In Proceedings of the 22nd International Society for Music Information Retrieval Conference. Online, November 2021.">HSF21</a>]</span>,
+frequency modulation synthesis <span id="id7">[<a class="reference internal" href="../bibliography.html#id6" title="Franco Caspe, Andrew McPherson, and Mark Sandler. DDX7: Differentiable FM Synthesis of Musical Instrument Sounds. In Proceedings of the 23rd International Society for Music Information Retrieval Conference. 2022.">CMS22</a>, <a class="reference internal" href="../bibliography.html#id47" title="Zhen Ye, Wei Xue, Xu Tan, Qifeng Liu, and Yike Guo. NAS-FM: Neural Architecture Search for Tunable and Interpretable Sound Synthesis based on Frequency Modulation. In Proceedings of the Thirty-Second International Joint Conference on Artificial Intelligence, 5869–5877. 2023. doi:10.24963/ijcai.2023/651.">YXT+23</a>]</span>, and wavetable
+synthesis <span id="id8">[<a class="reference internal" href="../bibliography.html#id37" title="Siyuan Shan, Lamtharn Hantrakul, Jitong Chen, Matt Avent, and David Trevelyan. Differentiable Wavetable Synthesis. In ICASSP 2022 - 2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 4598–4602. May 2022. ISSN: 2379-190X. URL: http://arxiv.org/abs/2111.10003 (visited on 2022-03-12), doi:10.1109/ICASSP43922.2022.9746940.">SHC+22</a>]</span>.
+The design of the synthesizers mentioned thus far are particularly well-suited for modelling
+of monophonic and harmonic instruments. This is in part due to the use of explicit
+pitch detection and harmonically constrained differentiable synthesizers, which adds a
+useful inductive bias towards the generation of these sounds.</p>
+<p><strong>How about polyphonic or non-harmonic sounds?</strong></p>
+<p>While these sounds are more challenging to model
+for a number of reasons (which we’ll start to investigate further in this tutorial), some
+research has been conducted in this direction. <span id="id9">Renault <em>et al.</em> [<a class="reference internal" href="../synths/harmonic_results.html#id53" title="Lenny Renault, Rémi Mignot, and Axel Roebel. Differentiable Piano Model for Midi-to-Audio Performance Synthesis. In Proceedings of the 25th International Conference on Digital Audio Effects, 8. Vienna, Austria, 2022.">RMR22</a>]</span> explored polyphonic generation
+for piano synthesis and <span id="id10">Caillon and Esling [<a class="reference internal" href="../bibliography.html#id4" title="Antoine Caillon and Philippe Esling. RAVE: A variational autoencoder for fast and high-quality neural audio synthesis. December 2021. arXiv [Preprint]. Available at https://doi.org/10.48550/arXiv.2111.05011 (Accessed 2022-03-08). URL: http://arxiv.org/abs/2111.05011 (visited on 2022-03-08), arXiv:2111.05011.">CE21</a>]</span> used a hybrid approach combining
+neural audio synthesis with DDSP for polyphonic generation. Synthesis of non-harmonic
+rigid-body percussion sounds was explored by <span id="id11">Diaz <em>et al.</em> [<a class="reference internal" href="../synths/harmonic_results.html#id28" title="Rodrigo Diaz, Ben Hayes, Charalampos Saitis, György Fazekas, and Mark Sandler. Rigid-body sound synthesis with differentiable modal resonators. In IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP). IEEE, 2023.">DHS+23</a>]</span>.</p>
+<p>Let’s look at how differentiable musical instrument synthesizers have been applied to
+other creative tasks.</p>
+<section id="timbre-transfer">
+<h3>Timbre Transfer<a class="headerlink" href="#timbre-transfer" title="Permalink to this heading">#</a></h3>
+<p>Timbre transfer is related to the style transfer task in the image domain, which aims to
+apply the style of one image or artist to a target image <span id="id12">[<a class="reference internal" href="../bibliography.html#id15" title="Leon A. Gatys, Alexander S. Ecker, and Matthias Bethge. A Neural Algorithm of Artistic Style. Journal of Vision, 16(12):326, 2015. doi:10.1167/16.12.326.">GEB15</a>]</span>. In
+musical timbre transfer the goal is to apply the timbre from one instrument to the performance
+of another. For example, we might try to replicate a trumpet performance but have it sound
+like it was played on a violin. This task is related to singing voice conversion, discussed
+below.</p>
+<p>The synthesis approach proposed by <span id="id13">[<a class="reference internal" href="../synths/introduction.html#id14" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span> naturally lends itself to this
+task. Fundamental frequency <span class="math notranslate nohighlight">\(f_0\)</span> and loudness envelopes are explicitly presented to the model which
+then predicts the timbre via time-varying harmonic amplitudes. Timbre is essentially
+encoded in the weights of the neural network during training. A model trained on violin
+performances can then be used for many-to-one timbre transfer by providing <span class="math notranslate nohighlight">\(f_0\)</span> and loudness
+envelopes from a new source instrument.</p>
+<figure class="align-default" id="tone-transfer">
+<a class="reference internal image-reference" href="../_images/tone_transfer.png"><img alt="../_images/tone_transfer.png" src="../_images/tone_transfer.png" style="height: 250px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Screen shot of the <a class="reference external" href="https://sites.research.google/tonetransfer">tone transfer website</a>. Accessed
+November 1, 2023.</span><a class="headerlink" href="#tone-transfer" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>You can try this out for yourself online using <a class="reference external" href="https://sites.research.google/tonetransfer">Google’s ToneTransfer</a>. Details on the development of this web app can be read in the paper by <span id="id14">Carney <em>et al.</em> [<a class="reference internal" href="../bibliography.html#id5" title="Michelle Carney, Chong Li, Edwin Toh, Ping Yu, and Jesse Engel. Tone Transfer: In-Browser Interactive Neural Audio Synthesis. In Joint Proceedings of the ACM IUI 2021 Workshops. 2021.">CLT+21</a>]</span>.</p>
+</section>
+<section id="performance-rendering">
+<h3>Performance Rendering<a class="headerlink" href="#performance-rendering" title="Permalink to this heading">#</a></h3>
+<p>The task of performance rendering extends a musical instrument synthesis through the
+prediction of synthesis parameters from symbolic notation (e.g., MIDI). This involves
+not only correctly representing musical attributes such as pitch, dynamics, and rhythm,
+but also capturing the expressive performance elements.
+An example of a recent performance rendering system by <span id="id15">Wu <em>et al.</em> [<a class="reference internal" href="../bibliography.html#id46" title="Yusong Wu, Ethan Manilow, Yi Deng, Rigel Swavely, Kyle Kastner, Tim Cooijmans, Aaron Courville, Cheng-Zhi Anna Huang, and Jesse Engel. MIDI-DDSP: Detailed control of musical performance via hierarchical modeling. In International Conference on Learning Representations. 2022. URL: https://openreview.net/forum?id=UseMOjWENv.">WMD+22</a>]</span> augmented Engel et al.’s differentiable sinusoidal modelling synthesizer with a neural
+network front-end to predict synthesis parameters from MIDI.</p>
+</section>
+<section id="sound-matching">
+<h3>Sound Matching<a class="headerlink" href="#sound-matching" title="Permalink to this heading">#</a></h3>
+<p>Sound matching is the inverse problem of determining optimal
+parameters for a synthesizer to match a target audio sample.
+Prior to DDSP, solutions using neural networks were limited to
+supervised training on a parameter loss (i.e., using a synthetic dataset where correct
+synthesizer parameters are known). <span id="id16">Masuda and Saito [<a class="reference internal" href="../synths/harmonic_results.html#id47" title="Naotake Masuda and Daisuke Saito. Improving Semi-Supervised Differentiable Synthesizer Sound Matching for Practical Applications. IEEE/ACM Transactions on Audio, Speech, and Language Processing, 31:863–875, 2023. doi:10.1109/TASLP.2023.3237161.">MS23</a>]</span> proposed a differentiable
+subtractive synthesizer for sound matching, allowing for an audio loss function to be
+used and enabling training on <strong>out-of-domain</strong> sounds.</p>
+</section>
+</section>
+<section id="singing-voice-synthesis">
+<h2>Singing Voice Synthesis<a class="headerlink" href="#singing-voice-synthesis" title="Permalink to this heading">#</a></h2>
+<p>Singing voice synthesis (SVS) in the context of DDSP is the task of generating realistic singing
+audio from input audio features. It draws from both speech synthesis and musical instrument synthesis.
+The synthesizer in SVS is often referred to as a vocoder, which is the term used within
+the speech literatue for a synthesizer. The musical context of SVS imposes
+further challenges including emphasis on pitch and rhythmic accuracy, more expressive
+pitch and loudness contours, and a demand for higher resolution results (i.e., higher sampling rate).</p>
+<p>One of the first DDSP vocoders designed for SVS was SawSing by <span id="id17">Wu <em>et al.</em> [<a class="reference internal" href="../synths/additive.html#id48" title="Da-Yi Wu, Wen-Yi Hsiao, Fu-Rong Yang, Oscar Friedman, Warren Jackson, Scott Bruzenak, Yi-Wen Liu, and Yi-Hsuan Yang. DDSP-based Singing Vocoders: A New Subtractive-based Synthesizer and A Comprehensive Evaluation. In Proceedings of the 23rd International Society for Music Information Retrieval Conference, 76–83. 2022.">WHY+22</a>]</span>,
+who proposed a differentiable source-filter approach using a sawtooth waveform for the
+excitation signal. Subsequent work on SVS has also explored a differentiable source-filter
+method and include <span id="id18">Yu and Fazekas [<a class="reference internal" href="../bibliography.html#id48" title="Chin-Yun Yu and György Fazekas. Singing Voice Synthesis Using Differentiable LPC and Glottal-Flow-Inspired Wavetables. June 2023. arXiv [Preprint]. Available at https://doi.org/10.48550/arXiv.2306.17252 (Accessed 2023-07-05). URL: http://arxiv.org/abs/2306.17252 (visited on 2023-07-05), arXiv:2306.17252.">YF23b</a>]</span>, who used differentiable linear predictive coding (LPC)
+and wavetables, and <span id="id19">Nercessian [<a class="reference internal" href="../bibliography.html#id29" title="Shahan Nercessian. Differentiable WORLD Synthesizer-Based Neural Vocoder With Application To End-To-End Audio Style Transfer. In Audio Engineering Society Convention 154. May 2023. URL: https://www.aes.org/e-lib/browse.cfm?elib=22073 (visited on 2023-06-21).">Ner23</a>]</span>, who proposed a differentiable
+WORLD vocoder.</p>
+<section id="singing-voice-conversion">
+<h3>Singing Voice Conversion<a class="headerlink" href="#singing-voice-conversion" title="Permalink to this heading">#</a></h3>
+<p>Singing voice conversion (SVC) is the task of transorming a recording of one singer such that it
+sounds like it was sung by a different target sing. It is related to both timbre transfer
+of musical instruments and voice conversion in speech synthesis. In addition to maintaining
+the intelligibility of the sung lyrics, SVC systems must contend with the dynamic pitch
+contours and expressivity present in singing voices. In the DDSP literature this task was
+explored by <span id="id20">Nercessian [<a class="reference internal" href="../bibliography.html#id29" title="Shahan Nercessian. Differentiable WORLD Synthesizer-Based Neural Vocoder With Application To End-To-End Audio Style Transfer. In Audio Engineering Society Convention 154. May 2023. URL: https://www.aes.org/e-lib/browse.cfm?elib=22073 (visited on 2023-06-21).">Ner23</a>]</span>, who applied their differentiable
+WORLD vocoder to the task of SVC using a decoder conditioned on a speaker-independent embedding.
+Another notable example of DDSP-based SVC is in the results of the 2023 SVC Challenge <span id="id21">Huang <em>et al.</em> [<a class="reference internal" href="../bibliography.html#id20" title="Wen-Chin Huang, Lester Phillip Violeta, Songxiang Liu, Jiatong Shi, and Tomoki Toda. The Singing Voice Conversion Challenge 2023. July 2023. arXiv [Prerint]. Available at https://doi.org/10.48550/arXiv.2306.14422 (Accessed 2023-07-25). arXiv:2306.14422.">HVL+23</a>]</span>,
+which reported strong performance from DSPGan <span id="id22">[<a class="reference internal" href="../bibliography.html#id40" title="Kun Song, Yongmao Zhang, Yi Lei, Jian Cong, Hanzhao Li, Lei Xie, Gang He, and Jinfeng Bai. DSPGAN: A Gan-Based Universal Vocoder for High-Fidelity TTS by Time-Frequency Domain Supervision from DSP. In ICASSP 2023 - 2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 1–5. June 2023. doi:10.1109/ICASSP49357.2023.10095105.">SZL+23</a>]</span>,
+a hyrbid model that uses a DDSP vocoder
+to generate input features for a generative adversarial vocoder.</p>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<p>In this section we presented a brief overview of some of the main applications and
+tasks that DDSP audio synthesis has been applied to, focusing on the domains of music
+and singing. Each domain includes a main synthesis task which involves generating audio
+from input acoustic features. Timbre transfer in music and singing voice conversion in
+singing voice synthesis is the task of transforming a performance such that it sounds like
+it was performed on another instrument or sung by another singer, respectively. In the music
+domain we also introduced performance rendering and synthesizer sound matching.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<div class="docutils container" id="id23">
+<dl class="citation">
+<dt class="label" id="id26"><span class="brackets"><a class="fn-backref" href="#id10">CE21</a></span></dt>
+<dd><p>Antoine Caillon and Philippe Esling. RAVE: A variational autoencoder for fast and high-quality neural audio synthesis. December 2021. arXiv [Preprint]. Available at <a class="reference external" href="https://doi.org/10.48550/arXiv.2111.05011">https://doi.org/10.48550/arXiv.2111.05011</a> (Accessed 2022-03-08). URL: <a class="reference external" href="http://arxiv.org/abs/2111.05011">http://arxiv.org/abs/2111.05011</a> (visited on 2022-03-08), <a class="reference external" href="https://arxiv.org/abs/2111.05011">arXiv:2111.05011</a>.</p>
+</dd>
+<dt class="label" id="id27"><span class="brackets"><a class="fn-backref" href="#id14">CLT+21</a></span></dt>
+<dd><p>Michelle Carney, Chong Li, Edwin Toh, Ping Yu, and Jesse Engel. Tone Transfer: In-Browser Interactive Neural Audio Synthesis. In <em>Joint Proceedings of the ACM IUI 2021 Workshops</em>. 2021.</p>
+</dd>
+<dt class="label" id="id28"><span class="brackets"><a class="fn-backref" href="#id7">CMS22</a></span></dt>
+<dd><p>Franco Caspe, Andrew McPherson, and Mark Sandler. DDX7: Differentiable FM Synthesis of Musical Instrument Sounds. In <em>Proceedings of the 23rd International Society for Music Information Retrieval Conference</em>. 2022.</p>
+</dd>
+<dt class="label" id="id31"><span class="brackets"><a class="fn-backref" href="#id11">DHS+23</a></span></dt>
+<dd><p>Rodrigo Diaz, Ben Hayes, Charalampos Saitis, György Fazekas, and Mark Sandler. Rigid-body sound synthesis with differentiable modal resonators. In <em>IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>. IEEE, 2023.</p>
+</dd>
+<dt class="label" id="id32"><span class="brackets">EHGR20</span><span class="fn-backref">(<a href="#id4">1</a>,<a href="#id13">2</a>)</span></dt>
+<dd><p>Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In <em>8th International Conference on Learning Representations</em>. April 2020.</p>
+</dd>
+<dt class="label" id="id37"><span class="brackets"><a class="fn-backref" href="#id12">GEB15</a></span></dt>
+<dd><p>Leon A. Gatys, Alexander S. Ecker, and Matthias Bethge. A Neural Algorithm of Artistic Style. <em>Journal of Vision</em>, 16(12):326, 2015. <a class="reference external" href="https://doi.org/10.1167/16.12.326">doi:10.1167/16.12.326</a>.</p>
+</dd>
+<dt class="label" id="id39"><span class="brackets"><a class="fn-backref" href="#id6">HSF21</a></span></dt>
+<dd><p>Ben Hayes, Charalampos Saitis, and György Fazekas. Neural Waveshaping Synthesis. In <em>Proceedings of the 22nd International Society for Music Information Retrieval Conference</em>. Online, November 2021.</p>
+</dd>
+<dt class="label" id="id40"><span class="brackets"><a class="fn-backref" href="#id2">HSF+23</a></span></dt>
+<dd><p>Ben Hayes, Jordie Shier, György Fazekas, Andrew McPherson, and Charalampos Saitis. A Review of Differentiable Digital Signal Processing for Music &amp; Speech Synthesis. August 2023. <a class="reference external" href="https://arxiv.org/abs/2308.15422">arXiv:2308.15422</a>, <a class="reference external" href="https://doi.org/10.48550/arXiv.2308.15422">doi:10.48550/arXiv.2308.15422</a>.</p>
+</dd>
+<dt class="label" id="id42"><span class="brackets"><a class="fn-backref" href="#id21">HVL+23</a></span></dt>
+<dd><p>Wen-Chin Huang, Lester Phillip Violeta, Songxiang Liu, Jiatong Shi, and Tomoki Toda. The Singing Voice Conversion Challenge 2023. July 2023. arXiv [Prerint]. Available at <a class="reference external" href="https://doi.org/10.48550/arXiv.2306.14422">https://doi.org/10.48550/arXiv.2306.14422</a> (Accessed 2023-07-25). <a class="reference external" href="https://arxiv.org/abs/2306.14422">arXiv:2306.14422</a>.</p>
+</dd>
+<dt class="label" id="id50"><span class="brackets"><a class="fn-backref" href="#id16">MS23</a></span></dt>
+<dd><p>Naotake Masuda and Daisuke Saito. Improving Semi-Supervised Differentiable Synthesizer Sound Matching for Practical Applications. <em>IEEE/ACM Transactions on Audio, Speech, and Language Processing</em>, 31:863–875, 2023. <a class="reference external" href="https://doi.org/10.1109/TASLP.2023.3237161">doi:10.1109/TASLP.2023.3237161</a>.</p>
+</dd>
+<dt class="label" id="id51"><span class="brackets">Ner23</span><span class="fn-backref">(<a href="#id19">1</a>,<a href="#id20">2</a>)</span></dt>
+<dd><p>Shahan Nercessian. Differentiable WORLD Synthesizer-Based Neural Vocoder With Application To End-To-End Audio Style Transfer. In <em>Audio Engineering Society Convention 154</em>. May 2023. URL: <a class="reference external" href="https://www.aes.org/e-lib/browse.cfm?elib=22073">https://www.aes.org/e-lib/browse.cfm?elib=22073</a> (visited on 2023-06-21).</p>
+</dd>
+<dt class="label" id="id56"><span class="brackets"><a class="fn-backref" href="#id9">RMR22</a></span></dt>
+<dd><p>Lenny Renault, Rémi Mignot, and Axel Roebel. Differentiable Piano Model for Midi-to-Audio Performance Synthesis. In <em>Proceedings of the 25th International Conference on Digital Audio Effects</em>, 8. Vienna, Austria, 2022.</p>
+</dd>
+<dt class="label" id="id58"><span class="brackets"><a class="fn-backref" href="#id5">SS90</a></span></dt>
+<dd><p>Xavier Serra and Julius Smith. Spectral Modeling Synthesis: A Sound Analysis/Synthesis System Based on a Deterministic Plus Stochastic Decomposition. <em>Computer Music Journal</em>, 14(4):12–24, 1990. URL: <a class="reference external" href="www.jstor.org/stable/3680788">www.jstor.org/stable/3680788</a> (visited on 2019-12-21), <a class="reference external" href="https://doi.org/10.2307/3680788">doi:10.2307/3680788</a>.</p>
+</dd>
+<dt class="label" id="id59"><span class="brackets"><a class="fn-backref" href="#id8">SHC+22</a></span></dt>
+<dd><p>Siyuan Shan, Lamtharn Hantrakul, Jitong Chen, Matt Avent, and David Trevelyan. Differentiable Wavetable Synthesis. In <em>ICASSP 2022 - 2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, 4598–4602. May 2022. ISSN: 2379-190X. URL: <a class="reference external" href="http://arxiv.org/abs/2111.10003">http://arxiv.org/abs/2111.10003</a> (visited on 2022-03-12), <a class="reference external" href="https://doi.org/10.1109/ICASSP43922.2022.9746940">doi:10.1109/ICASSP43922.2022.9746940</a>.</p>
+</dd>
+<dt class="label" id="id62"><span class="brackets"><a class="fn-backref" href="#id22">SZL+23</a></span></dt>
+<dd><p>Kun Song, Yongmao Zhang, Yi Lei, Jian Cong, Hanzhao Li, Lei Xie, Gang He, and Jinfeng Bai. DSPGAN: A Gan-Based Universal Vocoder for High-Fidelity TTS by Time-Frequency Domain Supervision from DSP. In <em>ICASSP 2023 - 2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, 1–5. June 2023. <a class="reference external" href="https://doi.org/10.1109/ICASSP49357.2023.10095105">doi:10.1109/ICASSP49357.2023.10095105</a>.</p>
+</dd>
+<dt class="label" id="id67"><span class="brackets"><a class="fn-backref" href="#id17">WHY+22</a></span></dt>
+<dd><p>Da-Yi Wu, Wen-Yi Hsiao, Fu-Rong Yang, Oscar Friedman, Warren Jackson, Scott Bruzenak, Yi-Wen Liu, and Yi-Hsuan Yang. DDSP-based Singing Vocoders: A New Subtractive-based Synthesizer and A Comprehensive Evaluation. In <em>Proceedings of the 23rd International Society for Music Information Retrieval Conference</em>, 76–83. 2022.</p>
+</dd>
+<dt class="label" id="id68"><span class="brackets"><a class="fn-backref" href="#id15">WMD+22</a></span></dt>
+<dd><p>Yusong Wu, Ethan Manilow, Yi Deng, Rigel Swavely, Kyle Kastner, Tim Cooijmans, Aaron Courville, Cheng-Zhi Anna Huang, and Jesse Engel. MIDI-DDSP: Detailed control of musical performance via hierarchical modeling. In <em>International Conference on Learning Representations</em>. 2022. URL: <a class="reference external" href="https://openreview.net/forum?id=UseMOjWENv">https://openreview.net/forum?id=UseMOjWENv</a>.</p>
+</dd>
+<dt class="label" id="id69"><span class="brackets"><a class="fn-backref" href="#id7">YXT+23</a></span></dt>
+<dd><p>Zhen Ye, Wei Xue, Xu Tan, Qifeng Liu, and Yike Guo. NAS-FM: Neural Architecture Search for Tunable and Interpretable Sound Synthesis based on Frequency Modulation. In <em>Proceedings of the Thirty-Second International Joint Conference on Artificial Intelligence</em>, 5869–5877. 2023. <a class="reference external" href="https://doi.org/10.24963/ijcai.2023/651">doi:10.24963/ijcai.2023/651</a>.</p>
+</dd>
+<dt class="label" id="id70"><span class="brackets"><a class="fn-backref" href="#id18">YF23</a></span></dt>
+<dd><p>Chin-Yun Yu and György Fazekas. Singing Voice Synthesis Using Differentiable LPC and Glottal-Flow-Inspired Wavetables. June 2023. arXiv [Preprint]. Available at <a class="reference external" href="https://doi.org/10.48550/arXiv.2306.17252">https://doi.org/10.48550/arXiv.2306.17252</a> (Accessed 2023-07-05). URL: <a class="reference external" href="http://arxiv.org/abs/2306.17252">http://arxiv.org/abs/2306.17252</a> (visited on 2023-07-05), <a class="reference external" href="https://arxiv.org/abs/2306.17252">arXiv:2306.17252</a>.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./background"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="what-is-ddsp.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">What is DDSP?</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../first-steps/pytorch_tutorial.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">PyTorch Bootcamp</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tasks-overview">Tasks Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#musical-instrument-synthesis">Musical Instrument Synthesis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timbre-transfer">Timbre Transfer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-rendering">Performance Rendering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sound-matching">Sound Matching</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#singing-voice-synthesis">Singing Voice Synthesis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#singing-voice-conversion">Singing Voice Conversion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ben Hayes, Jordie Shier, Chin-Yun Yu, David Südholt, Rodrigo Diaz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

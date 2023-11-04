@@ -173,6 +173,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../background/neural-audio-synthesis.html">Neural Audio Synthesis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../background/what-is-ddsp.html">What is DDSP?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background/tasks_applications.html">Tasks and Applications</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">First Steps</span></p>
 <ul class="nav bd-sidenav">
@@ -433,7 +434,7 @@ document.write(`
 <p>In this section we look at using gradient descent to learn parameters for a harmonic
 synthesizer to match an instrumental sound.</p>
 <p>We’ll define a harmonic synthesizer which has the following additions, which are taken
-directly from <span id="id1">Engel <em>et al.</em> [<a class="reference internal" href="introduction.html#id10" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>:</p>
+directly from <span id="id1">Engel <em>et al.</em> [<a class="reference internal" href="introduction.html#id14" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>:</p>
 <ol class="arabic simple">
 <li><p>constraining harmonic amplitudes to
 sum to one;</p></li>
@@ -451,7 +452,7 @@ amplitude for the <span class="math notranslate nohighlight">\(k^{\text{th}}\)</
 such that <span class="math notranslate nohighlight">\(\sum_{k}\hat{\alpha}_k[n] = 1\)</span> and <span class="math notranslate nohighlight">\(\hat{\alpha}_k[n] &gt; 0\)</span>. Fundamental frequency <span class="math notranslate nohighlight">\(\omega_{0}[n]\)</span> is pre-computed using a pitch extraction algorithm.</p>
 <p>Methods for parameter scaling and removing frequencies above the Nyquist frequency will be introduced inline below.</p>
 <p>Finally, we’ll use gradient descent with a multiresolution spectral loss function to match sounds from
-the <a class="reference external" href="https://magenta.tensorflow.org/datasets/nsynth#files">NSynth test dataset</a> <span id="id2">[<a class="reference internal" href="#id13" title="Jesse Engel, Cinjon Resnick, Adam Roberts, Sander Dieleman, Mohammad Norouzi, Douglas Eck, and Karen Simonyan. Neural audio synthesis of musical notes with wavenet autoencoders. In International Conference on Machine Learning, 1068–1077. PMLR, 2017.">ERR+17</a>]</span>.</p>
+the <a class="reference external" href="https://magenta.tensorflow.org/datasets/nsynth#files">NSynth test dataset</a> <span id="id2">[<a class="reference internal" href="#id19" title="Jesse Engel, Cinjon Resnick, Adam Roberts, Sander Dieleman, Mohammad Norouzi, Douglas Eck, and Karen Simonyan. Neural audio synthesis of musical notes with wavenet autoencoders. In International Conference on Machine Learning, 1068–1077. PMLR, 2017.">ERR+17</a>]</span>.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -751,7 +752,7 @@ the Nyquist frequency, and normalize harmonic amplitudes to a distribution.</p>
 <section id="sound-matching-with-gradient-descent">
 <h2>Sound Matching with Gradient Descent<a class="headerlink" href="#sound-matching-with-gradient-descent" title="Permalink to this heading">#</a></h2>
 <p>Now we’ve defined our harmonic synthesizer with the added functionality to more closely
-mimic the one specified by <span id="id3">Engel <em>et al.</em> [<a class="reference internal" href="introduction.html#id10" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>.</p>
+mimic the one specified by <span id="id3">Engel <em>et al.</em> [<a class="reference internal" href="introduction.html#id14" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>.</p>
 <p>Let’s try to replicate this saxophone sound!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -773,7 +774,7 @@ mimic the one specified by <span id="id3">Engel <em>et al.</em> [<a class="refer
               </div></div>
 </div>
 <p>We first need to determine the fundamental frequency envelope. Engel et al. used
-crepe <span id="id4">[<a class="reference internal" href="harmonic_results.html#id28" title="Jong Wook Kim, Justin Salamon, Peter Li, and Juan Pablo Bello. Crepe: a convolutional representation for pitch estimation. In 2018 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 161–165. IEEE, 2018.">KSLB18</a>]</span>, which is a deep learning model trained for pitch extraction.</p>
+crepe <span id="id4">[<a class="reference internal" href="harmonic_results.html#id43" title="Jong Wook Kim, Justin Salamon, Peter Li, and Juan Pablo Bello. Crepe: a convolutional representation for pitch estimation. In 2018 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 161–165. IEEE, 2018.">KSLB18</a>]</span>, which is a deep learning model trained for pitch extraction.</p>
 <p>For this example, we’ll just use torchaudio’s built-in pitch detection to keep things simple.
 In the next section we’ll share some results using crepe.</p>
 <div class="cell docutils container">
@@ -896,7 +897,7 @@ are defined as follows:</p>
 </section>
 <section id="multiresolution-spectral-loss">
 <h2>Multiresolution Spectral Loss<a class="headerlink" href="#multiresolution-spectral-loss" title="Permalink to this heading">#</a></h2>
-<p><span id="id6">Wang <em>et al.</em> [<a class="reference internal" href="#id22" title="Xin Wang, Shinji Takaki, and Junichi Yamagishi. Neural source-filter waveform models for statistical parametric speech synthesis. IEEE/ACM Transactions on Audio, Speech, and Language Processing, 28:402–415, 2019.">WTY19</a>]</span> proposed computing a spectral loss using multiple STFT window sizes and hop lengths, aggregating the outputs into a single loss value. This technique has since come to be known as the <em>multi-resolution STFT</em> (MRSTFT) or <em>multi-scale spectral loss</em> (MSS) loss.
+<p><span id="id6">Wang <em>et al.</em> [<a class="reference internal" href="#id50" title="Xin Wang, Shinji Takaki, and Junichi Yamagishi. Neural source-filter waveform models for statistical parametric speech synthesis. IEEE/ACM Transactions on Audio, Speech, and Language Processing, 28:402–415, 2019.">WTY19</a>]</span> proposed computing a spectral loss using multiple STFT window sizes and hop lengths, aggregating the outputs into a single loss value. This technique has since come to be known as the <em>multi-resolution STFT</em> (MRSTFT) or <em>multi-scale spectral loss</em> (MSS) loss.
 The motivation behind this formulation is to compensate for the time-frequency resolution tradeoff inherent to the STFT.</p>
 <p>A general form for MRSTFT losses is a weighted sum of the different spectral loss formulations at different resolutions:</p>
 <div class="math notranslate nohighlight">
@@ -4575,16 +4576,16 @@ see some more results.</p>
 <dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id5">ArikJD18</a></span></dt>
 <dd><p>Sercan Ö Arık, Heewoo Jun, and Gregory Diamos. Fast spectrogram inversion using multi-head convolutional neural networks. <em>IEEE Signal Processing Letters</em>, 26(1):94–98, 2018.</p>
 </dd>
-<dt class="label" id="id12"><span class="brackets">EHGR20</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id3">2</a>)</span></dt>
+<dt class="label" id="id16"><span class="brackets">EHGR20</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id3">2</a>)</span></dt>
 <dd><p>Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In <em>8th International Conference on Learning Representations</em>. April 2020.</p>
 </dd>
-<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id2">ERR+17</a></span></dt>
+<dt class="label" id="id19"><span class="brackets"><a class="fn-backref" href="#id2">ERR+17</a></span></dt>
 <dd><p>Jesse Engel, Cinjon Resnick, Adam Roberts, Sander Dieleman, Mohammad Norouzi, Douglas Eck, and Karen Simonyan. Neural audio synthesis of musical notes with wavenet autoencoders. In <em>International Conference on Machine Learning</em>, 1068–1077. PMLR, 2017.</p>
 </dd>
-<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="#id4">KSLB18</a></span></dt>
+<dt class="label" id="id30"><span class="brackets"><a class="fn-backref" href="#id4">KSLB18</a></span></dt>
 <dd><p>Jong Wook Kim, Justin Salamon, Peter Li, and Juan Pablo Bello. Crepe: a convolutional representation for pitch estimation. In <em>2018 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, 161–165. IEEE, 2018.</p>
 </dd>
-<dt class="label" id="id22"><span class="brackets"><a class="fn-backref" href="#id6">WTY19</a></span></dt>
+<dt class="label" id="id50"><span class="brackets"><a class="fn-backref" href="#id6">WTY19</a></span></dt>
 <dd><p>Xin Wang, Shinji Takaki, and Junichi Yamagishi. Neural source-filter waveform models for statistical parametric speech synthesis. <em>IEEE/ACM Transactions on Audio, Speech, and Language Processing</em>, 28:402–415, 2019.</p>
 </dd>
 </dl>

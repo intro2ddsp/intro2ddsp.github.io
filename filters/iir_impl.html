@@ -175,6 +175,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../background/neural-audio-synthesis.html">Neural Audio Synthesis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../background/what-is-ddsp.html">What is DDSP?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background/tasks_applications.html">Tasks and Applications</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">First Steps</span></p>
 <ul class="nav bd-sidenav">
@@ -550,7 +551,7 @@ The filtering becomes a circular convolution of the truncated impulse response. 
 </section>
 <section id="the-full-backward-function">
 <h3>The full backward function<a class="headerlink" href="#the-full-backward-function" title="Permalink to this heading">#</a></h3>
-<p>Combining <a class="reference internal" href="#equation-iir-dyda">(9)</a>, <a class="reference internal" href="#equation-iir-dlda">(10)</a> and <a class="reference internal" href="#equation-iir-dldxn">(13)</a>, we get the full backward function for IIR, which consists of two IIR filtering and one matrix multiplication. Now, you can use any IIR filter implementation that is fast enough to fill you needs, as long as you register the backward functions, which also consists of IIR filters! This is the approach that is implemented in <a class="reference external" href="https://pytorch.org/audio/stable/generated/torchaudio.functional.lfilter.html#torchaudio.functional.lfilter">TorchAudio’s lfilter</a> and is documented in the GOLF paper <span id="id1">[<a class="reference internal" href="sf.html#id22" title="Chin-Yun Yu and György Fazekas. Singing voice synthesis using differentiable lpc and glottal-flow-inspired wavetables. arXiv preprint arXiv:2306.17252, 2023.">YF23</a>]</span>.</p>
+<p>Combining <a class="reference internal" href="#equation-iir-dyda">(9)</a>, <a class="reference internal" href="#equation-iir-dlda">(10)</a> and <a class="reference internal" href="#equation-iir-dldxn">(13)</a>, we get the full backward function for IIR, which consists of two IIR filtering and one matrix multiplication. Now, you can use any IIR filter implementation that is fast enough to fill you needs, as long as you register the backward functions, which also consists of IIR filters! This is the approach that is implemented in <a class="reference external" href="https://pytorch.org/audio/stable/generated/torchaudio.functional.lfilter.html#torchaudio.functional.lfilter">TorchAudio’s lfilter</a> and is documented in the GOLF paper <span id="id1">[<a class="reference internal" href="sf.html#id19" title="Chin-Yun Yu and György Fazekas. Singing voice synthesis using differentiable lpc and glottal-flow-inspired wavetables. arXiv preprint arXiv:2306.17252, 2023.">YF23</a>]</span>.</p>
 <div class="mermaid">
             graph LR
 	da(dL/da)
@@ -594,7 +595,7 @@ H(z) &amp;= \frac{1}{(1 - re^{-j\theta} z^{-1})(1 - re^{j\theta} z^{-1})} \\
 <span class="eqno">(15)<a class="headerlink" href="#equation-iir-stable" title="Permalink to this equation">#</a></span>\[
 |a_1| &lt; 1 + a_2, \quad |a_2| &lt; 1.
 \]</div>
-<p>These constraints can be added easily with the tanh function on the neural network output <span id="id2">[<a class="reference internal" href="#id22" title="Shahan Nercessian, Andy Sarroff, and Kurt James Werner. Lightweight and interpretable neural modeling of an audio distortion effect using hyperconditioned differentiable biquads. In ICASSP 2021-2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 890–894. IEEE, 2021.">NSW21</a>]</span>. This parameterisation covers a wider range of coefficients  because the roots are not restricted to be conjugate pairs.</p>
+<p>These constraints can be added easily with the tanh function on the neural network output <span id="id2">[<a class="reference internal" href="#id32" title="Shahan Nercessian, Andy Sarroff, and Kurt James Werner. Lightweight and interpretable neural modeling of an audio distortion effect using hyperconditioned differentiable biquads. In ICASSP 2021-2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 890–894. IEEE, 2021.">NSW21</a>]</span>. This parameterisation covers a wider range of coefficients  because the roots are not restricted to be conjugate pairs.</p>
 </section>
 <section id="reflection-coefficients">
 <h3>Reflection coefficients<a class="headerlink" href="#reflection-coefficients" title="Permalink to this heading">#</a></h3>
@@ -619,10 +620,10 @@ a_{k}^{i-1} - p_k a_{i-k}^{i-1}, &amp; k &lt; i \\
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <div class="docutils container" id="id3">
 <dl class="citation">
-<dt class="label" id="id22"><span class="brackets"><a class="fn-backref" href="#id2">NSW21</a></span></dt>
+<dt class="label" id="id32"><span class="brackets"><a class="fn-backref" href="#id2">NSW21</a></span></dt>
 <dd><p>Shahan Nercessian, Andy Sarroff, and Kurt James Werner. Lightweight and interpretable neural modeling of an audio distortion effect using hyperconditioned differentiable biquads. In <em>ICASSP 2021-2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, 890–894. IEEE, 2021.</p>
 </dd>
-<dt class="label" id="id21"><span class="brackets"><a class="fn-backref" href="#id1">YF23</a></span></dt>
+<dt class="label" id="id18"><span class="brackets"><a class="fn-backref" href="#id1">YF23</a></span></dt>
 <dd><p>Chin-Yun Yu and György Fazekas. Singing voice synthesis using differentiable lpc and glottal-flow-inspired wavetables. <em>arXiv preprint arXiv:2306.17252</em>, 2023.</p>
 </dd>
 </dl>

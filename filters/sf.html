@@ -173,6 +173,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../background/neural-audio-synthesis.html">Neural Audio Synthesis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../background/what-is-ddsp.html">What is DDSP?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background/tasks_applications.html">Tasks and Applications</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">First Steps</span></p>
 <ul class="nav bd-sidenav">
@@ -580,7 +581,7 @@ This results in minimising the prediction error <span class="math notranslate no
 \[
 \min_{a_k} \left( s[n] - \sum_{k=1}^M a_k s[n-k] \right)^2 = \min_{a_k} e[n]^2
 \]</div>
-<p>Its least squares solution can be computed from the autocorrelation of the signal <span id="id1">[<a class="reference internal" href="#id24" title="John Makhoul. Linear prediction: a tutorial review. Proceedings of the IEEE, 63(4):561–580, 1975.">Mak75</a>]</span>. We’ll use the <code class="docutils literal notranslate"><span class="pre">diffsptk</span></code> package to compute this.</p>
+<p>Its least squares solution can be computed from the autocorrelation of the signal <span id="id1">[<a class="reference internal" href="#id30" title="John Makhoul. Linear prediction: a tutorial review. Proceedings of the IEEE, 63(4):561–580, 1975.">Mak75</a>]</span>. We’ll use the <code class="docutils literal notranslate"><span class="pre">diffsptk</span></code> package to compute this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lpc_order</span> <span class="o">=</span> <span class="mi">18</span>
@@ -671,7 +672,7 @@ e[n] = s[n] - \sum_{k=1}^M a_k s[n-k]
 <h2>Decomposing Speech with Differentiable LPC and a Glottal Flow Model<a class="headerlink" href="#decomposing-speech-with-differentiable-lpc-and-a-glottal-flow-model" title="Permalink to this heading">#</a></h2>
 <p>In the above example, we have very little assumptions about the source <span class="math notranslate nohighlight">\(e[n]\)</span>. We only assume that it is whilte-noise like.
 In the next example, we’re going to incorporate a glottal flow model to give more constraints to the source.</p>
-<p>The model we’re going to use is the transformed-LF <span id="id2">[<a class="reference internal" href="#id25" title="Gunnar Fant. The lf-model revisited. transformations and frequency domain analysis. Speech Trans. Lab. Q. Rep., Royal Inst. of Tech. Stockholm, 2(3):40, 1995.">Fan95</a>]</span> model, which models the periodic vibration of the vocal folds.
+<p>The model we’re going to use is the transformed-LF <span id="id2">[<a class="reference internal" href="#id17" title="Gunnar Fant. The lf-model revisited. transformations and frequency domain analysis. Speech Trans. Lab. Q. Rep., Royal Inst. of Tech. Stockholm, 2(3):40, 1995.">Fan95</a>]</span> model, which models the periodic vibration of the vocal folds.
 Specifically, we’re using the derivative of the glottal flow model, which combines the glottal flow with lips radiation by assuming lips radiation is a first-order differentiator. This model has only one parameter <span class="math notranslate nohighlight">\(R_d\)</span>, which is strongly correlated with the perceived vocal effort.
 Although the model is differentiable, for computational efficiency, we’re going to use a pre-computed lookup table to approximate the model.</p>
 <div class="cell docutils container">
@@ -1085,19 +1086,19 @@ Let’s see what is the source signal looks like.</p>
 The biggest reason is because we restricted the source signal to have specific shapes.
 The gradient method also can not achieve a lossless decomposition, while the classic LPC method can.
 However, the source signal we get from the gradient method is much more interpretable.
-In fact, the latter method is a simplified version of the synthesiser used in GOLF vocoder proposed by Yu et al. <span id="id3">[<a class="reference internal" href="#id22" title="Chin-Yun Yu and György Fazekas. Singing voice synthesis using differentiable lpc and glottal-flow-inspired wavetables. arXiv preprint arXiv:2306.17252, 2023.">YF23</a>]</span>.</p>
+In fact, the latter method is a simplified version of the synthesiser used in GOLF vocoder proposed by Yu et al. <span id="id3">[<a class="reference internal" href="#id19" title="Chin-Yun Yu and György Fazekas. Singing voice synthesis using differentiable lpc and glottal-flow-inspired wavetables. arXiv preprint arXiv:2306.17252, 2023.">YF23</a>]</span>.</p>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <div class="docutils container" id="id4">
 <dl class="citation">
-<dt class="label" id="id25"><span class="brackets"><a class="fn-backref" href="#id2">Fan95</a></span></dt>
+<dt class="label" id="id17"><span class="brackets"><a class="fn-backref" href="#id2">Fan95</a></span></dt>
 <dd><p>Gunnar Fant. The lf-model revisited. transformations and frequency domain analysis. <em>Speech Trans. Lab. Q. Rep., Royal Inst. of Tech. Stockholm</em>, 2(3):40, 1995.</p>
 </dd>
-<dt class="label" id="id24"><span class="brackets"><a class="fn-backref" href="#id1">Mak75</a></span></dt>
+<dt class="label" id="id30"><span class="brackets"><a class="fn-backref" href="#id1">Mak75</a></span></dt>
 <dd><p>John Makhoul. Linear prediction: a tutorial review. <em>Proceedings of the IEEE</em>, 63(4):561–580, 1975.</p>
 </dd>
-<dt class="label" id="id22"><span class="brackets"><a class="fn-backref" href="#id3">YF23</a></span></dt>
+<dt class="label" id="id19"><span class="brackets"><a class="fn-backref" href="#id3">YF23</a></span></dt>
 <dd><p>Chin-Yun Yu and György Fazekas. Singing voice synthesis using differentiable lpc and glottal-flow-inspired wavetables. <em>arXiv preprint arXiv:2306.17252</em>, 2023.</p>
 </dd>
 </dl>

@@ -171,6 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../background/neural-audio-synthesis.html">Neural Audio Synthesis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../background/what-is-ddsp.html">What is DDSP?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background/tasks_applications.html">Tasks and Applications</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">First Steps</span></p>
 <ul class="nav bd-sidenav">
@@ -446,7 +447,7 @@ document.write(`
 <p>Let’s see some more sound match examples with our differentiable harmonic synthesizer.</p>
 <section id="crepe-pitch-extraction">
 <h2>Crepe Pitch Extraction<a class="headerlink" href="#crepe-pitch-extraction" title="Permalink to this heading">#</a></h2>
-<p>The Crepe pitch extraction algorithm <span id="id1">[<a class="reference internal" href="#id28" title="Jong Wook Kim, Justin Salamon, Peter Li, and Juan Pablo Bello. Crepe: a convolutional representation for pitch estimation. In 2018 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 161–165. IEEE, 2018.">KSLB18</a>]</span> was used in the original work by <span id="id2">[<a class="reference internal" href="introduction.html#id10" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span> and provides a more accurate and richer fundamental frequency envelope. This can help improve the final results of synthesis.</p>
+<p>The Crepe pitch extraction algorithm <span id="id1">[<a class="reference internal" href="#id43" title="Jong Wook Kim, Justin Salamon, Peter Li, and Juan Pablo Bello. Crepe: a convolutional representation for pitch estimation. In 2018 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 161–165. IEEE, 2018.">KSLB18</a>]</span> was used in the original work by <span id="id2">[<a class="reference internal" href="introduction.html#id14" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span> and provides a more accurate and richer fundamental frequency envelope. This can help improve the final results of synthesis.</p>
 <p>Crepe can be installed from <a class="reference external" href="https://pypi.org/project/crepe/">PyPi</a>. We replaced <code class="docutils literal notranslate"><span class="pre">functional.detect_pitch_frequency</span></code> with <code class="docutils literal notranslate"><span class="pre">crepe.predict</span></code> to produce the examples in these book.</p>
 <p>The code for that is:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">frame_ms</span> <span class="o">=</span> <span class="mf">10.0</span>
@@ -500,7 +501,7 @@ missing the sharp pluck. The onset has been smoothed out by our harmonic synthes
 The onset, or <strong>transient</strong>, portion of a signal is defined by abrupt changes in amplitude, phase, or frequency information.
 Sinusoidal/harmonic synthesis does not work well for these signal
 components. Transient modelling has been a topic of recent research in DDSP synthesis
-focused on sound effect modelling <span id="id5">[<a class="reference internal" href="#id22" title="Adrián Barahona-Ríos and Tom Collins. Noisebandnet: controllable time-varying neural synthesis of sound effects using filterbanks. arXiv preprint arXiv:2307.08007, 2023.">BRiosC23</a>]</span><span id="id6">[<a class="reference internal" href="#id29" title="Yunyi Liu, Craig Jin, and David Gunawan. Ddsp-sfx: acoustically-guided sound effects generation with differentiable digital signal processing. arXiv preprint arXiv:2309.08060, 2023.">LJG23</a>]</span> and drum synthesis <span id="id7">[<a class="reference internal" href="#id33" title="Jordie Shier, Franco Caspe, Andrew Robertson, Mark Sandler, Charalampos Saitis, and Andrew McPherson. Differentiable modelling of percussive audio with transient and spectral synthesis. In Proceedings of the 10th Convention of the European Acoustics Association Forum Acusticum 2023. 2023.">SCR+23</a>]</span>.</p>
+focused on sound effect modelling <span id="id5">[]</span><span id="id6">[<a class="reference internal" href="#id45" title="Yunyi Liu, Craig Jin, and David Gunawan. Ddsp-sfx: acoustically-guided sound effects generation with differentiable digital signal processing. arXiv preprint arXiv:2309.08060, 2023.">LJG23</a>]</span> and drum synthesis <span id="id7">[<a class="reference internal" href="#id57" title="Jordie Shier, Franco Caspe, Andrew Robertson, Mark Sandler, Charalampos Saitis, and Andrew McPherson. Differentiable modelling of percussive audio with transient and spectral synthesis. In Proceedings of the 10th Convention of the European Acoustics Association Forum Acusticum 2023. 2023.">SCR+23</a>]</span>.</p>
 </section>
 <section id="violin">
 <h2>Violin<a class="headerlink" href="#violin" title="Permalink to this heading">#</a></h2>
@@ -545,16 +546,16 @@ number of factors. In the violin there is extra noise produced from the bow stri
 is also room reverbation present in both these signals that cause a spectral smearing effect.</p>
 <p>We can hear distortion in the synthesized signal, which may be created by the optimizer in an
 attempt to minimize the error from these noisy/reverberant signal components with respect to the multi-resolution
-spectral loss. Both noise and room reverberation were addressed by <span id="id12">Engel <em>et al.</em> [<a class="reference internal" href="introduction.html#id10" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>
+spectral loss. Both noise and room reverberation were addressed by <span id="id12">Engel <em>et al.</em> [<a class="reference internal" href="introduction.html#id14" title="Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In 8th International Conference on Learning Representations. April 2020.">EHGR20</a>]</span>
 through the introduction of specialized DDSP modules.</p>
 <p>We can also hear in the voice sample that there may be more than one voice present, creating
 a chorus-effect, which are slight pitch deviations between the different voices. This is
 more challenging phenomenon to reproduce. We could try to add more instances of our
 harmonic synthesizer with slight pitch deviations between the instances. This approach could
 be thought of as polyphonic rendering, a topic that was explored in the context of piano
-synthesis by <span id="id13">Renault <em>et al.</em> [<a class="reference internal" href="#id31" title="Lenny Renault, Rémi Mignot, and Axel Roebel. Differentiable Piano Model for Midi-to-Audio Performance Synthesis. In Proceedings of the 25th International Conference on Digital Audio Effects, 8. Vienna, Austria, 2022.">RMR22</a>]</span>. Another approach could be to add a <strong>chorus</strong> audio effect
+synthesis by <span id="id13">Renault <em>et al.</em> [<a class="reference internal" href="#id53" title="Lenny Renault, Rémi Mignot, and Axel Roebel. Differentiable Piano Model for Midi-to-Audio Performance Synthesis. In Proceedings of the 25th International Conference on Digital Audio Effects, 8. Vienna, Austria, 2022.">RMR22</a>]</span>. Another approach could be to add a <strong>chorus</strong> audio effect
 to the output of our synthesizer which attempts to mimic the perceptual effect of multiple
-monophonic sources. Differentiable chorus effects were explored by <span id="id14">Masuda and Saito [<a class="reference internal" href="#id30" title="Naotake Masuda and Daisuke Saito. Improving Semi-Supervised Differentiable Synthesizer Sound Matching for Practical Applications. IEEE/ACM Transactions on Audio, Speech, and Language Processing, 31:863–875, 2023. doi:10.1109/TASLP.2023.3237161.">MS23</a>]</span>.</p>
+monophonic sources. Differentiable chorus effects were explored by <span id="id14">Masuda and Saito [<a class="reference internal" href="#id47" title="Naotake Masuda and Daisuke Saito. Improving Semi-Supervised Differentiable Synthesizer Sound Matching for Practical Applications. IEEE/ACM Transactions on Audio, Speech, and Language Processing, 31:863–875, 2023. doi:10.1109/TASLP.2023.3237161.">MS23</a>]</span>.</p>
 </section>
 <section id="drum">
 <h2>Drum<a class="headerlink" href="#drum" title="Permalink to this heading">#</a></h2>
@@ -598,12 +599,12 @@ potentially in attempt to contend with this.</p>
 for our partials. But, if you recall from <a class="reference internal" href="oscillator.html#sinusoidal-optimizing-challenge"><span class="std std-ref">earlier</span></a>, this
 is a challenging, non-convex problem.</p>
 <p>Recent work has begun to tackle this problem.
-<span id="id17">Hayes <em>et al.</em> [<a class="reference internal" href="#id27" title="Ben Hayes, Charalampos Saitis, and György Fazekas. Sinusoidal frequency estimation by gradient descent. In ICASSP 2023-2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 1–5. IEEE, 2023.">HSF23</a>]</span> proposed a surrogate approach for frequency estimation using
+<span id="id17">Hayes <em>et al.</em> [<a class="reference internal" href="#id38" title="Ben Hayes, Charalampos Saitis, and György Fazekas. Sinusoidal frequency estimation by gradient descent. In ICASSP 2023-2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 1–5. IEEE, 2023.">HSF23</a>]</span> proposed a surrogate approach for frequency estimation using
 gradient descent, which may enable direct optimization of non-harmonic sinusoidal frequencies.
-<span id="id18">Diaz <em>et al.</em> [<a class="reference internal" href="#id24" title="Rodrigo Diaz, Ben Hayes, Charalampos Saitis, György Fazekas, and Mark Sandler. Rigid-body sound synthesis with differentiable modal resonators. In IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP). IEEE, 2023.">DHS+23</a>]</span> learned to model non-harmonic partials of rigid-body
+<span id="id18">Diaz <em>et al.</em> [<a class="reference internal" href="#id28" title="Rodrigo Diaz, Ben Hayes, Charalampos Saitis, György Fazekas, and Mark Sandler. Rigid-body sound synthesis with differentiable modal resonators. In IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP). IEEE, 2023.">DHS+23</a>]</span> learned to model non-harmonic partials of rigid-body
 percussion sounds differentiably using banks of IIR resonators.
 Alternatively, estimation of non-harmonic partials can be offloaded to a pre-processing step,
-as was the case in the hybrid drum synthesis method proposed by <span id="id19">Shier <em>et al.</em> [<a class="reference internal" href="#id33" title="Jordie Shier, Franco Caspe, Andrew Robertson, Mark Sandler, Charalampos Saitis, and Andrew McPherson. Differentiable modelling of percussive audio with transient and spectral synthesis. In Proceedings of the 10th Convention of the European Acoustics Association Forum Acusticum 2023. 2023.">SCR+23</a>]</span>.</p>
+as was the case in the hybrid drum synthesis method proposed by <span id="id19">Shier <em>et al.</em> [<a class="reference internal" href="#id57" title="Jordie Shier, Franco Caspe, Andrew Robertson, Mark Sandler, Charalampos Saitis, and Andrew McPherson. Differentiable modelling of percussive audio with transient and spectral synthesis. In Proceedings of the 10th Convention of the European Acoustics Association Forum Acusticum 2023. 2023.">SCR+23</a>]</span>.</p>
 </section>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
@@ -620,31 +621,28 @@ harmonic synthesizer will enable us to model different acoustical atteributes.</
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <div class="docutils container" id="id20">
 <dl class="citation">
-<dt class="label" id="id22"><span class="brackets"><a class="fn-backref" href="#id5">BRiosC23</a></span></dt>
-<dd><p>Adrián Barahona-Ríos and Tom Collins. Noisebandnet: controllable time-varying neural synthesis of sound effects using filterbanks. <em>arXiv preprint arXiv:2307.08007</em>, 2023.</p>
-</dd>
-<dt class="label" id="id24"><span class="brackets"><a class="fn-backref" href="#id18">DHS+23</a></span></dt>
+<dt class="label" id="id28"><span class="brackets"><a class="fn-backref" href="#id18">DHS+23</a></span></dt>
 <dd><p>Rodrigo Diaz, Ben Hayes, Charalampos Saitis, György Fazekas, and Mark Sandler. Rigid-body sound synthesis with differentiable modal resonators. In <em>IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>. IEEE, 2023.</p>
 </dd>
-<dt class="label" id="id25"><span class="brackets">EHGR20</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id12">2</a>)</span></dt>
+<dt class="label" id="id29"><span class="brackets">EHGR20</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id12">2</a>)</span></dt>
 <dd><p>Jesse Engel, Lamtharn (Hanoi) Hantrakul, Chenjie Gu, and Adam Roberts. DDSP: Differentiable Digital Signal Processing. In <em>8th International Conference on Learning Representations</em>. April 2020.</p>
 </dd>
-<dt class="label" id="id27"><span class="brackets"><a class="fn-backref" href="#id17">HSF23</a></span></dt>
+<dt class="label" id="id38"><span class="brackets"><a class="fn-backref" href="#id17">HSF23</a></span></dt>
 <dd><p>Ben Hayes, Charalampos Saitis, and György Fazekas. Sinusoidal frequency estimation by gradient descent. In <em>ICASSP 2023-2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, 1–5. IEEE, 2023.</p>
 </dd>
-<dt class="label" id="id28"><span class="brackets"><a class="fn-backref" href="#id1">KSLB18</a></span></dt>
+<dt class="label" id="id43"><span class="brackets"><a class="fn-backref" href="#id1">KSLB18</a></span></dt>
 <dd><p>Jong Wook Kim, Justin Salamon, Peter Li, and Juan Pablo Bello. Crepe: a convolutional representation for pitch estimation. In <em>2018 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, 161–165. IEEE, 2018.</p>
 </dd>
-<dt class="label" id="id29"><span class="brackets"><a class="fn-backref" href="#id6">LJG23</a></span></dt>
+<dt class="label" id="id45"><span class="brackets"><a class="fn-backref" href="#id6">LJG23</a></span></dt>
 <dd><p>Yunyi Liu, Craig Jin, and David Gunawan. Ddsp-sfx: acoustically-guided sound effects generation with differentiable digital signal processing. <em>arXiv preprint arXiv:2309.08060</em>, 2023.</p>
 </dd>
-<dt class="label" id="id30"><span class="brackets"><a class="fn-backref" href="#id14">MS23</a></span></dt>
+<dt class="label" id="id47"><span class="brackets"><a class="fn-backref" href="#id14">MS23</a></span></dt>
 <dd><p>Naotake Masuda and Daisuke Saito. Improving Semi-Supervised Differentiable Synthesizer Sound Matching for Practical Applications. <em>IEEE/ACM Transactions on Audio, Speech, and Language Processing</em>, 31:863–875, 2023. <a class="reference external" href="https://doi.org/10.1109/TASLP.2023.3237161">doi:10.1109/TASLP.2023.3237161</a>.</p>
 </dd>
-<dt class="label" id="id31"><span class="brackets"><a class="fn-backref" href="#id13">RMR22</a></span></dt>
+<dt class="label" id="id53"><span class="brackets"><a class="fn-backref" href="#id13">RMR22</a></span></dt>
 <dd><p>Lenny Renault, Rémi Mignot, and Axel Roebel. Differentiable Piano Model for Midi-to-Audio Performance Synthesis. In <em>Proceedings of the 25th International Conference on Digital Audio Effects</em>, 8. Vienna, Austria, 2022.</p>
 </dd>
-<dt class="label" id="id33"><span class="brackets">SCR+23</span><span class="fn-backref">(<a href="#id7">1</a>,<a href="#id19">2</a>)</span></dt>
+<dt class="label" id="id57"><span class="brackets">SCR+23</span><span class="fn-backref">(<a href="#id7">1</a>,<a href="#id19">2</a>)</span></dt>
 <dd><p>Jordie Shier, Franco Caspe, Andrew Robertson, Mark Sandler, Charalampos Saitis, and Andrew McPherson. Differentiable modelling of percussive audio with transient and spectral synthesis. In <em>Proceedings of the 10th Convention of the European Acoustics Association Forum Acusticum 2023</em>. 2023.</p>
 </dd>
 </dl>
