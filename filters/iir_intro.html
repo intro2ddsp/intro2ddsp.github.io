@@ -1,0 +1,641 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Infinite Impulse Response (IIR) Systems &#8212; Introduction to Audio Synthesizer Programming</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'filters/iir_intro';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Differentiable Implementation of IIR Filters" href="iir_impl.html" />
+    <link rel="prev" title="Differentiable FIR Filters" href="fir-optim.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/intro2ddsp_logo_horiz.png" class="logo__image only-light" alt="Introduction to Audio Synthesizer Programming - Home"/>
+    <script>document.write(`<img src="../_static/intro2ddsp_logo_horiz.png" class="logo__image only-dark" alt="Introduction to Audio Synthesizer Programming - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../background/index.html">Background</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../first-steps/first_steps.html">Your first differentiable digital signal processor</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../first-steps/pytorch_tutorial.html">PyTorch Bootcamp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../first-steps/diff_gain.html">A Differentiable Gain Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../synths/introduction.html">Digital Synthesizer Modelling</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../synths/oscillator.html">Writing an Oscillator in PyTorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../synths/additive.html">Additive Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../synths/harmonic_optimize.html">Optimizing a Harmonic Synthesizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../synths/harmonic_results.html">Harmonic Synthesis Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../synths/libraries.html">Differentiable Synthesis Libraries</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Digital Filter Modelling</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fir-intro.html">Finite Impulse Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fir-optim.html">Differentiable FIR Filters</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Infinite Impulse Response (IIR) Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iir_impl.html">Differentiable Implementation of IIR Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iir_torch.html">Implementing Differentiable IIR in PyTorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sf.html">Speech Decomposition with Source Filter Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../voice/index.html">Voice Synthesis</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../physical-modeling/index.html">Physical Modeling and DDSP</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../physical-modeling/sho.html">The Simple Harmonic Oscillator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../physical-modeling/many_oscillators.html">Rigid objects and modal analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../physical-modeling/wave_equation.html">The Wave Equation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../challenges/index.html">Challenges, Considerations, &amp; Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conclusion/index.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/benhayes/intro2ddsp" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/benhayes/intro2ddsp/issues/new?title=Issue%20on%20page%20%2Ffilters/iir_intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/filters/iir_intro.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Infinite Impulse Response (IIR) Systems</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-linear-predictive-coding-lpc">Connection to Linear Predictive Coding (LPC)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-recurrent-neural-networks-rnn">Connection to Recurrent Neural Networks (RNN)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="infinite-impulse-response-iir-systems">
+<h1>Infinite Impulse Response (IIR) Systems<a class="headerlink" href="#infinite-impulse-response-iir-systems" title="Permalink to this heading">#</a></h1>
+<p>A system with <a class="reference external" href="https://en.wikipedia.org/wiki/Infinite_impulse_response">infinite impulse response</a> (IIR) is called an IIR system. It is described by the following difference equation</p>
+<div class="math notranslate nohighlight" id="equation-iir">
+<span class="eqno">(1)<a class="headerlink" href="#equation-iir" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{split}
+y[n] 
+&amp;= x[n] - a_1 y[n-1] - a_2 y[n-2] - \cdots - a_M y[n-M] \\
+&amp;= x[n] - \sum_{k=1}^{M} a_k y[n-k]
+\end{split}
+\end{split}\]</div>
+<p>and its transfer function</p>
+<div class="math notranslate nohighlight" id="equation-iir-tf">
+<span class="eqno">(2)<a class="headerlink" href="#equation-iir-tf" title="Permalink to this equation">#</a></span>\[
+H(z) = \frac{1}{1 + \sum_{k=1}^{M} a_k z^{-k}},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(a_1, \dots, a_M\)</span> are the system coefficients.
+Each output sample <span class="math notranslate nohighlight">\(y[n]\)</span> is a weighted sum of the past output samples <span class="math notranslate nohighlight">\(y[n-1], \dots, y[n-M]\)</span> and the current input sample <span class="math notranslate nohighlight">\(x[n]\)</span>. It is also called recursive system because the output samples are recursively computed from past output samples.
+Conventionally, an IIR filter also depends on the past input samples <span class="math notranslate nohighlight">\(x[n-1], \dots, x[n-M]\)</span> with another set of coefficients <span class="math notranslate nohighlight">\(b_0, b_1, \dots, b_M\)</span> in the difference equation</p>
+<div class="math notranslate nohighlight">
+\[
+H(z) = \frac{b_0 + b_1 z^{-1} + \cdots + b_M z^{-M}}{1 + a_1 z^{-1} + \cdots + a_N z^{-M}}
+\]</div>
+<p>but here we restrict the discussion to systems that only depend on the past output samples for simplicity.
+This is called an all-pole system because it only has poles and no zeros in the transfer function. (Poles and zeros are the roots of the numerator and denominator of the transfer function, respectively.)</p>
+<p>If we convert the equation <a class="reference internal" href="#equation-iir">(1)</a> to only have input samples on the right-hand side, we obtain</p>
+<div class="math notranslate nohighlight" id="equation-iir2">
+<span class="eqno">(3)<a class="headerlink" href="#equation-iir2" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{split}
+y[n] &amp;= x[n] + \sum_{k=1}^{\infty} h_k x[n-k],\\
+h_k &amp;= \sum_{i=1}^k \sum_{q \in Q_k^i} \prod_{j=1}^i -a_{q_j}, \\
+Q_k^i &amp;= \{q \in \mathbb{Z}_{&gt;0}^i \mid \sum_{j=1}^i q_j = k\}.
+\end{split}
+\end{split}\]</div>
+<p>The last two equations are ugly but thankfully we will not need them later in this notebook. They are only included for completeness. You can see that the output samples <span class="math notranslate nohighlight">\(y[n]\)</span> are a weighted sum of the current and past input samples <span class="math notranslate nohighlight">\(x[n], x[n-1], \dots\)</span>, just like in the FIR case. However, the length of the impulse response is infinite, hence the name IIR.</p>
+<p>IIRs are very useful because you can approximate long FIRs with much less number of coefficients in an IIR. This also implies that they are cheaper to compute.</p>
+<section id="connection-to-linear-predictive-coding-lpc">
+<h2>Connection to Linear Predictive Coding (LPC)<a class="headerlink" href="#connection-to-linear-predictive-coding-lpc" title="Permalink to this heading">#</a></h2>
+<p>In the speech literature, there is a similar system to IIR that has been used for speech coding and synthesis. It assumes that, the current speech sample <span class="math notranslate nohighlight">\(s[n]\)</span> can be predicted from the past <span class="math notranslate nohighlight">\(M\)</span> samples <span class="math notranslate nohighlight">\(s[n-1], \dots, s[n-M]\)</span> with a linear combination of them.</p>
+<div class="math notranslate nohighlight" id="equation-lpc">
+<span class="eqno">(4)<a class="headerlink" href="#equation-lpc" title="Permalink to this equation">#</a></span>\[
+\hat{s}[n] = \sum_{k=1}^{M} a_k s[n-k]
+\]</div>
+<p>This is called linear predictive coding (LPC). The prediction error is thus equals</p>
+<div class="math notranslate nohighlight" id="equation-lpc-error">
+<span class="eqno">(5)<a class="headerlink" href="#equation-lpc-error" title="Permalink to this equation">#</a></span>\[
+e[n] = s[n] - \hat{s}[n] = s[n] - \sum_{k=1}^{M} a_k s[n-k].
+\]</div>
+<p>If we switch the sides of the equation, we obtain the equation of an IIR system</p>
+<div class="math notranslate nohighlight" id="equation-lpc-iir">
+<span class="eqno">(6)<a class="headerlink" href="#equation-lpc-iir" title="Permalink to this equation">#</a></span>\[
+s[n] = e[n] + \sum_{k=1}^{M} a_k s[n-k].
+\]</div>
+<p>Besides the minus/plus sign difference, it is exactly the same as the IIR equation in Equation <a class="reference internal" href="#equation-iir">(1)</a> with <span class="math notranslate nohighlight">\(x[n] = e[n]\)</span> and <span class="math notranslate nohighlight">\(y[n] = s[n]\)</span>! The transfer function of this system also has physical meaning to the speech signal. It approximates the vocal tract transfer function if the vocal tract is modelled by a tube with <span class="math notranslate nohighlight">\(M\)</span> sections. The coefficients <span class="math notranslate nohighlight">\(a_1, \dots, a_M\)</span> are called the LPC coefficients and are compact representation for compression. We can call <span class="math notranslate nohighlight">\(e[n]\)</span> as the <em>source</em> and the transfer function as the <em>filter</em>, and together they form a source-filter model for speech. The <em>source</em> usually means the signal that is generated by the vocal folds.</p>
+<div class="mermaid">
+            flowchart LR
+	start(( ))
+	stop(( ))
+	filt[Vocal Tract FIlter]
+
+	start -- source --&gt; filt -- speech --&gt; stop
+        </div></section>
+<section id="connection-to-recurrent-neural-networks-rnn">
+<h2>Connection to Recurrent Neural Networks (RNN)<a class="headerlink" href="#connection-to-recurrent-neural-networks-rnn" title="Permalink to this heading">#</a></h2>
+<p>The recurrent structure of IIR systems is also very similar to recurrent neural networks (RNN). In RNNs, there is a hidden state <span class="math notranslate nohighlight">\(\mathbf{h}[n]\)</span> that is updated at each time step <span class="math notranslate nohighlight">\(n\)</span> with the current input <span class="math notranslate nohighlight">\(\mathbf{x}[n]\)</span> and the previous hidden state <span class="math notranslate nohighlight">\(\mathbf{h}[n-1]\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-rnn">
+<span class="eqno">(7)<a class="headerlink" href="#equation-rnn" title="Permalink to this equation">#</a></span>\[
+\begin{split}
+\mathbf{h}[n] = f(\mathbf{A} \mathbf{x}[n] + \mathbf{B} \mathbf{h}[n-1]),
+\end{split}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(f\)</span> is a non-linear activation function, <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> are weight matrices.</p>
+<p>You can see that the RNN equation can equals to a first-order IIR when <span class="math notranslate nohighlight">\(f(x) = x, \mathbf{A} = 1, \mathbf{B} = -a_1\)</span>, with scalar inputs and outputs. This similarity also explains why training IIRs in deep learning frameworks like PyTorch are slow. By flatting out the recurrent computational graph, we obtain a very deep network with number of layers equals to the number of time steps. The slow training problem is worse on IIRs because to have enough time context for audio applications, more than ten thousand of audio samples are needed, while RNNs usually trained on sequences with length of hundreds. We will revisit this problem in the later chapters when we talk about differentiable implementation of IIRs.</p>
+<div class="mermaid">
+            flowchart LR
+	h1(h):::hidden
+	h2(h):::hidden
+	h3(h):::hidden
+	hN(h):::hidden
+	x1[x]:::input
+	x2[x]:::input
+	x3[x]:::input
+	xN[x]:::input
+	classDef hidden fill:#f96
+	classDef input fill:#0098ba
+
+	x1 -- A --&gt; h1 -- B --&gt; h2 -- B --&gt; h3 -- ... --&gt; hN
+	x2 -- A --&gt; h2
+	x3 -- A --&gt; h3
+	xN -- A --&gt; hN
+        </div></section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<p>By the end of this chapter, you should know that</p>
+<ul class="simple">
+<li><p>IIR systems can be used to approximate long FIRs with much less number of coefficients.</p></li>
+<li><p>IIR systems are similar to linear predictive coding (LPC) and recurrent neural networks (RNN).</p></li>
+</ul>
+<p>In the next chapter we are going to review some implementations for training IIRs in deep learning frameworks.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<span class="target" id="id1"></span></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./filters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="fir-optim.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Differentiable FIR Filters</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="iir_impl.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Differentiable Implementation of IIR Filters</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-linear-predictive-coding-lpc">Connection to Linear Predictive Coding (LPC)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-recurrent-neural-networks-rnn">Connection to Recurrent Neural Networks (RNN)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ben Hayes, Jordie Shier, Chin-Yun Yu, David Südholt, Rodrigo Diaz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/jupyter_core/utils/__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+  File "/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+PLOT_COLORS = ["black", "red", "green", "blue", "orange"]
+PLOT_LINESTYLES = ["solid", "dashed", "dotted", "dashdot"]
+
+def plot_signal_and_spectrum(
+    signal: Union[torch.Tensor, list[torch.Tensor]],
+    labels: Optional[list[str]] = None,
+):
+    """We'll be wanting to plot some signals, so let's make that nice and easy...
+    """
+    if not isinstance(signal, list):
+        signal = [signal]
+
+    signal = [s.detach().numpy() for s in signal]
+
+    fig, ax = plt.subplots(2, 1, figsize=(6, 4))
+    t = np.arange(signal[0].size) / SAMPLE_RATE
+
+    if labels is None:
+        labels = [None] * len(signal)
+
+    for s, color, linestyle, label in zip(signal, PLOT_COLORS, PLOT_LINESTYLES, labels):
+        # compute the log magnitude spectrum of the signal
+        spectrum = np.fft.rfft(s, norm="forward")
+        spectrum = np.abs(spectrum)
+        spectrum = 20 * safe_log(spectrum, 10)
+        
+        ax[0].plot(t, s, color=color, linestyle=linestyle, linewidth=1.0, label=label)
+    
+        f = SAMPLE_RATE * np.arange(s.size // 2 + 1) / s.size
+        ax[1].plot(f, spectrum, color=color, linestyle=linestyle, linewidth=1.0, label=label)
+    
+    ax[0].set_title("Signal")
+    ax[0].set_xlabel("Time (s)")
+    ax[0].set_ylabel("Amplitude")
+    ax[1].set_xscale("log")
+    ax[1].set_title("Spectrum")
+    ax[1].set_xlabel("Frequency (Hz)")
+    ax[1].set_ylabel("Magnitude (dB)")
+
+    if any([l is not None for l in labels]):
+        ax[0].legend()
+
+    fig.tight_layout()
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[4], line 5[0m
+[1;32m      1[0m PLOT_COLORS [38;5;241m=[39m [[38;5;124m"[39m[38;5;124mblack[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124mred[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124mgreen[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124mblue[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124morange[39m[38;5;124m"[39m]
+[1;32m      2[0m PLOT_LINESTYLES [38;5;241m=[39m [[38;5;124m"[39m[38;5;124msolid[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124mdashed[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124mdotted[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124mdashdot[39m[38;5;124m"[39m]
+[1;32m      4[0m [38;5;28;01mdef[39;00m [38;5;21mplot_signal_and_spectrum[39m(
+[0;32m----> 5[0m     signal: Union[torch[38;5;241m.[39mTensor, [38;5;28;43mlist[39;49m[43m[[49m[43mtorch[49m[38;5;241;43m.[39;49m[43mTensor[49m[43m][49m],
+[1;32m      6[0m     labels: Optional[[38;5;28mlist[39m[[38;5;28mstr[39m]] [38;5;241m=[39m [38;5;28;01mNone[39;00m,
+[1;32m      7[0m ):
+[1;32m      8[0m [38;5;250m    [39m[38;5;124;03m"""We'll be wanting to plot some signals, so let's make that nice and easy...[39;00m
+[1;32m      9[0m [38;5;124;03m    """[39;00m
+[1;32m     10[0m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(signal, [38;5;28mlist[39m):
+
+[0;31mTypeError[0m: 'type' object is not subscriptable
+

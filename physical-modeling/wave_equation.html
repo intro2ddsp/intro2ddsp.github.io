@@ -1,0 +1,730 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>The Wave Equation &#8212; Introduction to Audio Synthesizer Programming</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'physical-modeling/wave_equation';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Challenges, Considerations, &amp; Best Practices" href="../challenges/index.html" />
+    <link rel="prev" title="Rigid objects and modal analysis" href="many_oscillators.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/intro2ddsp_logo_horiz.png" class="logo__image only-light" alt="Introduction to Audio Synthesizer Programming - Home"/>
+    <script>document.write(`<img src="../_static/intro2ddsp_logo_horiz.png" class="logo__image only-dark" alt="Introduction to Audio Synthesizer Programming - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../background/index.html">Background</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../first-steps/first_steps.html">Your first differentiable digital signal processor</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../first-steps/pytorch_tutorial.html">PyTorch Bootcamp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../first-steps/diff_gain.html">A Differentiable Gain Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../synths/introduction.html">Digital Synthesizer Modelling</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../synths/oscillator.html">Writing an Oscillator in PyTorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../synths/additive.html">Additive Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../synths/harmonic_optimize.html">Optimizing a Harmonic Synthesizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../synths/harmonic_results.html">Harmonic Synthesis Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../synths/libraries.html">Differentiable Synthesis Libraries</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../filters/index.html">Digital Filter Modelling</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../filters/fir-intro.html">Finite Impulse Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../filters/fir-optim.html">Differentiable FIR Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../filters/iir_intro.html">Infinite Impulse Response (IIR) Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../filters/iir_impl.html">Differentiable Implementation of IIR Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../filters/iir_torch.html">Implementing Differentiable IIR in PyTorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../filters/sf.html">Speech Decomposition with Source Filter Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../voice/index.html">Voice Synthesis</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Physical Modeling and DDSP</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sho.html">The Simple Harmonic Oscillator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="many_oscillators.html">Rigid objects and modal analysis</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">The Wave Equation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../challenges/index.html">Challenges, Considerations, &amp; Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conclusion/index.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/benhayes/intro2ddsp" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/benhayes/intro2ddsp/issues/new?title=Issue%20on%20page%20%2Fphysical-modeling/wave_equation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/physical-modeling/wave_equation.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>The Wave Equation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="the-wave-equation">
+<h1>The Wave Equation<a class="headerlink" href="#the-wave-equation" title="Permalink to this heading">#</a></h1>
+<p>In the previous notebook, we explored the dynamics of a system of interconnected undamped oscillators in 1D. Each of these oscillators was connected to its neighbors by springs. When considering an individual simple harmonic oscillator, the restoring force was directly proportional to the displacement of the oscillator from its equilibrium position. However, in the context of our chain of oscillators, the restoring force becomes proportional to the difference in displacement between neighboring oscillators. Thus, for a single oscillator in the chain, the equation becomes:</p>
+<div class="math notranslate nohighlight">
+\[
+m \ddot{x} = -k \Delta x,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Delta x\)</span> represents the difference in displacement between the oscillator and its neighbors.
+As the spacing between oscillators approaches zero, this difference approaches the second spatial derivative of <span class="math notranslate nohighlight">\(x\)</span>, leading us to the wave equation:</p>
+<div class="math notranslate nohighlight">
+\[
+\ddot{x} = c^2 \frac{\partial^2 x}{\partial x^2}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(c^2 = \frac{k}{m}\)</span> is the wave speed.</p>
+<p>We have just seen a way of using modal analysis and gradient descent to find an efficient method of synthesis. However, there are many other approaches to synthesizing sound from the wave equation. In this section, we’ll take a look at how gradient descent can be applied to the inverse problem. This is similar to a previous chapter, where we looked at fitting the control parameters of an abstract, spectrally-motivated additive synthesizer to reproduce a saxophone sound. Here, we will apply motivate a physical sound synthesis model from the wave equation, and then use gradient descent to find the parameters of the model that best fit a given sound.</p>
+<p>In particular we will focus on digital waveguide synthesis (DWG). DWGs are based on D’Alembert’s <a class="reference external" href="https://en.wikipedia.org/wiki/D%27Alembert%27s_formula">travelling wave solution</a> to the wave equation, where the solution is given by waves travelling on opposite directions:</p>
+<div class="math notranslate nohighlight">
+\[
+u(x, t) = F(x + ct) + G(x - ct)
+\]</div>
+<p>here <span class="math notranslate nohighlight">\(F(x + ct)\)</span> represents a wave traveling to the left and <span class="math notranslate nohighlight">\(G(x - ct)\)</span> represents a wave traveling to the right.</p>
+<p>In DWGs, the propagation of the traveling waves is simulated using delay lines. At each sample step, losses occur, but if the loss is a linear operation, it can be commuted out of the individual samples and be applied cumulatively to the output of the delay line.</p>
+<p>The model of the loss should be frequency-dependent. With the simplest possible loss filter, we obtain a simulation diagram that looks like this:</p>
+<p><img alt="DWG with the simplest possible frequency-dependent loss filter" src="../_images/kp-strong.png" /></p>
+<p>This might look familiar as the basic structure of the Karplus-Strong algorithm for plucked string synthesis. In fact, the Karplus-Strong algorithm can be seen as a simple DWG. We’ll look at applying the same methods as before to find the parameters of this model that best fit a given sound using gradient descent.</p>
+<p>The transfer function of the basic Karplus-Strong algorithm as shown before is</p>
+<div class="math notranslate nohighlight">
+\[H(z) = \frac{1}{1 - g\cdot(z^{-N} + z^{-N-1})},\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the length of the delay line corresponding to the modeled string and controls pitch, and <span class="math notranslate nohighlight">\(g\)</span> is the feedback gain, which controls the decay time of the sound.</p>
+<p>We’ll implement this transfer function in the frequency domain for more efficient estimation, and in the time domain for the final result.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torchaudio</span>
+<span class="kn">import</span> <span class="nn">IPython.display</span> <span class="k">as</span> <span class="nn">ipd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">KarplusStrong</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delay_len</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="mi">2048</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_gain</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_len</span> <span class="o">=</span> <span class="n">delay_len</span>
+        
+        <span class="c1"># for frequency sampling</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">n_fft</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>         
+
+        <span class="c1"># random excitation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exc</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_fft</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exc</span><span class="p">[:</span><span class="n">delay_len</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">delay_len</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exc_fft</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exc</span><span class="p">)</span>
+
+    <span class="c1"># scale delay gain to [0.9, 1.0]</span>
+    <span class="k">def</span> <span class="nf">scaled_gain</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_gain</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.9</span>    
+    
+    <span class="c1"># forward pass: synthesis in the frequency domain</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span>
+        
+        <span class="n">delay_gain</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scaled_gain</span><span class="p">()</span>
+        
+        <span class="c1"># sample transfer function</span>
+        <span class="n">numer</span> <span class="o">=</span> <span class="mf">1.</span>
+        <span class="n">denom</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">delay_gain</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">z</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_len</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">z</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span>
+        
+        <span class="c1"># filter excitation in frequency domain</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">exc_fft</span> <span class="o">*</span> <span class="n">numer</span> <span class="o">/</span> <span class="n">denom</span>
+
+    <span class="c1"># also provide method for time domain synthesis</span>
+    <span class="k">def</span> <span class="nf">time_domain_synth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">):</span>
+
+        <span class="n">delay_gain</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scaled_gain</span><span class="p">()</span>
+
+        <span class="c1"># populate filter coefficients for IIR filter</span>
+        <span class="n">a_coeffs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_len</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>        
+        <span class="n">a_coeffs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">a_coeffs</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_len</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">delay_gain</span> <span class="o">*</span> <span class="mf">0.5</span>
+        <span class="n">a_coeffs</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">delay_gain</span> <span class="o">*</span> <span class="mf">0.5</span>
+    
+        <span class="n">b_coeffs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_len</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">b_coeffs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    
+        <span class="c1"># pad or truncate self.exc to n_samples</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exc</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">n_samples</span><span class="p">:</span>
+            <span class="n">audio</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">exc</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_samples</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">exc</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">audio</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exc</span><span class="p">[:</span><span class="n">n_samples</span><span class="p">]</span>
+    
+        <span class="n">audio</span> <span class="o">=</span> <span class="n">torchaudio</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">lfilter</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">a_coeffs</span><span class="p">,</span> <span class="n">b_coeffs</span><span class="p">,</span> <span class="n">clamp</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">audio</span>
+
+<span class="c1"># let&#39;s have a listen</span>
+<span class="n">synth</span> <span class="o">=</span> <span class="n">KarplusStrong</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">audio</span> <span class="o">=</span> <span class="n">synth</span><span class="o">.</span><span class="n">time_domain_synth</span><span class="p">(</span><span class="mi">32000</span><span class="p">)</span>
+<span class="n">ipd</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="n">audio</span><span class="o">.</span><span class="n">detach</span><span class="p">(),</span> <span class="n">rate</span><span class="o">=</span><span class="mi">16000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+                <audio  controls="controls" >
+                    <source src="data:audio/wav;base64,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MQA9AEYATABQAFEAUABNAEoARwBFAEMAQgBBAEAAPQA6ADYAMgAsACYAIQAbABQADgAHAAAA9//t/+P/2P/P/8f/wv+//7//wv/H/83/0//Z/9//4//m/+n/7P/u//D/8v/z//T/9f/1//X/9//5//z/AAAEAAcACQAHAAIA+//v/+H/0//G/7z/tv+0/7f/vv/I/9T/4v/x/wAADQAbACgANAA+AEUASgBMAEwASgBIAEUAQgBAAD8APgA9ADsAOQA2ADEALAAnACIAHAAWABAACgADAPz/8//p/9//1v/O/8f/xP/C/8T/yP/N/9P/2f/e/+L/5v/p/+v/7v/w//H/8//0//X/9f/2//f/+P/7//7/AQAFAAcACAAFAP//9f/p/9z/z//E/7z/uf+5/77/xv/R/93/6//5/wYAEwAgACwANgA+AEQASABIAEgARQBDAEAAPgA9ADsAOgA5ADcANAAxAC0AKAAjAB0AGAASAAwABgAAAPj/7//m/93/1P/N/8j/xv/G/8n/zf/S/9j/3f/i/+b/6f/r/+7/7//x//P/9P/1//b/9v/3//j/+v/9/wAAAwAGAAcABgABAPv/8P/k/9j/zP/D/77/vP+//8X/zv/Z/+X/8v8AAAwAGAAkAC8ANwA+AEIARABEAEMAQQA+ADwAOgA5ADgANwA1ADMAMAAsACgAIwAeABkAFAAOAAkAAgD8//T/6//j/9r/0//O/8r/yf/K/87/0v/X/9z/4f/l/+j/6//t/+//8f/z//T/9f/2//b/9//4//n/+////wEABAAGAAYAAwD///b/6//g/9T/y//E/8H/wf/F/8z/1v/h/+3/+f8FABEAHQAnADAAOAA9AEAAQQBAAD4APAA6ADgANwA2ADUAMwAyAC8ALAAoACQAHwAaABUAEAALAAUA///4//D/6P/g/9n/0//O/8z/zP/P/9L/1//c/+D/5f/o/+v/7f/v//H/8//0//X/9v/3//f/+P/5//v//f8AAAIABQAGAAQAAAD7//H/5//c/9L/yv/F/8T/xv/L/9P/3f/o//T/AAAKABYAIAAqADEANwA7AD0APQA8ADoAOAA2ADUAMwAyADEAMAAuACsAKAAkACAAGwAXABIADQAIAAIA/P/1/+3/5v/e/9j/0//Q/8//0P/T/9f/2//g/+T/6P/r/+3/7//x//P/9P/1//b/9//3//j/+f/6//z///8BAAMABQAFAAIA/v/3/+3/4//Z/9H/y//I/8j/y//S/9r/5P/v//r/BAAPABoAIwArADIANgA5ADoAOgA4ADYANAAzADEAMAAvAC4ALQAqACcAJAAgABwAGAATAA8ACgAEAP//+f/y/+v/5P/d/9j/1P/S/9L/1P/X/9v/3//j/+f/6v/t/+//8f/z//T/9f/2//f/+P/4//n/+v/7//7/AAACAAQABQADAAAA+//z/+n/4P/X/9D/zP/L/8z/0f/Y/+H/6//1/wAACQATAB0AJQAsADEANQA3ADcANgA0ADMAMQAwAC4ALQAsACsAKQAnACQAIAAdABkAFAAQAAwABwABAPz/9v/v/+j/4v/c/9j/1f/U/9X/2P/b/9//4//n/+r/7f/v//H/8v/0//X/9v/3//j/+P/5//r/+//9////AQADAAQABAABAP7/9//v/+b/3f/W/9H/zv/O/9H/1//e/+f/8f/7/wQADgAXAB8AJwAsADEAMwA0ADQAMwAxAC8ALgAtACwAKwAqACgAJgAjACAAHQAZABUAEQANAAkABAD///r/8//t/+b/4f/c/9n/1//X/9j/2//f/+L/5v/p/+z/7//x//L/9P/1//b/9//4//j/+f/6//v//P/+/wAAAgADAAQAAgAAAPv/9P/r/+P/3P/V/9L/0f/S/9b/3P/k/+3/9v8AAAgAEQAaACEAJwAsAC8AMQAxADEALwAuACwAKwAqACkAKAAnACUAIwAgAB0AGgAWABIADgAKAAYAAQD9//f/8f/r/+X/4P/c/9r/2f/a/9z/3//i/+b/6f/s/+7/8f/y//T/9f/2//f/+P/5//n/+v/6//z//f///wAAAgADAAMAAQD+//j/8P/p/+H/2v/W/9T/1P/W/9v/4v/q//L/+/8DAAwAFAAcACIAKAArAC4ALwAuAC4ALAArACkAKAAnACYAJQAkACIAIAAdABoAFwATABAADAAIAAMA///6//X/7//p/+T/4P/d/9v/2//d/9//4v/l/+n/7P/u//D/8v/0//X/9v/3//j/+f/5//r/+v/7//3//v8AAAEAAwADAAIAAAD7//X/7f/m/9//2v/X/9b/1//b/+D/5//v//f/AAAHAA8AFwAeACMAJwAqACwALAAsACsAKQAoACcAJgAlACQAIwAhAB8AHQAaABcAFAAQAA0ACQAFAAEA/f/4//L/7f/o/+P/4P/e/93/3v/g/+L/5f/o/+v/7v/w//L/9P/1//b/9//4//n/+f/6//r/+//8//7///8AAAIAAwACAAAA/f/4//L/6//k/9//2//Y/9n/2//f/+X/7P/0//z/AwALABIAGQAfACMAJwApACoAKgApACgAJgAlACQAIwAjACIAIAAfAB0AGgAXABQAEQAOAAoABwADAP//+//2//H/7P/n/+P/4f/f/9//4P/i/+X/6P/r/+7/8P/y//T/9f/2//f/+P/5//n/+v/6//v//P/9////AAABAAIAAgABAP//+//2/+//6f/j/97/2//b/9z/3//k/+r/8f/4/wAABgAOABQAGgAfACMAJgAnACgAJwAmACUAJAAjACIAIQAgAB8AHgAcABoAFwAVABIADwAMAAgABAABAP3/+f/0/+//6v/n/+T/4v/h/+H/4//l/+j/6//t//D/8v/z//X/9v/3//j/+f/6//r/+//7//z//f/+/wAAAAABAAIAAgAAAP3/+f/z/+3/5//i/9//3f/d/9//4//o/+7/9f/8/wMACgAQABYAGwAgACMAJQAlACUAJQAkACMAIgAhACAAHwAeAB0AGwAaABcAFQASAA8ADAAJAAYAAgD///v/9//y/+7/6v/m/+T/4//j/+T/5f/o/+r/7f/v//H/8//1//b/9//4//n/+v/6//v/+//8//z//f///wAAAQACAAIAAQD///v/9v/x/+v/5v/i/+D/3//g/+P/5//s//L/+f8AAAYADAASABgAHAAgACIAIwAkACMAIgAhACAAIAAfAB4AHQAcABsAGQAXABUAEwAQAA0ACgAHAAQAAAD9//n/9f/x/+3/6f/n/+X/5P/l/+b/6P/q/+3/7//x//P/9f/2//f/+P/5//r/+v/7//v//P/8//3//v8AAAAAAQACAAEAAAD9//n/9P/v/+r/5v/i/+H/4f/j/+b/6//w//b//f8CAAgADgAUABkAHAAfACEAIgAiACEAIAAfAB4AHgAdABwAGwAaABkAFwAVABMAEAAOAAsACAAFAAIA///8//j/9P/w/+z/6f/n/+b/5v/n/+j/6v/t/+//8f/z//T/9v/3//j/+f/6//r/+//7//z//P/9//7///8AAAAAAQABAAAA///8//f/8v/t/+n/5f/j/+L/4//m/+r/7v/0//r/AAAFAAsAEAAVABkAHAAeACAAIAAgAB8AHgAdABwAHAAbABoAGQAYABcAFQATABEADgAMAAkABgADAAAA/v/6//b/8v/v/+z/6f/o/+f/6P/p/+r/7P/v//H/8//0//b/9//4//n/+v/6//v/+//8//z//f/+////AAAAAAEAAQABAAAA/f/6//X/8f/s/+j/5v/k/+T/5v/p/+3/8v/3//3/AgAIAA0AEgAWABkAHAAdAB4AHgAeAB0AHAAbABsAGgAZABgAFwAWABUAEwARAA8ADAAKAAcABQACAP///P/4//X/8f/u/+z/6v/p/+n/6f/r/+z/7v/w//L/9P/2//f/+P/5//r/+v/7//v//P/8//3//f/+////AAAAAAEAAQAAAP///P/4//T/7//r/+j/5v/m/+f/6f/s//D/9f/7/wAABAAKAA4AEwAWABkAGwAcAB0AHAAcABsAGgAaABkAGAAYABcAFgAUABMAEQAPAA0ACwAIAAYAAwAAAP7/+//3//T/8f/u/+z/6v/q/+r/6//t/+7/8P/y//T/9f/3//j/+f/6//r/+//7//z//P/9//3//v///wAAAAABAAEAAAAAAP7/+v/2//L/7v/r/+n/5//n/+n/6//v//P/+P/9/wIABwALABAAFAAXABkAGgAbABsAGwAaABkAGQAYABcAFwAWABUAFAATABEADwANAAsACQAHAAQAAQAAAPz/+f/2//P/8P/u/+z/6//r/+z/7f/u//D/8v/0//X/9//4//n/+v/6//v/+//8//z//f/9//7//v///wAAAAABAAAAAAD///z/+f/1//H/7v/r/+n/6f/p/+v/7v/y//b/+/8AAAQACQANABEAFAAWABgAGQAaABoAGQAYABgAFwAWABYAFQAUABMAEgARAA8ADQAMAAoABwAFAAMAAAD+//v/+P/1//L/8P/u/+3/7P/t/+3/7//w//L/9P/1//b/+P/5//n/+v/7//v//P/8//3//f/9//7///8AAAAAAAAAAAAAAAD+//v/9//0//D/7f/r/+r/6v/r/+7/8f/1//n//v8BAAYACgAOABEAFAAWABcAGAAYABgAGAAXABYAFgAVABQAFAATABIAEQAPAA4ADAAKAAgABgAEAAEAAAD9//r/9//0//L/8P/u/+7/7f/u/+//8P/y//P/9f/2//j/+f/5//r/+//7//z//P/9//3//f/+//////8AAAAAAAAAAAAA///8//n/9v/z//D/7f/s/+v/7P/u//D/9P/3//z/AAADAAgACwAPABIAFAAWABcAFwAXABcAFgAVABUAFAAUABMAEgARABAADwAOAAwACgAJAAcABAACAAAA/v/8//n/9v/0//L/8P/v/+7/7//v//D/8v/z//X/9v/3//j/+f/6//v/+//8//z//f/9//3//v/+////AAAAAAAAAAAAAAAA/v/7//j/9f/y/+//7v/t/+3/7v/w//P/9v/6//7/AQAFAAkADQAQABIAFAAVABYAFgAWABUAFQAUABMAEwASABIAEQAQAA8ADgAMAAsACQAHAAUAAwABAAAA/f/7//j/9v/z//L/8P/w/+//8P/x//L/8//1//b/9//4//n/+v/7//v//P/8//3//f/9//7//v///wAAAAAAAAAAAAAAAP///f/6//f/9P/x/+//7v/u/+7/8P/y//X/+P/8/wAAAwAHAAoADQAQABIAEwAUABUAFQAUABQAEwATABIAEgARABAAEAAPAA4ADAALAAkACAAGAAQAAgAAAP///P/6//f/9f/z//L/8f/w//D/8f/y//P/9f/2//f/+P/5//r/+//7//z//P/9//3//f/+//7//////wAAAAAAAAAAAAAAAP7//P/5//b/9P/x//D/7//v//D/8v/0//f/+//+/wEABQAIAAsADgAQABIAEwATABQAEwATABMAEgASABEAEAAQAA8ADgANAAwACwAKAAgABgAFAAMAAQAAAP3/+//5//f/9f/z//L/8f/x//L/8v/z//X/9v/3//j/+f/6//v/+//8//z//f/9//3//v/+//7///8AAAAAAAAAAAAAAAD///3/+//4//X/8//x//D/8P/w//H/9P/2//n//f8AAAMABgAJAAwADgAQABEAEgASABIAEgASABEAEQAQABAADwAPAA4ADQAMAAsACgAIAAcABQADAAIAAAD///3/+v/4//b/9f/z//L/8v/y//P/9P/1//b/9//4//n/+v/7//v//P/8//3//f/9//7//v/+//////8AAAAAAAAAAAAA///+//z/+v/3//X/8//x//H/8f/y//P/9f/4//v///8BAAQABwAKAAwADgAQABEAEQARABEAEQARABAAEAAPAA8ADgAOAA0ADAALAAoACQAHAAYABAACAAEAAAD+//z/+v/4//b/9f/0//P/8//z//T/9f/2//f/+P/5//r/+//7//z//P/9//3//f/+//7//v//////AAAAAAAAAAAAAAAA///9//v/+f/3//T/8//y//H/8v/z//X/9//6//3/AAACAAUACAALAA0ADgAPABAAEQARABAAEAAQAA8ADwAOAA4ADQANAAwACwAKAAkABwAGAAUAAwABAAAA///9//v/+f/3//b/9f/0//T/9P/0//X/9v/3//j/+f/6//v/+//8//z//f/9//3//v/+//7//////wAAAAAAAAAAAAAAAP///v/8//r/+P/2//T/8//y//L/8//1//f/+f/8////AQAEAAYACQALAA0ADgAPAA8AEAAQAA8ADwAPAA4ADgANAA0ADAAMAAsACgAJAAgABgAFAAQAAgABAAAA/v/8//r/+f/3//b/9f/0//T/9f/1//b/9//4//n/+v/6//v//P/8//3//f/9//7//v/+/////////wAAAAAAAAAAAAAAAP///f/8//r/+P/2//T/8//z//T/9f/2//j/+//9/wAAAgAFAAcACQALAA0ADgAOAA8ADwAPAA4ADgAOAA0ADQAMAAwACwALAAoACQAIAAcABQAEAAMAAQAAAP///f/8//r/+P/3//b/9f/1//X/9f/2//f/+P/5//r/+v/7//z//P/9//3//f/+//7//v/+//////8AAAAAAAAAAAAAAAD///7//f/7//n/9//2//T/9P/0//X/9v/4//r//P///wEAAwAGAAgACgALAA0ADQAOAA4ADgAOAA0ADQANAAwADAALAAsACgAKAAkACAAHAAYABAADAAIAAAAAAP7//f/7//n/+P/3//b/9v/2//b/9v/3//j/+f/5//r/+//8//z//f/9//3//v/+//7//v////////8AAAAAAAAAAAAAAAD///7//P/6//j/9//2//X/9f/1//b/9//5//v//v8AAAIABAAGAAgACgALAAwADQANAA0ADQANAA0ADAAMAAwACwALAAoACQAJAAgABwAGAAUABAACAAEAAAD///7//P/7//n/+P/3//b/9v/2//f/9//4//n/+f/6//v//P/8//3//f/9//7//v/+//7/////////AAAAAAAAAAAAAAAA///+//3/+//6//j/9//2//X/9f/2//f/+f/7//3///8AAAMABQAHAAkACgALAAwADAANAA0ADAAMAAwACwALAAsACgAKAAkACQAIAAcABgAFAAQAAwACAAAAAAD+//3//P/6//n/+P/3//f/9//3//f/+P/5//n/+v/7//z//P/9//3//f/+//7//v/+/////////wAAAAAAAAAAAAAAAAAA///+//z/+//5//j/9//2//b/9v/3//j/+v/8//7/AAABAAQABgAHAAkACgALAAwADAAMAAwADAALAAsACwAKAAoACgAJAAgACAAHAAYABQAEAAMAAgABAAAA///+//z/+//6//n/+P/3//f/9//4//j/+f/5//r/+//7//z//f/9//3//v/+//7//v///////////wAAAAAAAAAAAAAAAP/////9//z/+v/5//j/9//3//f/9//4//n/+//9////AAACAAQABgAIAAkACgALAAsACwALAAsACwALAAoACgAKAAkACQAIAAgABwAGAAUABAAEAAIAAQAAAAAA///9//z/+//6//n/+P/4//j/+P/4//n/+f/6//v/+//8//z//f/9//7//v/+//7///////////8AAAAAAAAAAAAAAAAAAP///v/9//v/+v/5//j/9//3//f/+P/5//v//P/+/wAAAQADAAUABwAIAAkACgAKAAsACwALAAoACgAKAAoACQAJAAkACAAIAAcABgAGAAUABAADAAIAAQAAAP///v/9//z/+//6//n/+P/4//j/+P/5//n/+v/7//v//P/8//3//f/+//7//v/+////////////AAAAAAAAAAAAAAAAAAAAAP///v/8//v/+v/5//j/+P/4//j/+f/6//z//v///wAAAgAEAAUABwAIAAkACgAKAAoACgAKAAoACQAJAAkACQAIAAgABwAHAAYABgAFAAQAAwACAAEAAAAAAP///v/8//v/+v/6//n/+f/5//n/+f/6//r/+//7//z//P/9//3//v/+//7//v//////////////AAAAAAAAAAAAAAAAAAD///7//f/8//v/+v/5//j/+P/4//n/+v/7//3///8AAAEAAwAEAAYABwAIAAkACQAJAAoACQAJAAkACQAJAAgACAAIAAcABwAGAAYABQAEAAMAAgACAAEAAAD///7//f/8//v/+v/6//n/+f/5//n/+v/6//v/+//8//z//f/9//7//v/+//7//////////////wAAAAAAAAAAAAAAAAAAAAD///7//f/8//r/+v/5//n/+f/5//r/+//8//7///8AAAIAAwAFAAYABwAIAAgACQAJAAkACQAJAAkACAAIAAgABwAHAAcABgAGAAUABAAEAAMAAgABAAAAAAD///7//f/8//v/+v/6//r/+f/6//r/+v/7//v//P/8//3//f/+//7//v/+//////////////8AAAAAAAAAAAAAAAAAAAAA///+//3//P/7//r/+v/5//n/+f/6//v//P/9////AAABAAIABAAFAAYABwAIAAgACAAJAAgACAAIAAgACAAHAAcABwAGAAYABgAFAAQABAADAAIAAQAAAAAAAAD///7//f/8//v/+v/6//r/+v/6//r/+//7//z//P/9//3//v/+//7//v//////////////AAAAAAAAAAAAAAAAAAAAAAAA///+//3//P/7//r/+v/5//n/+v/7//z//f/+/wAAAAACAAMABAAFAAYABwAIAAgACAAIAAgACAAIAAcABwAHAAcABgAGAAUABQAEAAQAAwACAAIAAQAAAAAA///+//3//P/8//v/+//6//r/+v/7//v/+//8//z//f/9//7//v/+//7/////////////////AAAAAAAAAAAAAAAAAAAAAP/////+//3//P/7//r/+v/6//r/+//7//z//v///wAAAQACAAMABQAGAAYABwAHAAgACAAIAAcABwAHAAcABwAGAAYABgAFAAUABAAEAAMAAwACAAEAAAAAAAAA///+//3//P/8//v/+//7//v/+//7//v//P/8//3//f/9//7//v/+/////////////////wAAAAAAAAAAAAAAAAAAAAAAAP///v/9//3//P/7//r/+v/6//v/+//8//3//v8AAAAAAQADAAQABQAGAAYABwAHAAcABwAHAAcABwAHAAYABgAGAAYABQAFAAQABAADAAMAAgABAAEAAAAAAP///v/+//3//P/8//v/+//7//v/+//7//z//P/9//3//f/+//7//v////////////////8AAAAAAAAAAAAAAAAAAAAAAAD//////v/9//z//P/7//v/+//7//v//P/9//7///8AAAEAAgADAAQABQAGAAYABwAHAAcABwAHAAcABgAGAAYABgAFAAUABQAEAAQAAwADAAIAAgABAAAAAAAAAP///v/9//3//P/8//v/+//7//v//P/8//z//f/9//3//v/+//7/////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAD///7//v/9//z//P/7//v/+//7//z//f/+////AAAAAAEAAgADAAQABQAGAAYABgAGAAYABgAGAAYABgAGAAYABQAFAAUABAAEAAMAAwACAAIAAQABAAAAAAD//////v/9//3//P/8//v/+//7//z//P/8//3//f/9//7//v/+/////////////////wAAAAAAAAAAAAAAAAAAAAAAAAAA//////7//f/9//z//P/7//v/+//8//z//f/+////AAABAAIAAwAEAAQABQAFAAYABgAGAAYABgAGAAYABgAFAAUABQAFAAQABAADAAMAAwACAAEAAQAAAAAAAAD///7//v/9//3//P/8//z//P/8//z//P/9//3//f/+//7//v///////////////////wAAAAAAAAAAAAAAAAAAAAAAAAAA//////7//f/9//z//P/7//z//P/8//3//v///wAAAAABAAIAAwAEAAQABQAFAAYABgAGAAYABgAFAAUABQAFAAUABAAEAAQAAwADAAMAAgACAAEAAAAAAAAA//////7//v/9//3//P/8//z//P/8//z//f/9//3//v/+//7///////////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAA///+//7//f/9//z//P/8//z//P/9//7//v///wAAAAABAAIAAwAEAAQABQAFAAUABQAFAAUABQAFAAUABQAFAAQABAAEAAMAAwADAAIAAgABAAEAAAAAAAAA//////7//f/9//3//P/8//z//P/8//3//f/9//7//v/+////////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/////+//7//f/9//z//P/8//z//f/9//7///8AAAAAAQACAAMAAwAEAAQABQAFAAUABQAFAAUABQAFAAUABAAEAAQABAADAAMAAwACAAIAAQABAAAAAAAAAAAA///+//7//f/9//3//P/8//z//f/9//3//f/+//7//v/+/////////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/////+//3//f/9//z//P/8//3//f/+////AAAAAAAAAQACAAMAAwAEAAQABQAFAAUABQAFAAUABQAEAAQABAAEAAQAAwADAAMAAgACAAIAAQABAAAAAAAAAP/////+//7//f/9//3//f/9//3//f/9//3//v/+//7//v////////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////v/+//3//f/9//z//f/9//3//v/+////AAAAAAEAAQACAAMAAwAEAAQABAAFAAUABQAEAAQABAAEAAQABAAEAAMAAwADAAIAAgACAAEAAQAAAAAAAAAAAP/////+//7//f/9//3//f/9//3//f/9//7//v/+//7/////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////v/+//3//f/9//3//f/9//7//v///wAAAAAAAAEAAgACAAMAAwAEAAQABAAEAAQABAAEAAQABAAEAAQAAwADAAMAAwACAAIAAgABAAEAAAAAAAAAAAD//////v/+//7//f/9//3//f/9//3//f/+//7//v/+/////////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////v/+//3//f/9//3//f/+//7//////wAAAAABAAEAAgADAAMAAwAEAAQABAAEAAQABAAEAAQABAADAAMAAwADAAMAAgACAAIAAQABAAEAAAAAAAAAAAD//////v/+//7//f/9//3//f/9//7//v/+//7//v////////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//////7//v/+//3//f/9//3//f/+//7///8AAAAAAAABAAIAAgADAAMAAwAEAAQABAAEAAQABAAEAAMAAwADAAMAAwADAAIAAgACAAEAAQABAAAAAAAAAAAAAAD//////v/+//7//f/9//3//f/+//7//v/+//7/////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//////7//v/+//3//f/9//7//v/+//////8AAAAAAAABAAIAAgADAAMAAwADAAQABAAEAAQAAwADAAMAAwADAAMAAwACAAIAAgACAAEAAQABAAAAAAAAAAAA/////////v/+//7//v/+//7//v/+//7//v/+/////////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP////////7//v/+//7//f/+//7//v//////AAAAAAAAAQABAAIAAgADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAgACAAIAAgABAAEAAQAAAAAAAAAAAAAA/////////v/+//7//v/+//7//v/+//7//v////////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP////////7//v/+//7//v/+//7//////wAAAAAAAAAAAQABAAIAAgADAAMAAwADAAMAAwADAAMAAwADAAMAAwACAAIAAgACAAIAAQABAAEAAAAAAAAAAAAAAAAA//////7//v/+//7//v/+//7//v/+//7/////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP////////7//v/+//7//v/+//7//////wAAAAAAAAEAAQACAAIAAgADAAMAAwADAAMAAwADAAMAAwADAAMAAgACAAIAAgACAAEAAQABAAEAAAAAAAAAAAAAAP////////7//v/+//7//v/+//7//v/+/////////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD////////+//7//v/+//7//v/+//////8AAAAAAAAAAAEAAQACAAIAAgADAAMAAwADAAMAAwADAAMAAwACAAIAAgACAAIAAgABAAEAAQABAAAAAAAAAAAAAAAAAP////////7//v/+//7//v/+//7//v////////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD////////+//7//v/+//7//v////////8AAAAAAAAAAAEAAQACAAIAAgACAAMAAwADAAMAAwADAAIAAgACAAIAAgACAAIAAQABAAEAAQAAAAAAAAAAAAAAAAD///////////7//v/+//7//v/+////////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD////////+//7//v/+//7/////////AAAAAAAAAAABAAEAAQACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAEAAQABAAEAAQAAAAAAAAAAAAAAAAD//////////////v/+//7//v///////////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA///////////+//7//v/+/////////wAAAAAAAAAAAAABAAEAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgABAAEAAQABAAEAAAAAAAAAAAAAAAAAAAD////////////////+//////////////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//////////////7//v///////////wAAAAAAAAAAAQABAAEAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAQABAAEAAQABAAAAAAAAAAAAAAAAAAAAAAD///////////////////////////////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//////////////////////////8AAAAAAAAAAAAAAQABAAEAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgABAAEAAQABAAEAAQAAAAAAAAAAAAAAAAAAAAAA////////////////////////////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//////////////////////////AAAAAAAAAAAAAAAAAQABAAEAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAQABAAEAAQABAAEAAQAAAAAAAAAAAAAAAAAAAAAA/////////////////////////////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//////////////////////////AAAAAAAAAAAAAAEAAQABAAEAAgACAAIAAgACAAIAAgACAAIAAgABAAEAAQABAAEAAQABAAEAAAAAAAAAAAAAAAAAAAAAAAAA//////////////////////////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///////////////////////wAAAAAAAAAAAAAAAAEAAQABAAEAAQACAAIAAgACAAIAAgACAAEAAQABAAEAAQABAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAP//////////////////////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP////////////////////8AAAAAAAAAAAAAAAAAAAEAAQABAAEAAQABAAIAAgACAAIAAQABAAEAAQABAAEAAQABAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAP///////////////////////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////////////////////8AAAAAAAAAAAAAAAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP////////////////////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////////////////////AAAAAAAAAAAAAAAAAAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//////////////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////////////////wAAAAAAAAAAAAAAAAAAAAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP////////////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////////////8AAAAAAAAAAAAAAAAAAAAAAAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////////////AAAAAAAAAAAAAAAAAAAAAAAAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAEAAQABAAEAAQABAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAEAAQABAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEAAQABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" type="audio/wav" />
+                    Your browser does not support the audio element.
+                </audio>
+              </div></div>
+</div>
+<p>Let’s now load an acoustic guitar sound file from the NSynth dataset. We’ll try to have our Karplus-Strong model mimic this sound. Since it is a very simple model, we won’t get too close of a match, but we should be able to tune the decay time.</p>
+<p>As mentioned before, pitch estimation with gradient descent can be tricky, so we’ll infer the length of the delay line from the pitch of the recording: At MIDI note 51, it’s about 155.56 Hz. With a sample rate of 16000 Hz, this corresponds to a delay of 102.8 samples. We’ll round this to 103 samples. More accuracy could be achieved by using fractional delays, but we’ll keep it simple here.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">audio</span><span class="p">,</span> <span class="n">sample_rate</span> <span class="o">=</span> <span class="n">torchaudio</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;guitar_acoustic_030-051-127.wav&quot;</span><span class="p">)</span> 
+<span class="n">audio</span> <span class="o">=</span> <span class="n">audio</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">sr</span> <span class="o">=</span> <span class="mi">16000</span>
+
+<span class="c1"># how many points used in sampling the transfer function</span>
+<span class="n">nfft</span> <span class="o">=</span> <span class="mi">4096</span>
+
+<span class="c1"># fix random excitation</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">KarplusStrong</span><span class="p">(</span><span class="n">delay_len</span><span class="o">=</span><span class="mi">103</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="n">nfft</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original:&quot;</span><span class="p">)</span>
+<span class="n">ipd</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">ipd</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">sr</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Synthesized:&quot;</span><span class="p">)</span>
+<span class="n">ipd</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">ipd</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">time_domain_synth</span><span class="p">(</span><span class="n">sr</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">(),</span> <span class="n">rate</span><span class="o">=</span><span class="n">sr</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">audio</span><span class="p">,</span> <span class="n">sample_rate</span> <span class="o">=</span> <span class="n">torchaudio</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;guitar_acoustic_030-051-127.wav&quot;</span><span class="p">)</span> 
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">audio</span> <span class="o">=</span> <span class="n">audio</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">sr</span> <span class="o">=</span> <span class="mi">16000</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/torchaudio/_backend/utils.py:202,</span> in <span class="ni">get_load_func.&lt;locals&gt;.load</span><span class="nt">(uri, frame_offset, num_frames, normalize, channels_first, format, buffer_size, backend)</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span> <span class="k">def</span> <span class="nf">load</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>     <span class="n">uri</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">BinaryIO</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="n">frame_offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span>     <span class="n">backend</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">125</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="g g-Whitespace">    </span><span class="mi">126</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Load audio data from source.</span>
+<span class="g g-Whitespace">    </span><span class="mi">127</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">128</span><span class="sd">     By default (``normalize=True``, ``channels_first=True``), this function returns Tensor with</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">200</span><span class="sd">             `[channel, time]` else `[time, channel]`.</span>
+<span class="g g-Whitespace">    </span><span class="mi">201</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">202</span>     <span class="n">backend</span> <span class="o">=</span> <span class="n">dispatcher</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span> <span class="n">backend</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">203</span>     <span class="k">return</span> <span class="n">backend</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="n">frame_offset</span><span class="p">,</span> <span class="n">num_frames</span><span class="p">,</span> <span class="n">normalize</span><span class="p">,</span> <span class="n">channels_first</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span> <span class="n">buffer_size</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/torchaudio/_backend/utils.py:114,</span> in <span class="ni">get_load_func.&lt;locals&gt;.dispatcher</span><span class="nt">(uri, format, backend_name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span>     <span class="k">if</span> <span class="n">backend</span><span class="o">.</span><span class="n">can_decode</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="nb">format</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span>         <span class="k">return</span> <span class="n">backend</span>
+<span class="ne">--&gt; </span><span class="mi">114</span> <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Couldn&#39;t find appropriate backend to handle uri </span><span class="si">{</span><span class="n">uri</span><span class="si">}</span><span class="s2"> and format </span><span class="si">{</span><span class="nb">format</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+<span class="ne">RuntimeError</span>: Couldn&#39;t find appropriate backend to handle uri guitar_acoustic_030-051-127.wav and format None.
+</pre></div>
+</div>
+</div>
+</div>
+<p>This doesn’t sound close at all. Let’s see if we can once again use gradient descent to find a better value for <span class="math notranslate nohighlight">\(g\)</span> and match the decay time. We’ll use L1 loss on the normalized log magnitudes of the spectrum:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">to_log_mag</span><span class="p">(</span><span class="n">freq_response</span><span class="p">,</span> <span class="n">rel_to_max</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">):</span>
+    <span class="n">mag</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">freq_response</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">rel_to_max</span><span class="p">:</span>
+        <span class="n">div</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">mag</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">div</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="k">return</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">mag</span> <span class="o">/</span> <span class="n">div</span> <span class="o">+</span> <span class="n">eps</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">loss_fn</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">):</span>
+    <span class="n">y_mags</span> <span class="o">=</span> <span class="n">to_log_mag</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">y_hat_mags</span> <span class="o">=</span> <span class="n">to_log_mag</span><span class="p">(</span><span class="n">y_hat</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y_mags</span> <span class="o">-</span> <span class="n">y_hat_mags</span><span class="p">)</span><span class="o">.</span><span class="n">abs</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’re all set for optimization!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate truncated fft</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">nfft</span><span class="p">)</span>
+
+<span class="n">fftfreqs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfftfreq</span><span class="p">(</span><span class="n">nfft</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">sr</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fftfreqs</span><span class="p">,</span> <span class="n">to_log_mag</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">detach</span><span class="p">()),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;target&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fftfreqs</span><span class="p">,</span> <span class="n">to_log_mag</span><span class="p">(</span><span class="n">model</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;initial synthesis&quot;</span><span class="p">)</span>
+
+<span class="n">optim</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">optim</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">model</span><span class="p">())</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="n">optim</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+    
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fftfreqs</span><span class="p">,</span> <span class="n">to_log_mag</span><span class="p">(</span><span class="n">model</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;optimized synthesis&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Magnitude (dB)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frequency (Hz)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Audio after optimization:&quot;</span><span class="p">)</span>
+<span class="n">td_out</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">time_domain_synth</span><span class="p">(</span><span class="n">audio</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+<span class="n">ipd</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">ipd</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="n">td_out</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">sr</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./physical-modeling"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="many_oscillators.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Rigid objects and modal analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../challenges/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Challenges, Considerations, &amp; Best Practices</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ben Hayes, Jordie Shier, Chin-Yun Yu, David Südholt, Rodrigo Diaz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
