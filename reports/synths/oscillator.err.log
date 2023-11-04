@@ -25,11 +25,9 @@ axes[1].set_xlim(0, len(loss_log))
 (line0,) = axes[0].plot([], [], lw=2, alpha=0.75)
 (line1,) = axes[1].plot([], [], lw=2)
 
-num_frames = len(audio_log)
-
 
 def animate(i):
-    iteration = i * 5
+    iteration = i * 10
 
     axes[0].set_title("Iteration: {}".format(iteration))
     line0.set_data(torch.arange(sample_rate), audio_log[i])
@@ -54,10 +52,10 @@ display(ipd.HTML(anim.to_html5_video()))
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mRuntimeError[0m                              Traceback (most recent call last)
-Cell [0;32mIn[17], line 34[0m
-[1;32m     32[0m plt[38;5;241m.[39mclose(fig)
-[1;32m     33[0m [38;5;66;03m# To display the animation in the Jupyter notebook:[39;00m
-[0;32m---> 34[0m display(ipd[38;5;241m.[39mHTML([43manim[49m[38;5;241;43m.[39;49m[43mto_html5_video[49m[43m([49m[43m)[49m))
+Cell [0;32mIn[17], line 32[0m
+[1;32m     30[0m plt[38;5;241m.[39mclose(fig)
+[1;32m     31[0m [38;5;66;03m# To display the animation in the Jupyter notebook:[39;00m
+[0;32m---> 32[0m display(ipd[38;5;241m.[39mHTML([43manim[49m[38;5;241;43m.[39;49m[43mto_html5_video[49m[43m([49m[43m)[49m))
 
 File [0;32m/opt/hostedtoolcache/Python/3.8.18/x64/lib/python3.8/site-packages/matplotlib/animation.py:1284[0m, in [0;36mAnimation.to_html5_video[0;34m(self, embed_limit)[0m
 [1;32m   1281[0m path [38;5;241m=[39m Path(tmpdir, [38;5;124m"[39m[38;5;124mtemp.m4v[39m[38;5;124m"[39m)

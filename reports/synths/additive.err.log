@@ -29,8 +29,8 @@ def init():
 
 def animate(i):
     n = i + 1
-    saw_amplitudes = sawtooth(n, sample_rate)
-    y = harmonic_synth(fundamental, saw_amplitudes)
+    saw_amplitudes = sawtooth(n, frame_rate)
+    y = harmonic_synth(fundamental, saw_amplitudes, n_samples=sample_rate)
     line.set_data(torch.arange(250).numpy(), y[0].numpy()[:250])
     ax.set_title(f"Sawtooth Wave with N = {n} Harmonics")
     return (line,)
