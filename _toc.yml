@@ -8,6 +8,7 @@ parts:
     chapters:
       - file: background/neural-audio-synthesis.md
       - file: background/what-is-ddsp.md
+      - file: background/tasks_applications.md
   - caption: First Steps
     chapters:
       - file: first-steps/pytorch_tutorial.ipynb
