@@ -16,11 +16,6 @@ parts:
   - caption: Synthesisers
     chapters:
       - file: synths/introduction.md
-      - file: synths/oscillator.ipynb
-      - file: synths/additive.ipynb
-      - file: synths/harmonic_optimize.ipynb
-      - file: synths/harmonic_results.md
-      - file: synths/libraries.md
   - caption: Filters
     chapters:
       - file: filters/index.md
