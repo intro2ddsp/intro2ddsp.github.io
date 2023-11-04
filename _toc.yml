@@ -37,5 +37,4 @@ parts:
       - file: physical-modeling/wave_equation.md
   - caption: Wrapping Up
     chapters:
-      - file: conclusion/index.md
       - file: bibliography.md
