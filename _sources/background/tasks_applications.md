@@ -118,7 +118,7 @@ pitch and loudness contours, and a demand for higher resolution results (i.e., h
 One of the first DDSP vocoders designed for SVS was SawSing by {cite:t}`wu_ddsp-based_2022`,
 who proposed a differentiable source-filter approach using a sawtooth waveform for the 
 excitation signal. Subsequent work on SVS has also explored a differentiable source-filter
-method and include {cite:t}`yu_singing_2023`, who used differentiable linear predictive coding (LPC)
+method and include {cite:t}`golf`, who used differentiable linear predictive coding (LPC)
 and wavetables, and {cite:t}`nercessian_differentiable_2023`, who proposed a differentiable
 WORLD vocoder.
 
