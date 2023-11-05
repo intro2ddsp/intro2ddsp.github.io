@@ -8,3 +8,4 @@ auraloss
 docutils==0.17.1
 scikit-fem
 control
+PySoundFile
