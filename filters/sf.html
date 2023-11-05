@@ -523,7 +523,7 @@ s[n] = e[n] + \sum_{k=1}^M a_k s[n-k]
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-11-05 11:20:25--  http://festvox.org/cmu_arctic/cmu_arctic/cmu_us_awb_arctic/wav/arctic_a0007.wav
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2023-11-05 14:07:35--  http://festvox.org/cmu_arctic/cmu_arctic/cmu_us_awb_arctic/wav/arctic_a0007.wav
 Resolving festvox.org (festvox.org)... 
 </pre></div>
 </div>
@@ -543,9 +543,9 @@ Saving to: ‘arctic_a0007.wav’
 arctic_a0007.wav      0%[                    ]       0  --.-KB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>arctic_a0007.wav    100%[===================&gt;] 125.04K  --.-KB/s    in 0.1s    
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>arctic_a0007.wav    100%[===================&gt;] 125.04K   635KB/s    in 0.2s    
 
-2023-11-05 11:20:25 (841 KB/s) - ‘arctic_a0007.wav’ saved [128044/128044]
+2023-11-05 14:07:36 (635 KB/s) - ‘arctic_a0007.wav’ saved [128044/128044]
 </pre></div>
 </div>
 </div>
@@ -625,7 +625,7 @@ This results in minimising the prediction error <span class="math notranslate no
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gain: 0.23411035537719727
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gain: 0.23584944009780884
 </pre></div>
 </div>
 </div>
@@ -667,7 +667,7 @@ This results in minimising the prediction error <span class="math notranslate no
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/525f54f3e473ab5e9589b6d9e4d2c8ca3816af88ccd5fa7c5151b59cfe49a2f1.png" src="../_images/525f54f3e473ab5e9589b6d9e4d2c8ca3816af88ccd5fa7c5151b59cfe49a2f1.png" />
+<img alt="../_images/71d201dc3dce74ec514e28bc097b2e0cea19bbd3e2ad4e008bcd4ef2feb716fb.png" src="../_images/71d201dc3dce74ec514e28bc097b2e0cea19bbd3e2ad4e008bcd4ef2feb716fb.png" />
 </div>
 </div>
 <p>We can get the source (or residual) <span class="math notranslate nohighlight">\(e[n]\)</span> by inverse filtering the signal with the LPC coefficients, which is equivalent to the filtering the signal with a FIR filter <span class="math notranslate nohighlight">\([1, -a_1, -a_2, \dots, -a_M]\)</span>.</p>
@@ -707,7 +707,7 @@ e[n] = s[n] - \sum_{k=1}^M a_k s[n-k]
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/769389b7dcccb4b231b2c608e2e6bfa070550aca5e962bc8f3a1d1e826fa67f3.png" src="../_images/769389b7dcccb4b231b2c608e2e6bfa070550aca5e962bc8f3a1d1e826fa67f3.png" />
+<img alt="../_images/adf37c685b65f6f5b683a063d76f0d84f3f4f92b6bca032b76facab6195a1f27.png" src="../_images/adf37c685b65f6f5b683a063d76f0d84f3f4f92b6bca032b76facab6195a1f27.png" />
 </div>
 </div>
 </section>
@@ -1011,7 +1011,7 @@ Offset: 0.0
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/caa800b6d2821bb78a945d9f5592f5808df480177459ff3c8d40cd5341d30d85.png" src="../_images/caa800b6d2821bb78a945d9f5592f5808df480177459ff3c8d40cd5341d30d85.png" />
+<img alt="../_images/eaf458df9745e241cb86fbcbb6e4b15c932e94e131aee7002320d2a6e3304f2d.png" src="../_images/eaf458df9745e241cb86fbcbb6e4b15c932e94e131aee7002320d2a6e3304f2d.png" />
 </div>
 </div>
 <p>Let’s optimise the parameters with gradient descent.
@@ -1044,7 +1044,7 @@ The loss function we’re going to use is the L1 loss between the original signa
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/3c3950efafa2f55f154094eed07eb8e65972c45b67d7d10df6dd36e73069ebd7.png" src="../_images/3c3950efafa2f55f154094eed07eb8e65972c45b67d7d10df6dd36e73069ebd7.png" />
+<img alt="../_images/3f88524f3af7000cc218e058810ddae7c5041928a2a62e56f87b046b24bf3271.png" src="../_images/3f88524f3af7000cc218e058810ddae7c5041928a2a62e56f87b046b24bf3271.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1077,13 +1077,13 @@ The loss function we’re going to use is the L1 loss between the original signa
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gain: 0.18434563279151917
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gain: 0.18434171378612518
 Rd: 1.5502203702926636
-f0: 131.02642822265625
-Offset: 0.9482915364205837
+f0: 131.0270538330078
+Offset: 0.948312122374773
 </pre></div>
 </div>
-<img alt="../_images/4dcd161824b99dc5e48064f9a02f7f73e838ac3e713cc18b88e8752a9b8f7a5d.png" src="../_images/4dcd161824b99dc5e48064f9a02f7f73e838ac3e713cc18b88e8752a9b8f7a5d.png" />
+<img alt="../_images/920d56dfb7e387c9790c91a93f21d6c6c75be0116ebe86dcce5cd8ac8fb274e0.png" src="../_images/920d56dfb7e387c9790c91a93f21d6c6c75be0116ebe86dcce5cd8ac8fb274e0.png" />
 </div>
 </div>
 <p>Wow, this is pretty good! We can see that the model reconstructs the original signal quite well with very similar waveforms.
@@ -1115,7 +1115,7 @@ Let’s see what is the source signal looks like.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/93058cf01d64f7323ae65d7872585ebc20ccf405e6f14e7c9653b78f490ee637.png" src="../_images/93058cf01d64f7323ae65d7872585ebc20ccf405e6f14e7c9653b78f490ee637.png" />
+<img alt="../_images/21ba938f218b303dd3f37d737ab69f9213421367cd744adbcc7aca6efc4b8de9.png" src="../_images/21ba938f218b303dd3f37d737ab69f9213421367cd744adbcc7aca6efc4b8de9.png" />
 </div>
 </div>
 <p>Let’s compare the spectrum of the two filters.</p>
@@ -1170,7 +1170,7 @@ Let’s see what is the source signal looks like.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/af4011cf238a611c7541e721a69e1ac3dffa9665757cf7024183ef254381c19f.png" src="../_images/af4011cf238a611c7541e721a69e1ac3dffa9665757cf7024183ef254381c19f.png" />
+<img alt="../_images/9559893f7e13e6de98b7d6ee73311e542b0935f2a551cacbf471076158ebca75.png" src="../_images/9559893f7e13e6de98b7d6ee73311e542b0935f2a551cacbf471076158ebca75.png" />
 </div>
 </div>
 <p>Interestingly, the two filters looks very different.
