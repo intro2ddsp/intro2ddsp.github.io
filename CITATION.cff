@@ -1,6 +1,5 @@
 cff-version: 1.2.0
 message: "Please cite this webbook as below."
-type: book
 authors:
 - family-names: "Hayes"
   given-names: "Ben"
