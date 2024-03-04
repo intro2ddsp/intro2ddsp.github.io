@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Please cite this webbook as below."
+type: book
+authors:
+- family-names: "Hayes"
+  given-names: "Ben"
+- family-names: "Shier"
+  given-names: "Jordie"
+- family-names: "Yu"
+  given-names: "Chin-Yun"
+- family-names: "Südholt"
+  given-names: "David"
+- family-names: "Diaz"
+  given-names: "Rodrigo"
+title: "Introduction to Differentiable Audio Synthesizer Programming"
+version: 1.0.0
+date-released: 2023-11-05
+url: "https://intro2ddsp.github.io/"
