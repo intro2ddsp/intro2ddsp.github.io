@@ -1,0 +1,157 @@
+Traceback (most recent call last):
+  File "/home/runner/.local/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/.local/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/runner/.local/lib/python3.12/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/.local/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/.local/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/runner/.local/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/runner/.local/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+from IPython.display import HTML
+
+# Constants for the simple harmonic oscillator
+m = 1.0  # mass (kg)
+k = 1.0  # spring constant (N/m)
+omega = np.sqrt(k/m)  # angular frequency (rad/s)
+A = 0.5  # amplitude (m)
+phi = 0  # phase (rad)
+
+# Time array (s)
+t = np.linspace(0, 4*np.pi/omega, 500)
+
+# Oscillation function (m)
+x_t = A * np.cos(omega * t + phi) + 0.5
+
+fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(8, 5))
+
+# Setting up the subplot for animation of mass and spring
+ax[0].set_xlim(-2, 2)
+ax[0].set_ylim(-0.2, 1.2)  # Adjust to range [0, 1]
+ax[0].set_title("Undamped Harmonic Oscillator")
+ax[0].set_yticks([])  # Remove y-axis ticks
+ax[0].set_xticks([])  # Remove x-axis ticks
+spring, = ax[0].plot([], [], lw=2)
+mass = ax[0].scatter([0], [0.5], s=300)  # Initialize at 0.5
+
+# Setting up the subplot for the oscillation graph
+ax[1].set_xlim(0, 4*np.pi/omega)
+ax[1].set_ylim(0, 1)
+ax[1].set_title("Oscillation vs. Time")
+ax[1].set_xlabel("Time (s)")
+ax[1].set_ylabel("Position (m)")
+line, = ax[1].plot([], [], lw=2)
+time_marker = ax[1].axvline(x=0, color='r', linestyle='--')
+
+def init():
+    spring.set_data([], [])
+    mass.set_offsets([[0, 0]])  # Set as 2D structure
+    line.set_data([], [])
+    return spring, mass, line, time_marker
+
+def animate(i):
+    # Animation of the mass and spring
+    spring.set_data([0, 0], [0, x_t[i]])
+    mass.set_offsets([[0, x_t[i]]])  # Set as 2D structure
+
+    # Oscillation graph
+    line.set_data(t[:i], x_t[:i])
+    time_marker.set_xdata(t[i])
+    return spring, mass, line, time_marker
+
+anim = FuncAnimation(
+    fig,
+    animate,
+    frames=len(t),
+    init_func=init,
+    blit=True,
+    interval=25
+)
+
+plt.close(fig)
+
+# Show the animation
+display(HTML(anim.to_html5_video()))
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mRuntimeError[39m                              Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 67[39m
+[32m     64[39m plt.close(fig)
+[32m     66[39m [38;5;66;03m# Show the animation[39;00m
+[32m---> [39m[32m67[39m display(HTML([43manim[49m[43m.[49m[43mto_html5_video[49m[43m([49m[43m)[49m))
+
+[36mFile [39m[32m~/.local/lib/python3.12/site-packages/matplotlib/animation.py:1306[39m, in [36mAnimation.to_html5_video[39m[34m(self, embed_limit)[39m
+[32m   1302[39m Writer = writers[mpl.rcParams[[33m'[39m[33manimation.writer[39m[33m'[39m]]
+[32m   1303[39m writer = Writer(codec=[33m'[39m[33mh264[39m[33m'[39m,
+[32m   1304[39m                 bitrate=mpl.rcParams[[33m'[39m[33manimation.bitrate[39m[33m'[39m],
+[32m   1305[39m                 fps=[32m1000.[39m / [38;5;28mself[39m._interval)
+[32m-> [39m[32m1306[39m [38;5;28;43mself[39;49m[43m.[49m[43msave[49m[43m([49m[38;5;28;43mstr[39;49m[43m([49m[43mpath[49m[43m)[49m[43m,[49m[43m [49m[43mwriter[49m[43m=[49m[43mwriter[49m[43m)[49m
+[32m   1307[39m [38;5;66;03m# Now open and base64 encode.[39;00m
+[32m   1308[39m vid64 = base64.encodebytes(path.read_bytes())
+
+[36mFile [39m[32m~/.local/lib/python3.12/site-packages/matplotlib/animation.py:1122[39m, in [36mAnimation.save[39m[34m(self, filename, writer, fps, dpi, codec, bitrate, extra_args, metadata, extra_anim, savefig_kwargs, progress_callback)[39m
+[32m   1119[39m [38;5;28;01mfor[39;00m data [38;5;129;01min[39;00m [38;5;28mzip[39m(*[a.new_saved_frame_seq() [38;5;28;01mfor[39;00m a [38;5;129;01min[39;00m all_anim]):
+[32m   1120[39m     [38;5;28;01mfor[39;00m anim, d [38;5;129;01min[39;00m [38;5;28mzip[39m(all_anim, data):
+[32m   1121[39m         [38;5;66;03m# TODO: See if turning off blit is really necessary[39;00m
+[32m-> [39m[32m1122[39m         [43manim[49m[43m.[49m[43m_draw_next_frame[49m[43m([49m[43md[49m[43m,[49m[43m [49m[43mblit[49m[43m=[49m[38;5;28;43;01mFalse[39;49;00m[43m)[49m
+[32m   1123[39m         [38;5;28;01mif[39;00m progress_callback [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m   1124[39m             progress_callback(frame_number, total_frames)
+
+[36mFile [39m[32m~/.local/lib/python3.12/site-packages/matplotlib/animation.py:1157[39m, in [36mAnimation._draw_next_frame[39m[34m(self, framedata, blit)[39m
+[32m   1153[39m [38;5;28;01mdef[39;00m [34m_draw_next_frame[39m([38;5;28mself[39m, framedata, blit):
+[32m   1154[39m     [38;5;66;03m# Breaks down the drawing of the next frame into steps of pre- and[39;00m
+[32m   1155[39m     [38;5;66;03m# post- draw, as well as the drawing of the frame itself.[39;00m
+[32m   1156[39m     [38;5;28mself[39m._pre_draw(framedata, blit)
+[32m-> [39m[32m1157[39m     [38;5;28;43mself[39;49m[43m.[49m[43m_draw_frame[49m[43m([49m[43mframedata[49m[43m)[49m
+[32m   1158[39m     [38;5;28mself[39m._post_draw(framedata, blit)
+
+[36mFile [39m[32m~/.local/lib/python3.12/site-packages/matplotlib/animation.py:1789[39m, in [36mFuncAnimation._draw_frame[39m[34m(self, framedata)[39m
+[32m   1785[39m     [38;5;28mself[39m._save_seq = [38;5;28mself[39m._save_seq[-[38;5;28mself[39m._save_count:]
+[32m   1787[39m [38;5;66;03m# Call the func with framedata and args. If blitting is desired,[39;00m
+[32m   1788[39m [38;5;66;03m# func needs to return a sequence of any artists that were modified.[39;00m
+[32m-> [39m[32m1789[39m [38;5;28mself[39m._drawn_artists = [38;5;28;43mself[39;49m[43m.[49m[43m_func[49m[43m([49m[43mframedata[49m[43m,[49m[43m [49m[43m*[49m[38;5;28;43mself[39;49m[43m.[49m[43m_args[49m[43m)[49m
+[32m   1791[39m [38;5;28;01mif[39;00m [38;5;28mself[39m._blit:
+[32m   1793[39m     err = [38;5;167;01mRuntimeError[39;00m([33m'[39m[33mThe animation function must return a sequence [39m[33m'[39m
+[32m   1794[39m                        [33m'[39m[33mof Artist objects.[39m[33m'[39m)
+
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 52[39m, in [36manimate[39m[34m(i)[39m
+[32m     50[39m [38;5;66;03m# Oscillation graph[39;00m
+[32m     51[39m line.set_data(t[:i], x_t[:i])
+[32m---> [39m[32m52[39m [43mtime_marker[49m[43m.[49m[43mset_xdata[49m[43m([49m[43mt[49m[43m[[49m[43mi[49m[43m][49m[43m)[49m
+[32m     53[39m [38;5;28;01mreturn[39;00m spring, mass, line, time_marker
+
+[36mFile [39m[32m~/.local/lib/python3.12/site-packages/matplotlib/lines.py:1304[39m, in [36mLine2D.set_xdata[39m[34m(self, x)[39m
+[32m   1291[39m [38;5;250m[39m[33;03m"""[39;00m
+[32m   1292[39m [33;03mSet the data array for x.[39;00m
+[32m   1293[39m 
+[32m   (...)[39m[32m   1301[39m [33;03mset_ydata[39;00m
+[32m   1302[39m [33;03m"""[39;00m
+[32m   1303[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m np.iterable(x):
+[32m-> [39m[32m1304[39m     [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m([33m'[39m[33mx must be a sequence[39m[33m'[39m)
+[32m   1305[39m [38;5;28mself[39m._xorig = copy.copy(x)
+[32m   1306[39m [38;5;28mself[39m._invalidx = [38;5;28;01mTrue[39;00m
+
+[31mRuntimeError[39m: x must be a sequence
+
